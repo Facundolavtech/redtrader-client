@@ -1,0 +1,51 @@
+.auth__form {
+  .MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+
+  .MuiInputBase-root {
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+  input {
+    font-family: Rubik, "sans-serif";
+    cursor: pointer;
+
+    label {
+      font-weight: 200;
+    }
+  }
+
+  .submit__button {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(88, 88, 88, 0.185);
+
+    button {
+      padding: 10px 0;
+      font-size: 0.9em;
+    }
+  }
+
+  .changeForm__button {
+    background-color: unset;
+    color: rgb(87, 87, 87);
+
+    span {
+      color: $primary-red;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+  }
+}
+
+.auth-modal__logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 80px;
+  }
+}

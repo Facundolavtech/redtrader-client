@@ -1,0 +1,48 @@
+.after-hero__benefits {
+  width: 100%;
+  display: flex;
+  transform: translateY(-60px);
+  position: relative;
+  z-index: 300;
+
+  .card {
+    max-width: 350px;
+    width: 25%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(247, 247, 247);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px 0px rgba(41, 41, 41, 0.336);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 10px 1px rgba(41, 41, 41, 0.521);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+
+      opacity: 0.8;
+    }
+
+    h2 {
+      font-size: 1.3em;
+      color: $primary-red;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 0.9em;
+      color: rgb(41, 41, 41);
+    }
+  }
+}

@@ -1,12 +1,27 @@
+$primary-red: #f50606;
+$secondary-red: #970106;
+$black: #040203;
+$white: #f3f3f3;
+
+@import "./index.scss";
+
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Rubik, "sans-serif";
 }
+body {
+  overflow-x: hidden !important;
+}
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 ul,
@@ -17,11 +32,5 @@ li {
 button {
   outline: none;
   border: none;
+  cursor: pointer;
 }
-
-$primary-red: #f50606;
-$secondary-red: #970106;
-$black: #040203;
-$white: #f3f3f3;
-
-@import "./index.scss";
