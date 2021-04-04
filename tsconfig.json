@@ -19,7 +19,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "pages/_app.tsx",
+    "pages/_app.js",
     "components/Carrousel.js"
   ],
   "exclude": ["node_modules"]

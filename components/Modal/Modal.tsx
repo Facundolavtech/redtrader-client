@@ -14,8 +14,8 @@ export default function AuthModal({ title, children, open, close }) {
       top: `${top}%`,
       left: `${left}%`,
       right: `${right}`,
-      "margin-left": "auto",
-      "margin-right": "auto",
+      marginLeft: "auto",
+      marginRight: "auto",
     };
   }
 

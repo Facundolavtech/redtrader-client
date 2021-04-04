@@ -34,3 +34,13 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  bottom: 0;
+  z-index: 990;
+}

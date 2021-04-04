@@ -1,13 +1,11 @@
 import "../styles/globals.scss";
 import { useEffect } from "react";
 import HeadLayout from "../layout/Head";
-import type { AppProps } from "next/app";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../theme";
+import theme from "../libs/mui-theme";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -23,10 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-      <script
-        src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-        crossOrigin="true"
-      ></script>
     </>
   );
 }

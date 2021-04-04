@@ -1,13 +1,32 @@
-const dashboard = () => {
+import Header from "../components/Header";
+import Logo from "../components/Header/Logo";
+import { parseCookies } from "../helpers/cookies";
+
+const dashboard = ({ hola }) => {
   return (
-    <header>
-      <div className="header__container">
-        <a href="/" className="header__logo" style={{ marginLeft: "10%" }}>
-          <img src="favicon.png" alt="" />
-        </a>
-      </div>
-    </header>
+    <Header classes={"dashboard__header"}>
+      <Logo classes={"dashboard__logo"} />
+    </Header>
   );
 };
 
 export default dashboard;
+
+export async function getServerSideProps(ctx) {
+  const token = "hdwdwd";
+
+  console.log(ctx.req);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  } else {
+    return {
+      props: { hola: "hola" },
+    };
+  }
+}

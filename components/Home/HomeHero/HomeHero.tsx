@@ -1,4 +1,4 @@
-const Hero = ({ setOpenModal, setModalTitle }) => {
+const Hero = ({ setOpenModal, setIsLoginForm }) => {
   return (
     <section className="hero__section">
       <div className="hero__darkBG"></div>
@@ -11,14 +11,13 @@ const Hero = ({ setOpenModal, setModalTitle }) => {
         <button
           onClick={() => {
             setOpenModal(true);
-            setModalTitle("Registrarse");
+            setIsLoginForm(false);
           }}
         >
           Comenzar
         </button>
       </div>
       <div className="xm__hero">
-        <img className="handshake__xm-hero" src="assets/img/handshake.svg" />
         <h2>Somos partners oficiales de XM</h2>
         <div>
           <img src="assets/img/xm-logo.svg" />
