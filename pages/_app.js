@@ -4,6 +4,7 @@ import HeadLayout from "../layout/Head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../libs/mui-theme";
+import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -17,10 +18,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <HeadLayout />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <CookiesProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </CookiesProvider>
     </>
   );
 }

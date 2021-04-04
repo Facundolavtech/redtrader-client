@@ -3,10 +3,13 @@ import {
   FormControl,
   TextField,
   InputAdornment,
+  CircularProgress,
 } from "@material-ui/core";
 import { Person, VpnKey, Email } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import handleValidateAuth from "../../utils/handleValidateAuth";
+import { register, login } from "../../services/auth";
+import { useRouter } from "next/router";
 
 const initialFormValues = {
   name: "",
@@ -15,6 +18,8 @@ const initialFormValues = {
 };
 
 export default function AuthForm({ isLoginForm, setIsLoginForm }) {
+  const router = useRouter();
+  const [processingForm, setProcessingForm] = useState(false);
   const [values, setValues] = useState(initialFormValues);
   const [fieldErrors, setFieldErrors] = useState(null);
 
@@ -38,14 +43,36 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLoginForm) {
-      //LoginFunction
-      console.log("ingresando");
-    } else {
-      //RegisterFunction
-      console.log("registrando");
+
+    handleValidateAuth(values, isLoginForm, fieldErrors, setFieldErrors);
+    if (fieldErrors !== null) return;
+
+    try {
+      setProcessingForm(true);
+      
+      const response = isLoginForm
+        ? await login(values)
+        : await register(values);
+
+      setProcessingForm(false);
+
+      if (response.status === 200) {
+        setValues(initialFormValues);
+        router.push("/dashboard");
+      } else {
+        setValues({
+          ...values,
+          password: "",
+        });
+      }
+    } catch (error) {
+      setProcessingForm(false);
+      setValues({
+        ...values,
+        password: "",
+      });
     }
   };
 
@@ -106,8 +133,16 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
           }}
         />
         <FormControl fullWidth className="submit__button">
-          <Button variant="contained" color="primary" type="submit">
-            Ingresar
+          <Button
+            variant="contained"
+            color="primary"
+            type={processingForm ? "button" : "submit"}
+          >
+            {processingForm && (
+              <CircularProgress style={{ color: "#fff" }} size={23} />
+            )}
+            {!processingForm && isLoginForm ? "Ingresar" : ""}
+            {!processingForm && !isLoginForm ? "Registrarse" : ""}
           </Button>
         </FormControl>
         <button

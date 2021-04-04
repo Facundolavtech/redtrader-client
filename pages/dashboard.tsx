@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Logo from "../components/Header/Logo";
-import { parseCookies } from "../helpers/cookies";
+import parseCookies from "../helpers/cookies";
 
 const dashboard = ({ hola }) => {
   return (
@@ -13,11 +13,9 @@ const dashboard = ({ hola }) => {
 export default dashboard;
 
 export async function getServerSideProps(ctx) {
-  const token = "hdwdwd";
+  const cookies = parseCookies(ctx.req);
 
-  console.log(ctx.req);
-
-  if (!token) {
+  if (!cookies.userToken) {
     return {
       redirect: {
         destination: "/",
@@ -25,6 +23,10 @@ export async function getServerSideProps(ctx) {
       },
     };
   } else {
+    //Funcion de auth user y devolver poor props los datos
+    // try {
+    // } catch (error) {}
+
     return {
       props: { hola: "hola" },
     };
