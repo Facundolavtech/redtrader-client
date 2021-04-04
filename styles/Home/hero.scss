@@ -115,9 +115,14 @@
       h1 {
         font-size: 2.5em;
       }
+
       p {
         font-size: 1em;
+        width: 90%;
       }
+    }
+    .hero__img {
+      width: unset;
     }
 
     .xm__hero {
