@@ -23,7 +23,6 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
     }
   }, []);
 
-
   const handleOpenMenu = () => {
     setMenuOpen(!menuOpen);
     isMobile ? setBackdrop(!menuOpen) : null;
@@ -49,13 +48,15 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
           className="home__hamburger"
         />
       )}
-      <nav className={menuClass}>
-        <HomeMenu
-          setOpenModal={setOpenModal}
-          setIsLoginForm={setIsLoginForm}
-          handleOpenMenu={handleOpenMenu}
-        />
-      </nav>
+      {menuOpen && (
+        <nav className={menuClass}>
+          <HomeMenu
+            setOpenModal={setOpenModal}
+            setIsLoginForm={setIsLoginForm}
+            handleOpenMenu={handleOpenMenu}
+          />
+        </nav>
+      )}
     </>
   );
 };
