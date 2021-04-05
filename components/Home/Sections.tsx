@@ -3,7 +3,7 @@ const Sections = () => {
     <>
       <section className="after-hero__benefits">
         <div className="card">
-          <img src="assets/img/trophy.svg" />
+          <img src="assets/img/trophy.svg" loading="lazy" />
           <h2>Gana mientras aprendes</h2>
           <p>
             Puedes ganar dinero mientras aprendes, con nuestro sistema de
@@ -11,14 +11,14 @@ const Sections = () => {
           </p>
         </div>
         <div className="card">
-          <img src="assets/img/signals-filled.svg" />
+          <img src="assets/img/signals-filled.svg" loading="lazy" />
           <h2>Clases en vivo</h2>
           <p>
             Clases en vivo todos los dias con profesores que viven del trading
           </p>
         </div>
         <div className="card">
-          <img src="assets/img/smartphone.svg" />
+          <img src="assets/img/smartphone.svg" loading="lazy" />
           <h2>Copia a los expertos</h2>
           <p>
             Copia y gana! puedes copiar a los expertos y tendras el mismo
@@ -35,12 +35,12 @@ const Sections = () => {
           </p>
         </div>
         <div className="academy__img">
-          <img src="assets/img/academy-mockup.png" />
+          <img src="assets/img/academy-mockup.png" loading="lazy" />
         </div>
       </section>
       <section className="signals__section" id="signals">
         <div className="signals__img">
-          <img src="assets/img/mt4.png" />
+          <img src="assets/img/mt4.png" loading="lazy" />
         </div>
         <div className="signals__info">
           <h2>Señales de trading</h2>
@@ -62,7 +62,7 @@ const Sections = () => {
         <div className="partner__img">
           <img src="favicon.png" />
           {/* <span>{""}</span> */}
-          <img src="assets/img/xm-logo.svg" />
+          <img src="assets/img/xm-logo.svg" loading="lazy" />
         </div>
       </section>
     </>
