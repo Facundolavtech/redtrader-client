@@ -48,7 +48,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
           className="home__hamburger"
         />
       )}
-      {menuOpen && (
+      {menuOpen || !isMobile ? (
         <nav className={menuClass}>
           <HomeMenu
             setOpenModal={setOpenModal}
@@ -56,7 +56,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
             handleOpenMenu={handleOpenMenu}
           />
         </nav>
-      )}
+      ) : null}
     </>
   );
 };
