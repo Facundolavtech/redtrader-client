@@ -7,6 +7,7 @@ import Logo from "../components/Header/Logo";
 import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
 
+
 export default function Inicio() {
   const [openModal, setOpenModal] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(null);

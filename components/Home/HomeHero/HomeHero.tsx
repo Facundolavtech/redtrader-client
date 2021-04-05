@@ -1,8 +1,16 @@
+import Image from "next/image";
+import { Slider } from "@material-ui/core";
+
 const Hero = ({ setOpenModal, setIsLoginForm }) => {
   return (
     <section className="hero__section">
       <div className="hero__darkBG"></div>
-      <img className="hero__img" src="/assets/img/hero.jpg" />
+      <Image
+        src="/assets/img/hero.jpg"
+        className="hero__img"
+        layout="fill"
+        loading="eager"
+      />
       <div className="hero__info">
         <h1>
           Lleva tu <span>Trading</span> al siguiente nivel
