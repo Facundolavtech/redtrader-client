@@ -2,7 +2,7 @@ const Hero = ({ setOpenModal, setIsLoginForm }) => {
   return (
     <section className="hero__section">
       <div className="hero__darkBG"></div>
-      <img src="/assets/img/hero.jpg" className="hero__img" loading="lazy" />
+      <img src="/assets/img/hero.jpg" className="hero__img" />
       <div className="hero__info">
         <h1>
           Lleva tu <span>Trading</span> al siguiente nivel
