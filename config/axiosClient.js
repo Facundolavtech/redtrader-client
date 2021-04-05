@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:4001/api/",
+  baseURL: "https://redtrader-api.herokuapp.com/api/",
   headers: {
     "Content-Type": "application/json",
   },
