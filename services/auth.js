@@ -19,9 +19,7 @@ export async function register(data) {
 
     return response;
   } catch (error) {
-    return {
-      msg: error.response.data.msg,
-    };
+    return error.response.data;
   }
 }
 
@@ -30,6 +28,10 @@ export async function login(data) {
     const loginUser = await axiosClient.post("/users/login", data);
 
     const token = loginUser.data.token;
+
+    if (loginUser.status !== 200) {
+      return loginUser.data;
+    }
 
     const response = {
       msg: loginUser.data.msg,
@@ -41,8 +43,14 @@ export async function login(data) {
 
     return response;
   } catch (error) {
-    return {
-      msg: error.response.data.msg,
-    };
+    return error.response.data;
+  }
+}
+
+export function removeToken() {
+  const token = cookies.get("userToken");
+
+  if (token) {
+    cookies.remove("userToken");
   }
 }

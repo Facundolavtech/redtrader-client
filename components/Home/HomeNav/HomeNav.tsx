@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
   const [isMobile, setIsMobile] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (window) {
@@ -22,7 +23,6 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
     }
   }, []);
 
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
     setMenuOpen(!menuOpen);

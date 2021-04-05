@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import handleValidateAuth from "../../utils/handleValidateAuth";
 import { register, login } from "../../services/auth";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const initialFormValues = {
   name: "",
@@ -47,11 +48,11 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
     e.preventDefault();
 
     handleValidateAuth(values, isLoginForm, fieldErrors, setFieldErrors);
-    if (fieldErrors !== null) return;
+    if (fieldErrors !== null || values === initialFormValues) return;
 
     try {
       setProcessingForm(true);
-      
+
       const response = isLoginForm
         ? await login(values)
         : await register(values);
@@ -59,15 +60,19 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
       setProcessingForm(false);
 
       if (response.status === 200) {
+        toast.success(response.msg);
         setValues(initialFormValues);
         router.push("/dashboard");
       } else {
+        toast.error(response);
+        setProcessingForm(false);
         setValues({
           ...values,
           password: "",
         });
       }
     } catch (error) {
+      toast.error("Ocurrio un error");
       setProcessingForm(false);
       setValues({
         ...values,

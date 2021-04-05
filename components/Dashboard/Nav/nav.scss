@@ -1,0 +1,41 @@
+.dashboard__nav {
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  justify-content: flex-end;
+
+  h1 {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-right: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 70%;
+    white-space: nowrap;
+  }
+
+  .dashboard__menu {
+    > button {
+      width: 30px;
+      padding: 0;
+      min-width: unset;
+      height: 30px;
+      background-color: unset;
+      border-radius: 50%;
+      font-weight: 500;
+      text-transform: capitalize;
+      box-shadow: none;
+
+      svg {
+        display: block;
+        width: 30px;
+        height: 30px;
+
+        path {
+          fill: $primary-red;
+        }
+      }
+    }
+  }
+}
