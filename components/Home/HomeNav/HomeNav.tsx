@@ -6,10 +6,12 @@ import classNames from "classnames";
 const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
   const [isMobile, setIsMobile] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [preventNavFlash, setPreventNavFlash] = useState(true);
 
   useEffect(() => {
     if (window) {
       window.addEventListener("resize", () => {
+        console.log(window.innerWidth);
         if (window.innerWidth <= 768) setIsMobile(true);
         else setIsMobile(false);
       });
@@ -18,12 +20,17 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
 
   useEffect(() => {
     if (window) {
-      if (window.innerWidth <= 768) setIsMobile(true);
-      else setIsMobile(false);
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setPreventNavFlash(false);
+        setIsMobile(false);
+      }
     }
   }, []);
 
   const handleOpenMenu = () => {
+    setPreventNavFlash(false);
     setMenuOpen(!menuOpen);
     isMobile ? setBackdrop(!menuOpen) : null;
   };
@@ -48,7 +55,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
           className="home__hamburger"
         />
       )}
-      {menuOpen || !isMobile ? (
+      {!preventNavFlash && (
         <nav className={menuClass}>
           <HomeMenu
             setOpenModal={setOpenModal}
@@ -56,7 +63,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
             handleOpenMenu={handleOpenMenu}
           />
         </nav>
-      ) : null}
+      )}
     </>
   );
 };
