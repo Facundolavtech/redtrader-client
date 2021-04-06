@@ -1,4 +1,6 @@
-const Sections = () => {
+import { Button } from "@material-ui/core";
+
+const Sections = ({ setOpenModal, setIsLoginForm }) => {
   return (
     <>
       <section className="after-hero__benefits">
@@ -24,6 +26,20 @@ const Sections = () => {
             Copia y gana! puedes copiar a los expertos y tendras el mismo
             resultado
           </p>
+        </div>
+      </section>
+      <section className="markets__section">
+        <div className="markets__title">
+          <h2>Mercados que operamos</h2>
+          <img src="assets/img/markets-icon.svg" />
+        </div>
+        <div className="markets__cards__container">
+          <div className="markets__card">
+            <img src="assets/img/forex-card.png" />
+          </div>
+          <div className="markets__card">
+            <img src="assets/img/cripto-card.png" />
+          </div>
         </div>
       </section>
       <section className="academy__section" id="academy">
@@ -63,6 +79,38 @@ const Sections = () => {
           <img src="favicon.png" />
           {/* <span>{""}</span> */}
           <img src="assets/img/xm-logo.svg" loading="lazy" />
+        </div>
+      </section>
+      <section className="price__section" id="price">
+        <div className="price__container">
+          <h2>
+            Plan premium <img src="assets/img/rocket.svg" />
+          </h2>
+          <p>
+            Accede a todo por solo <span>$70 USD</span> por unica vez y luego{" "}
+            <span>$20 USD</span> mensual
+          </p>
+
+          <li>
+            <span>&#10004;</span> Academia con mas de 20 videos para aprender a
+            ganar dinero con nuestras señales
+          </li>
+          <li>
+            <span>&#10004;</span> Señales diarias por telegram para que copies
+            pegues y ganes dinero
+          </li>
+          <li>
+            <span>&#10004;</span> Comunidad de RedTrader dispuesta a ayudarte en
+            todo lo que necesites
+          </li>
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => (setOpenModal(true), setIsLoginForm(false))}
+          >
+            Comenzar
+          </Button>
         </div>
       </section>
     </>

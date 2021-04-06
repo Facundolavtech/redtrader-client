@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { removeToken } from "../../../services/auth";
 import { useRouter } from "next/router";
 import {
@@ -40,13 +41,13 @@ const useStyles = makeStyles((theme) =>
       fontSize: "1em",
       display: "flex",
       justifyContent: "center",
-      padding: "6px 25px",
+      padding: "6px 30px",
       margin: "auto",
       width: "90%",
       marginBottom: "5px",
 
       "&:first-of-type": {
-        fontSize: "1.1em",
+        fontSize: "1em",
         marginTop: "10px",
         fontWeight: 500,
       },
@@ -95,12 +96,13 @@ const UserMenu = ({ plan }) => {
         onClose={handleClose}
       >
         <h2 className={classes.menuTitle}>Menu</h2>
+        {plan && <h3 className="activePlan__badge">Plan activo</h3>}
         <MenuItem
           className={classes.menuItem}
           onClick={handleClose}
           style={{
-            background: !plan ? "green" : "",
-            color: !plan ? "#fff" : "green",
+            background: !plan ? "rgb(48, 216, 14)" : "",
+            color: !plan ? "#fff" : "rgb(48, 216, 14)",
             borderRadius: !plan ? "5px" : "",
           }}
         >
@@ -111,10 +113,12 @@ const UserMenu = ({ plan }) => {
             <AddShoppingCart className={classes.menuItemIcon} />
           )}
         </MenuItem>
-        <MenuItem className={classes.menuItem} onClick={handleClose}>
-          Cambiar contraseña
-          <VpnKey className={classes.menuItemIcon} />
-        </MenuItem>
+        <Link href="/dashboard/password">
+          <MenuItem className={classes.menuItem} onClick={handleClose}>
+            Cambiar contraseña
+            <VpnKey className={classes.menuItemIcon} />
+          </MenuItem>
+        </Link>
         <MenuItem
           className={classes.menuItem}
           onClick={() => (handleClose(), logout())}

@@ -6,7 +6,6 @@ import Header from "../components/Header";
 import Logo from "../components/Header/Logo";
 import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
-import { useRouter } from "next/router";
 
 export default function Inicio() {
   const [openModal, setOpenModal] = useState(false);
@@ -16,12 +15,6 @@ export default function Inicio() {
   const handleCloseModal: Function = () => {
     setOpenModal(false);
   };
-
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log(router);
-  }, [router]);
 
   return (
     <>
@@ -48,7 +41,7 @@ export default function Inicio() {
         </div>
       </Header>
       <Hero setOpenModal={setOpenModal} setIsLoginForm={setIsLoginForm} />
-      <Sections />
+      <Sections setIsLoginForm={setIsLoginForm} setOpenModal={setOpenModal} />
       <AuthModal
         open={openModal}
         close={handleCloseModal}

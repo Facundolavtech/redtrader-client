@@ -1,10 +1,10 @@
-import parseCookies from "../helpers/cookies";
-import axiosClient from "../config/axiosClient";
-import { getVideos } from "../services/videos";
-import Header from "../components/Header";
-import Logo from "../components/Header/Logo";
-import Nav from "../components/Dashboard/Nav";
-import DashboardTabs from "../components/Dashboard/Tabs";
+import parseCookies from "../../helpers/cookies";
+import axiosClient from "../../config/axiosClient";
+import { getVideos } from "../../services/videos";
+import Header from "../../components/Header";
+import Logo from "../../components/Header/Logo";
+import Nav from "../../components/Dashboard/Nav";
+import DashboardTabs from "../../components/Dashboard/Tabs";
 
 const dashboard = ({ user, videos }) => {
   return (

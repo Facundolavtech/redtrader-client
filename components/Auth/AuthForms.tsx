@@ -27,8 +27,9 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
   const { name, email, password } = values;
 
   useEffect(() => {
-    values !== initialFormValues &&
+    return () => {
       handleValidateAuth(values, isLoginForm, fieldErrors, setFieldErrors);
+    };
   }, [values]);
 
   const handleChangeForm = () => {
@@ -62,6 +63,7 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
         toast.success(response.msg);
       } else {
         toast.error(response);
+        toast.error(response.msg || "");
         setProcessingForm(false);
         setValues({
           ...values,

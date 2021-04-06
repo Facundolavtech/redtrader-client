@@ -1,0 +1,85 @@
+.price__section {
+  width: 100%;
+  padding: 80px 0;
+  background-color: rgb(245, 245, 245);
+  margin: auto;
+
+  .price__container {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h2 {
+      font-size: 2.8em;
+      color: rgb(61, 61, 61);
+      margin-bottom: 15px;
+
+      img {
+        width: 40px;
+      }
+    }
+    p {
+      font-size: 1.5em;
+      font-weight: 500;
+      margin-bottom: 25px;
+
+      span {
+        font-size: 1.4em;
+        color: rgb(28, 173, 28);
+      }
+    }
+
+    li {
+      text-align: initial;
+      font-size: 1.2em;
+      color: rgb(70, 70, 70);
+      font-weight: 400;
+
+      span {
+        color: rgb(28, 173, 28);
+      }
+    }
+
+    .MuiButton-root {
+      box-shadow: none;
+      border-radius: 0;
+      width: 190px;
+      min-width: 190px;
+      padding: 0;
+      height: 50px;
+      margin-top: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .price__section {
+    .price__container {
+      width: 85%;
+
+      h2 {
+        font-size: 2.6em;
+
+        img {
+          width: 35px;
+        }
+      }
+
+      p {
+        font-size: 1.2em;
+
+        span {
+          font-size: 1.3em;
+        }
+      }
+
+      li {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

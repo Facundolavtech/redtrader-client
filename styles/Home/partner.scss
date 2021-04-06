@@ -27,11 +27,11 @@
       margin-top: 20px;
       width: 140px;
       min-width: 140px;
-      height: 45px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: $primary-red;
+      background: #333;
       color: #fff;
       text-decoration: none;
       font-weight: 500;
@@ -39,7 +39,7 @@
       transition: background 0.2s ease;
 
       &:hover {
-        background: #d80505;
+        background: #444;
         transition: background 0.2s ease;
       }
     }
