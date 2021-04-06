@@ -6,12 +6,13 @@ import classNames from "classnames";
 const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
   const [isMobile, setIsMobile] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  //Avoid the flash of the nav when loading the page for the first time
   const [preventNavFlash, setPreventNavFlash] = useState(true);
 
   useEffect(() => {
     if (window) {
       window.addEventListener("resize", () => {
-        console.log(window.innerWidth);
         if (window.innerWidth <= 768) setIsMobile(true);
         else setIsMobile(false);
       });
@@ -23,8 +24,8 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
       if (window.innerWidth <= 768) {
         setIsMobile(true);
       } else {
-        setPreventNavFlash(false);
         setIsMobile(false);
+        setPreventNavFlash(false);
       }
     }
   }, []);
@@ -36,7 +37,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
   };
 
   const menuClass = classNames(classes, {
-    hidden__nav: isMobile && !menuOpen ? true : false,
+    hidden__nav: (isMobile && !menuOpen) || preventNavFlash ? true : false,
   });
 
   return (
@@ -45,8 +46,8 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
         <HamburgerMenu
           isOpen={menuOpen}
           menuClicked={handleOpenMenu}
-          width={28}
-          height={17}
+          width={25}
+          height={15}
           strokeWidth={2}
           rotate={0}
           color="black"
@@ -55,15 +56,13 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
           className="home__hamburger"
         />
       )}
-      {!preventNavFlash && (
-        <nav className={menuClass}>
-          <HomeMenu
-            setOpenModal={setOpenModal}
-            setIsLoginForm={setIsLoginForm}
-            handleOpenMenu={handleOpenMenu}
-          />
-        </nav>
-      )}
+      <nav className={menuClass}>
+        <HomeMenu
+          setOpenModal={setOpenModal}
+          setIsLoginForm={setIsLoginForm}
+          handleOpenMenu={handleOpenMenu}
+        />
+      </nav>
     </>
   );
 };

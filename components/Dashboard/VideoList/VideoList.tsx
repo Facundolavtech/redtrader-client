@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Tab } from "@material-ui/core";
-import { Lock } from "@material-ui/icons";
+import { Lock, PlayCircleFilled } from "@material-ui/icons";
 import VideoTemplate from "./VideoTemplate";
 
 interface TabPanelProps {
@@ -71,7 +71,7 @@ export default function VideoList({ videos }) {
             label={video.title}
             {...a11yProps(index)}
             disabled={video.src === null ? true : false}
-            icon={video.src === null && <Lock />}
+            icon={video.src === null ? <Lock /> : <PlayCircleFilled />}
           />
         ))}
       </Tabs>

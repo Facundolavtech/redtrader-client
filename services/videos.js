@@ -10,7 +10,9 @@ export async function getVideos(token) {
 
     const response = getVideoList.data;
 
-    return response;
+    const sortVideos = response.sort((a, b) => a.order - b.order);
+
+    return sortVideos;
   } catch (error) {
     return {
       msg: error.data,

@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) =>
       width: "90%",
       paddingBottom: "10px",
       fontSize: "1.3em",
-      fontWeight: 500,
+      fontWeight: 400,
       textTransform: "uppercase",
       color: theme.palette.secondary.main,
       outline: "none",
       textAlign: "center",
       margin: "10px auto 20px auto",
-      borderBottom: `1px solid ${theme.palette.primary.main}`,
+      borderBottom: `1px solid #e2e2e2`,
     },
 
     menuItem: {
@@ -36,17 +36,19 @@ const useStyles = makeStyles((theme) =>
       textOverflow: "ellipsis",
       overflow: "hidden",
       whiteSpace: "nowrap",
-      fontWeight: 500,
-      fontSize: "1.1em",
+      fontWeight: 400,
+      fontSize: "1em",
       display: "flex",
       justifyContent: "center",
-      padding: "6px 20px",
+      padding: "6px 25px",
       margin: "auto",
       width: "90%",
-      marginBottom: "10px",
+      marginBottom: "5px",
 
       "&:first-of-type": {
+        fontSize: "1.1em",
         marginTop: "10px",
+        fontWeight: 500,
       },
     },
     menuItemIcon: {
@@ -120,8 +122,8 @@ const UserMenu = ({ plan }) => {
             background: "#fff",
             color: "rgb(236, 2, 2)",
             borderTop: "1px solid rgba(36, 36, 36, 0.11)",
-            padding: "8px 0",
-            marginTop: "20px",
+            padding: "12px 0",
+            marginTop: "30px",
           }}
         >
           Cerrar sesion

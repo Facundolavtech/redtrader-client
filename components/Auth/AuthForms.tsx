@@ -57,12 +57,9 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
         ? await login(values)
         : await register(values);
 
-      setProcessingForm(false);
-
       if (response.status === 200) {
-        toast.success(response.msg);
-        setValues(initialFormValues);
         router.push("/dashboard");
+        toast.success(response.msg);
       } else {
         toast.error(response);
         setProcessingForm(false);
