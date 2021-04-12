@@ -16,6 +16,8 @@
     span {
       display: flex;
       flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
       margin: auto;
       font-weight: 400;
       text-transform: none;
