@@ -7,6 +7,7 @@ import Logo from "../components/Header/Logo";
 import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
 import HomeFooter from "../components/Home/HomeFooter";
+import FloatingWhatsapp from "../components/Home/FloatingWhatsapp";
 
 export default function Inicio() {
   const [openModal, setOpenModal] = useState(false);
@@ -51,6 +52,7 @@ export default function Inicio() {
       >
         <AuthForm isLoginForm={isLoginForm} setIsLoginForm={setIsLoginForm} />
       </AuthModal>
+      <FloatingWhatsapp />
     </>
   );
 }
