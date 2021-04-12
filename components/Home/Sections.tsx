@@ -119,11 +119,7 @@ const Sections = ({ setOpenModal, setIsLoginForm }) => {
             Comenzar
           </Button>
         </div>
-        <img
-          src="/assets/img/pricing-img.jpg"
-          alt=""
-          className="pricing__img"
-        />
+        <img src="/assets/img/pricingBG.jpg" alt="" className="pricing__img" />
       </section>
     </>
   );
