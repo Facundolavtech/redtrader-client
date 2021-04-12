@@ -7,9 +7,7 @@ export async function updateUser(id, data, token) {
         Authorization: token,
       },
     });
-
-    console.log(response);
-
+    
     return response;
   } catch (error) {
     return error.response.data;
