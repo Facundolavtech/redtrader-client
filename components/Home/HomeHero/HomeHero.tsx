@@ -7,7 +7,7 @@ const Hero = ({ setOpenModal, setIsLoginForm }) => {
         <h1>
           Lleva tu <span>Trading</span> al siguiente nivel
         </h1>
-        <p>Unete a RedTrader y comienza a generar ingresos ilimitados</p>
+        <p>Únete a RedTrader y comienza a generar ingresos ilimitados</p>
         <button
           onClick={() => {
             setOpenModal(true);

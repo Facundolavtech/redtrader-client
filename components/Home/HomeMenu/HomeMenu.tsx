@@ -11,13 +11,13 @@ const HomeMenu = ({ setOpenModal, setIsLoginForm, handleOpenMenu }) => {
   return (
     <>
       <li>
-        <Link href="#academy">
+        <Link href="#academia">
           <a onClick={handleOpenMenu}>Academia</a>
         </Link>
         <School />
       </li>
       <li>
-        <Link href="#signals">
+        <Link href="#senales">
           <a onClick={handleOpenMenu}>Señales de Trading</a>
         </Link>
         <PermDeviceInformation />
@@ -29,7 +29,7 @@ const HomeMenu = ({ setOpenModal, setIsLoginForm, handleOpenMenu }) => {
         <Group />
       </li>
       <li>
-        <Link href="#price">
+        <Link href="#precio">
           <a onClick={handleOpenMenu}>Precio</a>
         </Link>
         <MonetizationOn />
@@ -43,7 +43,7 @@ const HomeMenu = ({ setOpenModal, setIsLoginForm, handleOpenMenu }) => {
             handleOpenMenu();
           }}
         >
-          Iniciar Sesion
+          Iniciar Sesión
         </a>
         <img src="/assets/img/lock.svg" />
       </li>

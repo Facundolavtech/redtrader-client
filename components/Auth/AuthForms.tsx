@@ -11,6 +11,7 @@ import handleValidateAuth from "../../utils/handleValidateAuth";
 import { register, login } from "../../services/auth";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const initialFormValues = {
   name: "",
@@ -150,12 +151,17 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
             {!processingForm && !isLoginForm ? "Registrarse" : ""}
           </Button>
         </FormControl>
+        {isLoginForm && (
+          <Link href="/forgot">
+            <a className="forgot__btn">¿Olvidaste tu contraseña?</a>
+          </Link>
+        )}
         <button
           onClick={handleChangeForm}
           className="changeForm__button"
           type="button"
         >
-          {isLoginForm ? "¿Aun no tienes cuenta?" : "¿Ya tienes cuenta?"}
+          {isLoginForm ? "¿Aún no tienes cuenta?" : "¿Ya tienes cuenta?"}
           {isLoginForm ? <span>Registrate</span> : <span>Inicia Sesion</span>}
         </button>
       </form>

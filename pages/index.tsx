@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Logo from "../components/Header/Logo";
 import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
+import HomeFooter from "../components/Home/HomeFooter";
 
 export default function Inicio() {
   const [openModal, setOpenModal] = useState(false);
@@ -42,6 +43,7 @@ export default function Inicio() {
       </Header>
       <Hero setOpenModal={setOpenModal} setIsLoginForm={setIsLoginForm} />
       <Sections setIsLoginForm={setIsLoginForm} setOpenModal={setOpenModal} />
+      <HomeFooter />
       <AuthModal
         open={openModal}
         close={handleCloseModal}
