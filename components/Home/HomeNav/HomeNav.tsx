@@ -3,7 +3,13 @@ import HomeMenu from "../HomeMenu";
 import HamburgerMenu from "react-hamburger-menu";
 import classNames from "classnames";
 
-const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
+const HomeNav = ({
+  classes,
+  setOpenModal,
+  setIsLoginForm,
+  setBackdrop,
+  loggedIn,
+}) => {
   const [isMobile, setIsMobile] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -61,6 +67,7 @@ const HomeNav = ({ classes, setOpenModal, setIsLoginForm, setBackdrop }) => {
           setOpenModal={setOpenModal}
           setIsLoginForm={setIsLoginForm}
           handleOpenMenu={handleOpenMenu}
+          loggedIn={loggedIn}
         />
       </nav>
     </>

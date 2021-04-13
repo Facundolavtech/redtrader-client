@@ -8,8 +8,10 @@ import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
 import HomeFooter from "../components/Home/HomeFooter";
 import FloatingWhatsapp from "../components/Home/FloatingWhatsapp";
+import parseCookies from "../helpers/cookies";
+import axiosClient from "../config/axiosClient";
 
-export default function Inicio() {
+export default function Inicio({ loggedIn }) {
   const [openModal, setOpenModal] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(null);
   const [backdrop, setBackdrop] = useState(false);
@@ -39,11 +41,20 @@ export default function Inicio() {
             setOpenModal={setOpenModal}
             setIsLoginForm={setIsLoginForm}
             setBackdrop={setBackdrop}
+            loggedIn={loggedIn}
           />
         </div>
       </Header>
-      <Hero setOpenModal={setOpenModal} setIsLoginForm={setIsLoginForm} />
-      <Sections setIsLoginForm={setIsLoginForm} setOpenModal={setOpenModal} />
+      <Hero
+        setOpenModal={setOpenModal}
+        setIsLoginForm={setIsLoginForm}
+        loggedIn={loggedIn}
+      />
+      <Sections
+        setIsLoginForm={setIsLoginForm}
+        setOpenModal={setOpenModal}
+        loggedIn={loggedIn}
+      />
       <HomeFooter />
       <AuthModal
         open={openModal}
@@ -55,4 +66,34 @@ export default function Inicio() {
       <FloatingWhatsapp />
     </>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const cookies = parseCookies(ctx.req);
+
+  if (!cookies.userToken) {
+    return {
+      props: { loggedIn: false },
+    };
+  } else {
+    try {
+      const authUser = await axiosClient.get("/users/auth", {
+        headers: {
+          Authorization: cookies.userToken,
+        },
+      });
+
+      if (authUser.status === 200) {
+        return {
+          props: { loggedIn: true },
+        };
+      } else {
+        return {
+          props: { loggedIn: false },
+        };
+      }
+    } catch (error) {
+      return null;
+    }
+  }
 }

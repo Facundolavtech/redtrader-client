@@ -22,10 +22,11 @@ const TelegramTab = ({ plan }) => {
             </li>
 
             <p>¡Disfruta de las señales y buenos profits!</p>
-
-            <Button variant="contained" color="secondary">
-              Ingresar <Telegram />
-            </Button>
+            <Link href="https://t.me/joinchat/K9AkHRzb_FUxYWE5">
+              <Button variant="contained" color="secondary">
+                Ingresar <Telegram />
+              </Button>
+            </Link>
           </div>
         </>
       ) : (
@@ -37,7 +38,7 @@ const TelegramTab = ({ plan }) => {
             Redtrader
           </p>
           <hr />
-          <Link href="/plan">
+          <Link href="/dashboard/pay">
             <Button variant="contained" color="primary">
               Adquirir Plan <AddShoppingCart />
             </Button>

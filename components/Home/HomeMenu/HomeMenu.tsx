@@ -7,7 +7,12 @@ import {
 } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 
-const HomeMenu = ({ setOpenModal, setIsLoginForm, handleOpenMenu }) => {
+const HomeMenu = ({
+  setOpenModal,
+  setIsLoginForm,
+  handleOpenMenu,
+  loggedIn,
+}) => {
   return (
     <>
       <li>
@@ -35,28 +40,42 @@ const HomeMenu = ({ setOpenModal, setIsLoginForm, handleOpenMenu }) => {
         <MonetizationOn />
       </li>
       <hr className="nav__vertical-line" />
-      <li className="nav__login">
-        <a
-          onClick={() => {
-            setOpenModal(true);
-            setIsLoginForm(true);
-            handleOpenMenu();
-          }}
-        >
-          Iniciar Sesión
-        </a>
-        <img src="/assets/img/lock.svg" />
-      </li>
-      <li
-        className="nav__comenzar-btn"
-        onClick={() => {
-          setOpenModal(true);
-          setIsLoginForm(false);
-          handleOpenMenu();
-        }}
-      >
-        <Button>Comenzar</Button>
-      </li>
+      {loggedIn ? (
+        <Link href="/dashboard">
+          <Button
+            variant="contained"
+            color="primary"
+            className="go-dashboard__btn"
+          >
+            Ir al dashboard
+          </Button>
+        </Link>
+      ) : (
+        <>
+          <li className="nav__login">
+            <a
+              onClick={() => {
+                setOpenModal(true);
+                setIsLoginForm(true);
+                handleOpenMenu();
+              }}
+            >
+              Iniciar Sesión
+            </a>
+            <img src="/assets/img/lock.svg" />
+          </li>
+          <li
+            className="nav__comenzar-btn"
+            onClick={() => {
+              setOpenModal(true);
+              setIsLoginForm(false);
+              handleOpenMenu();
+            }}
+          >
+            <Button>Comenzar</Button>
+          </li>
+        </>
+      )}
     </>
   );
 };

@@ -97,22 +97,24 @@ const UserMenu = ({ plan }) => {
       >
         <h2 className={classes.menuTitle}>Menu</h2>
         {plan && <h3 className="activePlan__badge">Plan activo</h3>}
-        <MenuItem
-          className={classes.menuItem}
-          onClick={handleClose}
-          style={{
-            background: !plan ? "rgb(48, 216, 14)" : "",
-            color: !plan ? "#fff" : "rgb(48, 216, 14)",
-            borderRadius: !plan ? "5px" : "",
-          }}
-        >
-          {plan ? "Informacion del plan" : "Adquirir plan"}
-          {plan ? (
-            <Info className={classes.menuItemIcon} />
-          ) : (
-            <AddShoppingCart className={classes.menuItemIcon} />
-          )}
-        </MenuItem>
+        <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
+          <MenuItem
+            className={classes.menuItem}
+            onClick={handleClose}
+            style={{
+              background: !plan ? "rgb(48, 216, 14)" : "",
+              color: !plan ? "#fff" : "rgb(48, 216, 14)",
+              borderRadius: !plan ? "5px" : "",
+            }}
+          >
+            {plan ? "Informacion del plan" : "Adquirir plan"}
+            {plan ? (
+              <Info className={classes.menuItemIcon} />
+            ) : (
+              <AddShoppingCart className={classes.menuItemIcon} />
+            )}
+          </MenuItem>
+        </Link>
         <Link href="/dashboard/password">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
             Cambiar contraseña

@@ -1,6 +1,9 @@
 import { Button } from "@material-ui/core";
+import { useRouter } from "next/router";
 
-const Sections = ({ setOpenModal, setIsLoginForm }) => {
+const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
+  const router = useRouter();
+
   return (
     <>
       <section className="after-hero__benefits">
@@ -72,7 +75,15 @@ const Sections = ({ setOpenModal, setIsLoginForm }) => {
       <section className="partner__section" id="partner">
         <div className="partner__info">
           <h2>Somos partner oficiales de XM</h2>
-          <p>Crea tu cuenta y obten un bono para operar de 30 U$D</p>
+          <p style={{ fontWeight: "lighter" }}>
+            Crea tu cuenta y obten un extra de hasta un{" "}
+            <span
+              style={{ fontSize: "1.3em", color: "#333", fontWeight: "bold" }}
+            >
+              50%
+            </span>{" "}
+            del total de tu deposito
+          </p>
           <a href="https://www.xm.com/landing/promo-bonus/es" target="_blank">
             Ver promoción
           </a>
@@ -114,7 +125,16 @@ const Sections = ({ setOpenModal, setIsLoginForm }) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => (setOpenModal(true), setIsLoginForm(false))}
+            onClick={
+              loggedIn
+                ? () => {
+                    router.push("/dashboard");
+                  }
+                : () => {
+                    setOpenModal(true);
+                    setIsLoginForm(false);
+                  }
+            }
           >
             Comenzar
           </Button>

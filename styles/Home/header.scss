@@ -76,6 +76,14 @@
         margin: auto 15px;
       }
 
+      .go-dashboard__btn {
+        width: 160px;
+        max-width: 160px;
+        height: 45px;
+        margin: auto;
+        font-size: 0.9em;
+      }
+
       .nav__login {
         margin-left: 0;
 
@@ -136,6 +144,10 @@
           display: flex;
           justify-content: center;
         }
+      }
+
+      .go-dashboard__btn {
+        margin-top: 20px !important;
       }
 
       .hidden__nav {

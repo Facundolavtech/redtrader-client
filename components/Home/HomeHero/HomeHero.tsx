@@ -1,4 +1,8 @@
-const Hero = ({ setOpenModal, setIsLoginForm }) => {
+import { useRouter } from "next/router";
+
+const Hero = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
+  const router = useRouter();
+
   return (
     <section className="hero__section">
       <div className="hero__darkBG"></div>
@@ -9,10 +13,16 @@ const Hero = ({ setOpenModal, setIsLoginForm }) => {
         </h1>
         <p>Únete a RedTrader y comienza a generar ingresos ilimitados</p>
         <button
-          onClick={() => {
-            setOpenModal(true);
-            setIsLoginForm(false);
-          }}
+          onClick={
+            loggedIn
+              ? () => {
+                  router.push("/dashboard");
+                }
+              : () => {
+                  setOpenModal(true);
+                  setIsLoginForm(false);
+                }
+          }
         >
           Comenzar
         </button>
