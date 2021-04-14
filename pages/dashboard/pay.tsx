@@ -8,7 +8,7 @@ import currencies from "../../helpers/criptocurrencies";
 import { Button, CircularProgress } from "@material-ui/core";
 import { createPay } from "../../services/pays";
 
-const plan = ({ user, userToken }) => {
+const pay = ({ user, userToken }) => {
   const [currencySelected, setCurrencySelected] = useState(null);
   const [creatingPay, setCreatingPay] = useState(false);
   const [checkoutLink, setCheckoutLink] = useState(null);
@@ -57,7 +57,7 @@ const plan = ({ user, userToken }) => {
             <p className="pay__btn-title">
               Paga tu factura clickeando el siguiente boton
             </p>
-            <a href={checkoutLink} target="_blank">
+            <a href={checkoutLink} target="_blank" className="pay__btn-img">
               <img src="https://www.coinpayments.net/images/pub/buynow-wide-blue.png" />
             </a>
           </>
@@ -100,7 +100,7 @@ const plan = ({ user, userToken }) => {
   );
 };
 
-export default plan;
+export default pay;
 
 export async function getServerSideProps(ctx) {
   const cookies = parseCookies(ctx.req);

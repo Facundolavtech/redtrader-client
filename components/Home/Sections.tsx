@@ -73,25 +73,36 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
         </div>
       </section>
       <section className="partner__section" id="partner">
-        <div className="partner__info">
-          <h2>Somos partner oficiales de XM</h2>
-          <p style={{ fontWeight: "lighter" }}>
-            Crea tu cuenta y obten un extra de hasta un{" "}
-            <span
-              style={{ fontSize: "1.3em", color: "#333", fontWeight: "bold" }}
-            >
-              50%
-            </span>{" "}
-            del total de tu deposito
-          </p>
-          <a href="https://www.xm.com/landing/promo-bonus/es" target="_blank">
-            Ver promoción
-          </a>
-        </div>
         <div className="partner__img">
           <img src="favicon.png" />
           {/* <span>{""}</span> */}
           <img src="assets/img/xm-logo.svg" loading="lazy" />
+        </div>
+        <div className="partner__info">
+          <div className="partner__info-left">
+            <h2>Somos partner oficiales de XM</h2>
+            <p>
+              Crea tu cuenta con XM y obtene beneficios unicos por ser parte de
+              <span>RedTrader</span>
+            </p>
+            <a href="https://www.xm.com/landing/promo-bonus/es" target="_blank">
+              Ver promoción
+            </a>
+          </div>
+          <div className="partner__info-right">
+            <div className="partner__info-bubble">
+              <h2>100%</h2>
+              <p>
+                de tu deposito hasta <strong>500 U$D</strong>
+              </p>
+            </div>
+            <div className="partner__info-bubble">
+              <h2>20%</h2>
+              <p>
+                de tu deposito hasta <strong>4500 U$D</strong> en bono
+              </p>
+            </div>
+          </div>
         </div>
       </section>
       <section className="price__section" id="precio">
@@ -140,6 +151,18 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
           </Button>
         </div>
         <img src="/assets/img/pricingBG.jpg" className="pricing__img" />
+      </section>
+      <section className="contact__section">
+        <h2>
+          ¿Necesitas ayuda? Contactanos en <a>soporte@redtrader.site</a>
+        </h2>
+        <div>
+          Pagos 100% seguros con{" "}
+          <img
+            src="/assets/img/coinpayments-logo.png"
+            alt="Coinpayments logo"
+          />
+        </div>
       </section>
     </>
   );

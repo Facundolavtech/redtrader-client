@@ -45,8 +45,13 @@ export async function getServerSideProps(ctx) {
       return {
         props: { user: response.user, videos: response.videos },
       };
-    } catch (error) {
-      return null;
+    } catch (err) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
     }
   }
 }

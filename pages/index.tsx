@@ -93,7 +93,9 @@ export async function getServerSideProps(ctx) {
         };
       }
     } catch (error) {
-      return null;
+      return {
+        props: { loggedIn: false },
+      };
     }
   }
 }

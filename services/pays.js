@@ -1,7 +1,6 @@
 import axiosClient from "../config/axiosClient";
 
 export async function createPay(amount, currency, token) {
-  console.log(amount, token, currency);
   try {
     const newPay = await axiosClient.post(
       "/pays/create",
@@ -24,6 +23,6 @@ export async function createPay(amount, currency, token) {
 
     return response;
   } catch (error) {
-    return error.response.data;
+    return error;
   }
 }

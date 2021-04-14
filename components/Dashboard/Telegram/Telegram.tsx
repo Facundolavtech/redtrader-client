@@ -13,14 +13,12 @@ const TelegramTab = ({ plan }) => {
               ¡Bienvenido! Con el siguiente enlace podrás ingresar al grupo de
               señales premium de Redtrader{" "}
             </h2>
-
             <h3>¡IMPORTANTE!</h3>
             <li>
               ¡Está terminantemente prohibido compartir el enlace del grupo! de
               ser así serás expulsado inmediatamente del grupo sin posibilidad
               de reintegro
             </li>
-
             <p>¡Disfruta de las señales y buenos profits!</p>
             <Link href="https://t.me/joinchat/K9AkHRzb_FUxYWE5">
               <Button variant="contained" color="secondary">
