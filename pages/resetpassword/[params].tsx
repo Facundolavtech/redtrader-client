@@ -63,6 +63,7 @@ export default function index() {
         setProcessingForm(false);
         toast.success(response.msg);
         setFormValues(initialFormValues);
+        router.push("/");
       } else {
         setProcessingForm(false);
         toast.error(response);
