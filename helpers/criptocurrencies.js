@@ -4,6 +4,10 @@ const currencies = [
     img: "https://www.coinpayments.net/images/coins/BTC.png",
   },
   {
+    name: "ETH",
+    img: "https://www.coinpayments.net/images/coins/ETH.png",
+  },
+  {
     name: "BCH",
     img: "https://www.coinpayments.net/images/coins/BCH.png",
   },
@@ -28,7 +32,7 @@ const currencies = [
     img: "https://www.coinpayments.net/images/coins/USDC.png",
   },
   {
-    name: "USDT.BEP2",
+    name: "USDT.ERC20",
     img: "https://www.coinpayments.net/images/coins/USDT.png",
   },
   {
@@ -38,6 +42,10 @@ const currencies = [
   {
     name: "LTCT",
     img: "https://www.coinpayments.net/images/coins/LTCT.png",
+  },
+  {
+    name: "XRP",
+    img: "https://www.coinpayments.net/images/coins/XRP.png",
   },
 ];
 

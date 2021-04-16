@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Hero from "../components/Home/HomeHero/HomeHero";
 import AuthModal from "../components/Modal/Modal";
 import AuthForm from "../components/Auth/AuthForms";
@@ -10,6 +10,7 @@ import HomeFooter from "../components/Home/HomeFooter";
 import FloatingWhatsapp from "../components/Home/FloatingWhatsapp";
 import parseCookies from "../helpers/cookies";
 import axiosClient from "../config/axiosClient";
+import { removeToken } from "../services/auth";
 
 export default function Inicio({ loggedIn }) {
   const [openModal, setOpenModal] = useState(false);
@@ -19,6 +20,12 @@ export default function Inicio({ loggedIn }) {
   const handleCloseModal: Function = () => {
     setOpenModal(false);
   };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      removeToken();
+    }
+  }, [loggedIn]);
 
   return (
     <>
@@ -83,7 +90,7 @@ export async function getServerSideProps(ctx) {
         },
       });
 
-      if (authUser.status === 200) {
+      if (authUser.status === 200 && authUser.data.confirmed === true) {
         return {
           props: { loggedIn: true },
         };

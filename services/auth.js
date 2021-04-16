@@ -17,6 +17,13 @@ export async function register(data) {
 
     cookies.set("userToken", token);
 
+    if (newUser.status === 200) {
+      const { email } = data;
+      await axiosClient.post(`/users/sendconfirmemail`, {
+        email,
+      });
+    }
+
     return response;
   } catch (error) {
     return error.response.data;

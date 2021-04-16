@@ -120,6 +120,15 @@ export async function getServerSideProps(ctx) {
         },
       });
 
+      if (!authUser.data.confirmed) {
+        return {
+          redirect: {
+            destination: "/confirm",
+            permanent: false,
+          },
+        };
+      }
+
       const response = authUser.data;
 
       if (response.plan === true) {

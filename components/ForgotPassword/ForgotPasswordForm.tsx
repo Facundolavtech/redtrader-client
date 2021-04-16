@@ -6,10 +6,12 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { Email } from "@material-ui/icons";
+import { sendResetPasswordEmail } from "../../services/user";
+import { toast } from "react-toastify";
+
+const initialFormValues = "";
 
 const ForgotPasswordForm = () => {
-  const initialFormValues = "";
-
   const [processingForm, setProcessingForm] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({
     email: null,
@@ -36,17 +38,31 @@ const ForgotPasswordForm = () => {
     }
   }, [emailValue]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    handleValidateEmail();
     if (emailValue === initialFormValues || fieldErrors.email !== null) {
       return;
     }
+    try {
+      setProcessingForm(true);
 
-    setProcessingForm(true);
-    console.log("enviandoEmail");
-    setProcessingForm(false);
-    setEmailSend(true);
+      const response = await sendResetPasswordEmail(emailValue);
+
+      if (response.status === 200) {
+        toast.success(response.msg);
+        setEmailSend(true);
+        setProcessingForm(false);
+      } else {
+        setProcessingForm(false);
+        toast.error(response);
+        setEmailValue("");
+      }
+    } catch (error) {
+      toast.error("Ocurrio un error");
+      setProcessingForm(false);
+    }
   };
 
   return (

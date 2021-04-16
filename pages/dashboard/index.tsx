@@ -38,6 +38,15 @@ export async function getServerSideProps(ctx) {
         },
       });
 
+      if (!authUser.data.confirmed) {
+        return {
+          redirect: {
+            destination: "/confirm",
+            permanent: false,
+          },
+        };
+      }
+
       const videoList = await getVideos(cookies.userToken);
 
       const response = { user: authUser.data, videos: videoList };

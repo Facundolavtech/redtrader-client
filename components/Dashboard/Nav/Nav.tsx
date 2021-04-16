@@ -1,5 +1,3 @@
-import { userInfo } from "node:os";
-import React from "react";
 import UserMenu from "../UserMenu";
 
 const Nav = ({ name, plan }) => {
