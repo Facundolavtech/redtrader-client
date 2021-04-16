@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { removeToken } from "../../../services/auth";
 import { useRouter } from "next/router";
@@ -71,8 +71,9 @@ const UserMenu = ({ plan }) => {
   };
 
   const logout = () => {
-    removeToken();
-    router.push("/");
+    removeToken().then(() => {
+      router.push("/");
+    });
   };
 
   const classes = useStyles();

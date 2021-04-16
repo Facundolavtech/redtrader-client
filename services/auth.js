@@ -54,10 +54,10 @@ export async function login(data) {
   }
 }
 
-export function removeToken() {
+export async function removeToken() {
   const token = cookies.get("userToken");
 
   if (token) {
-    cookies.remove("userToken");
+    await cookies.remove("userToken");
   }
 }
