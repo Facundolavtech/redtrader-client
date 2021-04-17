@@ -115,23 +115,12 @@
     span.arrowback__btn {
       position: absolute;
       top: -55px;
-      left: 0;
+      left: 5%;
     }
 
-    .info-plan__img,
     .info-plan__info {
       width: 100%;
-    }
-    .info-plan__img {
-      height: 250px;
-
-      &::after {
-        height: 250px;
-      }
-    }
-
-    .info-plan__info {
-      margin-top: 30px;
+      margin-top: 10px;
       padding: 0 20px;
 
       h2 {
@@ -141,6 +130,10 @@
       .expiresIn__info {
         font-size: 1.1em;
       }
+    }
+
+    .info-plan__img {
+      display: none;
     }
   }
 }
