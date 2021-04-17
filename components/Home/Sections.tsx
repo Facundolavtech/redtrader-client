@@ -36,7 +36,6 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
       <section className="markets__section">
         <div className="markets__title">
           <h2>Mercados que operamos</h2>
-          <img src="assets/img/markets-icon.svg" />
         </div>
         <div className="markets__cards__container">
           <div className="markets__card">
@@ -85,9 +84,6 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
               Crea tu cuenta con XM y obtene beneficios unicos por ser parte de
               <span>RedTrader</span>
             </p>
-            <a href="https://www.xm.com/landing/promo-bonus/es" target="_blank">
-              Ver promoción
-            </a>
           </div>
           <div className="partner__info-right">
             <div className="partner__info-bubble">
@@ -104,6 +100,13 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
             </div>
           </div>
         </div>
+        <a
+          href="https://www.xm.com/landing/promo-bonus/es"
+          target="_blank"
+          className="partner-action__btn"
+        >
+          Ver promoción
+        </a>
       </section>
       <section className="price__section" id="precio">
         <div className="price__container">
