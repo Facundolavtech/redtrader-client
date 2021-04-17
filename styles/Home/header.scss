@@ -77,11 +77,13 @@
       }
 
       .go-dashboard__btn {
-        width: 160px;
-        max-width: 160px;
-        height: 45px;
+        width: 150px;
+        max-width: 150px;
+        height: 40px;
         margin: auto;
         font-size: 0.9em;
+        text-transform: unset;
+        box-shadow: none;
       }
 
       .nav__login {

@@ -2,7 +2,7 @@
   width: 80%;
   max-width: 600px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,13 @@
   padding: 20px;
   box-shadow: 0 0 5px 1px rgb(240, 240, 240);
   margin-bottom: 100px;
+  position: relative;
+
+  span.arrowback__btn {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+  }
 
   h2 {
     width: 100%;
@@ -113,6 +120,12 @@
   .pay__container {
     width: 95%;
     box-shadow: none;
+
+    span.arrowback__btn {
+      position: absolute;
+      top: -4%;
+      left: 3%;
+    }
 
     h2 {
       font-size: 2.2em;

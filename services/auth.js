@@ -60,4 +60,8 @@ export async function removeToken() {
   if (token) {
     await cookies.remove("userToken");
   }
+
+  if (!token) {
+    return true;
+  }
 }

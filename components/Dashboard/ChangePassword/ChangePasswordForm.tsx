@@ -10,6 +10,7 @@ import { VpnKey } from "@material-ui/icons";
 import handleValidateChangePassword from "../../../utils/handleValidateChangePassword";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import ArrowBackBtn from "../../BackArrow";
 
 const initialFormValues = {
   old: "",
@@ -66,6 +67,7 @@ export default function ChangePasswordForm({ userId, token }) {
 
   return (
     <div className="changepassword__form">
+      <ArrowBackBtn src="/dashboard" />
       <div className="changepassword__form-title">
         <h2>Cambiar contraseña</h2>
       </div>

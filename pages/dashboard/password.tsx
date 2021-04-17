@@ -16,15 +16,6 @@ const password = ({ user, token }) => {
         <Logo classes={"dashboard__logo"} />
         <Nav name={user.name} plan={user.plan} />
       </Header>
-      <div className="goback">
-        <Link href="/dashboard">
-          <Button variant="contained" color="secondary" className="goback__btn">
-            <ArrowBack />
-          </Button>
-        </Link>
-        <h2>Volver al dashboard</h2>
-      </div>
-
       <ChangePasswordForm userId={user._id} token={token} />
     </>
   );

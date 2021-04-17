@@ -7,6 +7,7 @@ import Nav from "../../components/Dashboard/Nav";
 import currencies from "../../helpers/criptocurrencies";
 import { Button, CircularProgress } from "@material-ui/core";
 import { createPay } from "../../services/pays";
+import ArrowBackBtn from "../../components/BackArrow";
 
 const pay = ({ user, userToken }) => {
   const [currencySelected, setCurrencySelected] = useState(null);
@@ -35,6 +36,7 @@ const pay = ({ user, userToken }) => {
         <Nav plan={user.plan} name={user.name} />
       </Header>
       <div className="pay__container">
+        <ArrowBackBtn src="/dashboard" />
         <h2>Plan Premium</h2>
         {user.first_month ? (
           <h3>

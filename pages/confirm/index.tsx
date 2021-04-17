@@ -5,6 +5,7 @@ import parseCookies from "../../helpers/cookies";
 import { CircularProgress } from "@material-ui/core";
 import { toast } from "react-toastify";
 import { sendConfirmAccountEmail } from "../../services/user";
+import ArrowBackBtn from "../../components/BackArrow";
 
 const confirm = ({ email }) => {
   const [emailSended, setEmailSended] = useState(false);
@@ -32,6 +33,7 @@ const confirm = ({ email }) => {
   return (
     <div className="confirm__container">
       <Logo classes="" />
+      <ArrowBackBtn src="/" />
       <h2>
         Te hemos enviado un email para confirmar tu cuenta a
         <br />

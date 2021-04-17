@@ -1,0 +1,33 @@
+.arrowback__btn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary-red;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: #fff;
+    border: 2px solid $primary-red;
+    transform: translateX(-5px);
+    transition: transform 0.3s ease, border 0.3s ease,
+      background-color 0.3s ease;
+
+    svg path {
+      fill: $primary-red;
+    }
+  }
+
+  svg {
+    width: 80%;
+    max-width: 100%;
+    max-height: auto;
+    path {
+      fill: #fff;
+    }
+  }
+}
