@@ -68,7 +68,7 @@ export default function index() {
         setProcessingForm(false);
         toast.error(response);
         response.msg ? toast.error(response.msg) : null;
-        setFormValues(initialFormValues);
+        router.push("/");
       }
     } catch (error) {
       toast.error("Ocurrio un error");

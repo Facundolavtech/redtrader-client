@@ -76,3 +76,27 @@ export async function confirmAccount(id, token) {
     return error.response.data;
   }
 }
+
+export async function getConfirmAccountToken(id) {
+  try {
+    const response = await axiosClient.get(`/users/confirmaccount/${id}`);
+
+    return {
+      status: response.status,
+    };
+  } catch (error) {
+    return error.response.data;
+  }
+}
+
+export async function getResetPasswordToken(id) {
+  try {
+    const response = await axiosClient.get(`/users/forgotpassword/${id}`);
+
+    return {
+      status: response.status,
+    };
+  } catch (error) {
+    return error.response.data;
+  }
+}

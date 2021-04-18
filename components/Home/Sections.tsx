@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
   const router = useRouter();
-
   return (
     <>
       <section className="after-hero__benefits">

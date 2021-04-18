@@ -4,15 +4,18 @@ import axiosClient from "../../config/axiosClient";
 import parseCookies from "../../helpers/cookies";
 import { CircularProgress } from "@material-ui/core";
 import { toast } from "react-toastify";
-import { sendConfirmAccountEmail } from "../../services/user";
+import {
+  sendConfirmAccountEmail,
+  getConfirmAccountToken,
+} from "../../services/user";
 import ArrowBackBtn from "../../components/BackArrow";
 
-const confirm = ({ email }) => {
+const confirm = ({ email, token }) => {
   const [emailSended, setEmailSended] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
 
   const sendNewConfirmEmail = async () => {
-    if (!email) return;
+    if (!email && !token) return;
 
     try {
       setSendingEmail(true);
@@ -40,22 +43,31 @@ const confirm = ({ email }) => {
         <span>{email}</span>
       </h2>
 
-      <h3>
-        {!emailSended ? (
-          <>
-            ¿Quieres reenviar el email de confirmacion?{" "}
-            <button onClick={sendNewConfirmEmail}>
-              {sendingEmail ? (
-                <CircularProgress style={{ color: "#fff" }} size={23} />
-              ) : (
-                "Click aquí"
-              )}
-            </button>
-          </>
-        ) : (
-          "Email enviado"
-        )}
-      </h3>
+      {token === true ? (
+        <h3 style={{ color: "#228f01" }}>
+          Revisa tu casilla de correo no deseado o spam
+          <span style={{ color: "#333", fontWeight: 400 }}>
+            Podras reenviar el email de confirmacion en 20 minutos
+          </span>
+        </h3>
+      ) : (
+        <h3>
+          {!emailSended && !token ? (
+            <>
+              ¿Quieres reenviar el email de confirmacion?{" "}
+              <button onClick={sendNewConfirmEmail}>
+                {sendingEmail ? (
+                  <CircularProgress style={{ color: "#fff" }} size={23} />
+                ) : (
+                  "Click aquí"
+                )}
+              </button>
+            </>
+          ) : (
+            "Email enviado"
+          )}
+        </h3>
+      )}
     </div>
   );
 };
@@ -89,9 +101,17 @@ export async function getServerSideProps(ctx) {
         };
       }
 
-      return {
-        props: { email: authUser.data.email },
-      };
+      const getToken = await getConfirmAccountToken(authUser.data._id);
+
+      if (getToken.status === 200) {
+        return {
+          props: { email: authUser.data.email, token: false },
+        };
+      } else {
+        return {
+          props: { email: authUser.data.email, token: true },
+        };
+      }
     } catch (error) {
       return {
         redirect: {

@@ -29,10 +29,12 @@ const params = () => {
           setLoading(false);
           toast.error(response);
           setErrorMsg(response);
+          router.push("/");
         }
       } catch (error) {
         setLoading(false);
         toast.error("Ocurrio un error");
+        router.push("/");
       }
     })();
   }, []);
