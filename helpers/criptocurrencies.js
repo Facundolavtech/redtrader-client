@@ -43,6 +43,10 @@ const currencies = [
     name: "XRP",
     img: "https://www.coinpayments.net/images/coins/XRP.png",
   },
+  {
+    name: "ADA.BEP2",
+    img: "https://www.coinpayments.net/images/coins/ADA.png",
+  },
 ];
 
 export default currencies;
