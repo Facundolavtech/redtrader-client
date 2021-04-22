@@ -1,6 +1,6 @@
 .telegram__container {
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   width: 80%;
   max-width: 900px;
   padding: 10px;
@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     h2 {
       font-size: 2.2em;
       color: rgb(26, 26, 26);
@@ -28,9 +29,9 @@
     }
 
     li {
-      font-size: 1em;
+      font-size: 0.9em;
       color: rgb(37, 37, 37);
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 20px;
     }
 
@@ -42,8 +43,8 @@
     button {
       display: flex;
       align-items: center;
-      width: 160px;
-      min-width: 160px;
+      width: 220px;
+      min-width: 220px;
 
       svg {
         margin-left: 5px;

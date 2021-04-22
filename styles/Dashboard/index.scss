@@ -1,0 +1,17 @@
+.MuiTabs-root {
+  width: 100%;
+}
+
+.MuiTab-root {
+  margin-right: 20px !important;
+}
+
+.MuiTabs-flexContainer {
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .MuiTabs-flexContainer {
+    justify-content: unset;
+  }
+}

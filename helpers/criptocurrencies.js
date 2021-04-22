@@ -40,10 +40,6 @@ const currencies = [
     img: "https://www.coinpayments.net/images/coins/XMR.png",
   },
   {
-    name: "LTCT",
-    img: "https://www.coinpayments.net/images/coins/LTCT.png",
-  },
-  {
     name: "XRP",
     img: "https://www.coinpayments.net/images/coins/XRP.png",
   },

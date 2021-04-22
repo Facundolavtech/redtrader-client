@@ -5,14 +5,30 @@ import parseCookies from "../../helpers/cookies";
 import axiosClient from "../../config/axiosClient";
 import Nav from "../../components/Dashboard/Nav";
 import currencies from "../../helpers/criptocurrencies";
-import { Button, CircularProgress } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { createPay } from "../../services/pays";
 import ArrowBackBtn from "../../components/BackArrow";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  dropDown: {
+    height: "300px",
+  },
+}));
 
 const pay = ({ user, userToken }) => {
   const [currencySelected, setCurrencySelected] = useState(null);
   const [creatingPay, setCreatingPay] = useState(false);
   const [checkoutLink, setCheckoutLink] = useState(null);
+
+  const classes = useStyles();
 
   const createPayFunction = async () => {
     if (currencySelected !== null) {
@@ -51,8 +67,8 @@ const pay = ({ user, userToken }) => {
           Cuenta: <strong>{user.email}</strong>
         </h4>
         <p>
-          ¡Tenga en cuenta que el plan puede tardar en actualizarse aun cuando
-          haya realizado el pago!
+          ¡Tenga en cuenta que, una vez realizado el pago, su plan puede tardar
+          un tiempo en actualizarse!
         </p>
         {checkoutLink !== null ? (
           <>
@@ -60,7 +76,7 @@ const pay = ({ user, userToken }) => {
               Paga tu factura clickeando el siguiente boton
             </p>
             <a href={checkoutLink} target="_blank" className="pay__btn-img">
-              <img src="https://www.coinpayments.net/images/pub/buynow-wide-blue.png" />
+              <img src="/assets/img/coinpayments-paybtn.png" />
             </a>
           </>
         ) : (
@@ -69,19 +85,25 @@ const pay = ({ user, userToken }) => {
               Elige la moneda con la que deseas pagar
             </p>
             <div className="currencies__container">
-              {currencies.map((currency, index) => (
-                <button
-                  key={index}
-                  className="currency__btn"
-                  style={{
-                    background: currencySelected === currency.name && "#c0c0c0",
-                  }}
-                  onClick={(e) => setCurrencySelected(currency.name)}
+              <FormControl>
+                <InputLabel id="demo-simple-select-label">
+                  Elegi la criptomoneda
+                </InputLabel>
+                <Select
+                  MenuProps={{ classes: { paper: classes.dropDown } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={currencySelected}
+                  onChange={(e) => setCurrencySelected(e.target.value)}
                 >
-                  <span>{currency.name}</span>
-                  <img src={currency.img} alt="cripto_img" />
-                </button>
-              ))}
+                  {currencies.map((currency, index) => (
+                    <MenuItem key={index} value={currency.name}>
+                      <img src={currency.img} alt="cripto_img" />
+                      {currency.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
             <Button
               variant="contained"

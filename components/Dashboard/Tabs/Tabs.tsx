@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import { School, Telegram } from "@material-ui/icons";
+import { School, Telegram, AccountBalance } from "@material-ui/icons";
 import VideoList from "../VideoList";
 import TelegramTab from "../Telegram";
+import BrokersTab from "../Brokers";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -63,11 +64,8 @@ export default function DashboardTabs({ videos, plan }) {
           style={{ display: "flex", justifyContent: "center", margin: "auto" }}
         >
           <Tab label="Academia" icon={<School />} {...a11yProps(0)} />
-          <Tab
-            label="Señales de telegram"
-            icon={<Telegram />}
-            {...a11yProps(1)}
-          />
+          <Tab label="Señales" icon={<Telegram />} {...a11yProps(1)} />
+          <Tab label="Brokers" icon={<AccountBalance />} {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -78,6 +76,11 @@ export default function DashboardTabs({ videos, plan }) {
       <TabPanel value={value} index={1}>
         <div className="telegram__container">
           <TelegramTab plan={plan} />
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <div className="brokers__container">
+          <BrokersTab />
         </div>
       </TabPanel>
     </div>

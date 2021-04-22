@@ -2,13 +2,13 @@
   width: 80%;
   max-width: 600px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
-  box-shadow: 0 0 5px 1px rgb(240, 240, 240);
+  box-shadow: 0 0 5px 1px rgb(245, 245, 245);
   margin-bottom: 100px;
   position: relative;
 
@@ -77,6 +77,25 @@
     flex-wrap: wrap;
     width: 100%;
 
+    .MuiFormControl-root {
+      width: 50%;
+      margin-bottom: 20px;
+    }
+
+    .MuiSelect-root {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 5px;
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        margin-right: 10px;
+      }
+    }
+
     .currency__btn {
       padding: 5px 10px;
       display: flex;
@@ -121,6 +140,12 @@
     width: 95%;
     box-shadow: none;
 
+    .currencies__container {
+      .MuiFormControl-root {
+        width: 90%;
+      }
+    }
+
     span.arrowback__btn {
       position: absolute;
       top: -4%;
@@ -138,5 +163,16 @@
     .MuiButtonBase-root {
       margin-top: 30px;
     }
+  }
+}
+
+li.MuiButtonBase-root.MuiListItem-root {
+  margin-bottom: 5px;
+
+  img {
+    width: 30px;
+    object-fit: contain;
+    height: 30px;
+    margin-right: 10px;
   }
 }
