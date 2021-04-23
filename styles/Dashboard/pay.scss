@@ -8,9 +8,41 @@
   align-items: center;
   text-align: center;
   padding: 20px;
+  padding-bottom: 80px;
   box-shadow: 0 0 5px 1px rgb(245, 245, 245);
   margin-bottom: 100px;
   position: relative;
+
+  .howtopay__btn {
+    border-radius: 5px;
+    color: rgb(150, 150, 150);
+    background-color: unset;
+    font-weight: 400;
+    position: absolute;
+    font-size: 0.9em;
+    right: 20px;
+    bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    span {
+      background-color: rgb(46, 46, 46);
+      color: #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    &:hover {
+      color: rgb(46, 46, 46);
+      transition: color 0.2s;
+    }
+  }
 
   span.arrowback__btn {
     position: absolute;
@@ -139,6 +171,12 @@
   .pay__container {
     width: 95%;
     box-shadow: none;
+
+    .howtopay__btn {
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
 
     .currencies__container {
       .MuiFormControl-root {

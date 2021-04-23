@@ -63,6 +63,12 @@
           font-weight: 400;
           color: rgb(100, 100, 100);
           margin-bottom: 10px;
+
+          span {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: $primary-red;
+          }
         }
 
         .brokers__not-valid-AR {
@@ -78,10 +84,16 @@
           font-size: 0.8em;
         }
 
-        .MuiButtonBase-root {
-          margin-top: 20px;
-          height: 45px;
-          font-size: 0.9em;
+        a {
+          width: 100%;
+          display: block;
+
+          .MuiButtonBase-root {
+            width: 100%;
+            margin-top: 20px;
+            height: 45px;
+            font-size: 0.9em;
+          }
         }
       }
     }

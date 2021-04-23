@@ -13,9 +13,11 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import { createPay } from "../../services/pays";
 import ArrowBackBtn from "../../components/BackArrow";
+import AuthModal from "../../components/Modal/Modal";
+import CriptoVideos from "../../components/Dashboard/CriptoVideos";
 
 const useStyles = makeStyles((theme: Theme) => ({
   dropDown: {
@@ -27,6 +29,11 @@ const pay = ({ user, userToken }) => {
   const [currencySelected, setCurrencySelected] = useState(null);
   const [creatingPay, setCreatingPay] = useState(false);
   const [checkoutLink, setCheckoutLink] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleCloseModal: Function = () => {
+    setOpenModal(false);
+  };
 
   const classes = useStyles();
 
@@ -52,6 +59,9 @@ const pay = ({ user, userToken }) => {
         <Nav plan={user.plan} name={user.name} />
       </Header>
       <div className="pay__container">
+        <button onClick={() => setOpenModal(true)} className="howtopay__btn">
+          <span>?</span> Tutorial - Como pagar con criptomonedas
+        </button>
         <ArrowBackBtn src="/dashboard" />
         <h2>Plan Premium</h2>
         {user.first_month ? (
@@ -117,6 +127,13 @@ const pay = ({ user, userToken }) => {
                 "Generar factura"
               )}
             </Button>
+            <AuthModal
+              open={openModal}
+              close={handleCloseModal}
+              title="Como pagar con criptomonedas"
+            >
+              <CriptoVideos />
+            </AuthModal>
           </>
         )}
       </div>

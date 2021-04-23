@@ -1,9 +1,9 @@
 .after-hero__benefits {
   width: 100%;
   display: flex;
-  transform: translateY(-60px);
   position: relative;
   z-index: 300;
+  margin: 50px 0;
 
   .card {
     max-width: 350px;

@@ -28,8 +28,8 @@ const HomeMenu = ({
         <PermDeviceInformation />
       </li>
       <li>
-        <Link href="#partner">
-          <a onClick={handleOpenMenu}>Partner</a>
+        <Link href="#partners">
+          <a onClick={handleOpenMenu}>Partners</a>
         </Link>
         <Group />
       </li>

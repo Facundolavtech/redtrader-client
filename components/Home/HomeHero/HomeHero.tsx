@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { ArrowDownward } from "@material-ui/icons";
 
 const Hero = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
   const router = useRouter();
@@ -11,7 +12,10 @@ const Hero = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
         <h1>
           Lleva tu <span>Trading</span> al siguiente nivel
         </h1>
-        <p>Únete a RedTrader y comienza a generar ingresos ilimitados</p>
+        <p>
+          Somos una empresa especializada en servicios de educacion y señales de
+          Trading, con expertos con mas de 5 años de experiencia en los mercados
+        </p>
         <button
           onClick={
             loggedIn
@@ -33,6 +37,7 @@ const Hero = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
           <img src="assets/img/xm-logo.svg" loading="lazy" />
         </div>
       </div>
+      <ArrowDownward className="hero__arrowdown" />
     </section>
   );
 };

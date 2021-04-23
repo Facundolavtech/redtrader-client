@@ -16,15 +16,20 @@ const BrokersTab = () => {
           <div className="brokers__card-info">
             <h2>XM</h2>
             <p>
-              Crea tu cuenta, obten un bono del 100% de tu deposito hasta 500
-              U$D, y retira con las comisiones mas bajas del mercado
+              Crea tu cuenta, obten un bono del <span>100%</span> de tu deposito
+              hasta 500 U$D, y retira con las comisiones mas bajas del mercado
             </p>
             <span className="brokers__not-valid-AR">
               No valido para argentina
             </span>
-            <Button variant="contained" color="primary">
-              Crear cuenta
-            </Button>
+            <a
+              href="https://clicks.pipaffiliates.com/c?c=365075&l=es&p=1"
+              target="_blank"
+            >
+              <Button variant="contained" color="primary">
+                Crear cuenta
+              </Button>
+            </a>
           </div>
         </div>
         <div className="brokers__card">
@@ -33,12 +38,18 @@ const BrokersTab = () => {
             <h2>FX Primus</h2>
             <p>
               Spreads bajos, poca comision de mercado, crea tu cuenta y obten un
-              bono sobre tu deposito por ser parte de RedTrader
+              bono del <span>100%</span> sobre tu deposito por ser parte de
+              RedTrader
             </p>
             <span className="brokers__valid-AR">Valido para argentina</span>
-            <Button variant="contained" color="primary">
-              Crear cuenta
-            </Button>
+            <a
+              href="https://clients.fxprimus.com/en/register?ref=50005341®️ulator=vu"
+              target="_blank"
+            >
+              <Button variant="contained" color="primary">
+                Crear cuenta
+              </Button>
+            </a>
           </div>
         </div>
       </div>

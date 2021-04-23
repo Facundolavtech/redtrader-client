@@ -70,7 +70,7 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
           </p>
         </div>
       </section>
-      <section className="partner__section" id="partner">
+      <section className="partner__section" id="partners">
         <div className="partner__img">
           <img src="favicon.png" />
           {/* <span>{""}</span> */}
@@ -100,13 +100,32 @@ const Sections = ({ setOpenModal, setIsLoginForm, loggedIn }) => {
           </div>
         </div>
         <a
-          href="https://www.xm.com/landing/promo-bonus/es"
+          href="https://clicks.pipaffiliates.com/c?c=365075&l=es&p=1"
           target="_blank"
           className="partner-action__btn"
         >
           Ver promoción
         </a>
+        <div className="fxprimus__section">
+          <div className="fxprimus__img">
+            <img src="/assets/img/fxprimus.jpg" alt="" />
+          </div>
+          <div className="fxprimus__info">
+            <h2>Crea tu cuenta con FX Primus</h2>
+            <p>
+              Obten un bono del <span>100%</span> sobre tu deposito (minimo 250
+              U$D) y un bono del <span>50%</span> para depositos de 100 U$D
+            </p>
+            <a
+              href="https://clients.fxprimus.com/en/register?ref=50005341®️ulator=vu"
+              target="_blank"
+            >
+              Ver promoción
+            </a>
+          </div>
+        </div>
       </section>
+
       <section className="price__section" id="precio">
         <div className="price__container">
           <h2>¡Únete ahora!</h2>

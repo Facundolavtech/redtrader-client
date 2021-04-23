@@ -1,0 +1,15 @@
+.criptovideos__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  height: 380px;
+  overflow-y: scroll;
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px;
+  }
+}
