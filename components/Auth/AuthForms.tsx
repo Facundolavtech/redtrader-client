@@ -62,7 +62,6 @@ export default function AuthForm({ isLoginForm, setIsLoginForm }) {
 
       if (response.status === 200) {
         router.push("/dashboard");
-        toast.success(response.msg);
       } else {
         toast.error(response);
         response.msg ? toast.error(response.msg) : null;

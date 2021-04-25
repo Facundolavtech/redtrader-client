@@ -12,7 +12,9 @@ const BrokersTab = () => {
       </div>
       <div className="brokers__card__container">
         <div className="brokers__card">
-          <img src="/assets/img/xm-logo.svg" />
+          <div className="brokers__card-img">
+            <img src="/assets/img/xm-logo.svg" />
+          </div>
           <div className="brokers__card-info">
             <h2>XM</h2>
             <p>
@@ -33,7 +35,9 @@ const BrokersTab = () => {
           </div>
         </div>
         <div className="brokers__card">
-          <img src="/assets/img/fxprimus-logo.png" />
+          <div className="brokers__card-img">
+            <img src="/assets/img/fxprimus-logo.png" />
+          </div>
           <div className="brokers__card-info">
             <h2>FX Primus</h2>
             <p>
