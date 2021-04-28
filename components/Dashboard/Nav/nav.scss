@@ -46,7 +46,19 @@
   border-radius: 5px;
   background-color: rgb(48, 216, 14);
   color: #fff;
-  padding: 6px 0;
+  padding: 9px 0;
   width: 90%;
   margin: auto;
+}
+
+.menu__shortid {
+  text-align: center;
+  font-weight: 400;
+  color: rgb(102, 102, 102);
+  margin-bottom: 20px;
+
+  span {
+    color: #252525;
+    font-weight: 500;
+  }
 }

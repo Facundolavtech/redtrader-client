@@ -14,12 +14,12 @@
   position: relative;
 
   .howtopay__btn {
-    border-radius: 5px;
-    color: rgb(150, 150, 150);
+    color: $primary-red;
     background-color: unset;
-    font-weight: 400;
+    font-weight: 500;
     position: absolute;
-    font-size: 0.9em;
+    font-size: 1em;
+    text-decoration: underline;
     right: 20px;
     bottom: 15px;
     display: flex;
@@ -27,7 +27,7 @@
     justify-content: flex-start;
 
     span {
-      background-color: rgb(46, 46, 46);
+      background-color: $primary-red;
       color: #fff;
       border-radius: 50%;
       width: 20px;
@@ -36,11 +36,6 @@
       justify-content: center;
       align-items: center;
       margin-right: 10px;
-    }
-
-    &:hover {
-      color: rgb(46, 46, 46);
-      transition: color 0.2s;
     }
   }
 
@@ -171,6 +166,7 @@
   .pay__container {
     width: 95%;
     box-shadow: none;
+    margin-top: 80px;
 
     .howtopay__btn {
       left: 0;
@@ -186,8 +182,8 @@
 
     span.arrowback__btn {
       position: absolute;
-      top: -4%;
-      left: 3%;
+      top: -10%;
+      left: 5%;
     }
 
     h2 {

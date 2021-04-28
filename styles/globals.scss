@@ -15,8 +15,10 @@ html {
   box-sizing: border-box;
   font-family: Rubik, "sans-serif" !important;
 }
+
+html,
 body {
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
 a {

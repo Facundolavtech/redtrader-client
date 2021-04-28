@@ -27,7 +27,7 @@ const plan = ({ user }) => {
     <>
       <Header classes={"dashboard__header"}>
         <Logo classes={"dashboard__logo"} />
-        <Nav name={user.name} plan={user.plan} />
+        <Nav name={user.name} plan={user.plan} shortId={user.short_id} />
       </Header>
       <div className="info-plan__container">
         <ArrowBackBtn src="/dashboard" />

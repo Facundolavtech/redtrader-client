@@ -14,7 +14,7 @@ const password = ({ user, token }) => {
     <>
       <Header classes={"dashboard__header"}>
         <Logo classes={"dashboard__logo"} />
-        <Nav name={user.name} plan={user.plan} />
+        <Nav name={user.name} plan={user.plan} shortId={user.short_id} />
       </Header>
       <ChangePasswordForm userId={user._id} token={token} />
     </>

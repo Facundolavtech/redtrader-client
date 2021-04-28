@@ -31,10 +31,6 @@ const pay = ({ user, userToken }) => {
   const [checkoutLink, setCheckoutLink] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const handleCloseModal: Function = () => {
-    setOpenModal(false);
-  };
-
   const classes = useStyles();
 
   const createPayFunction = async () => {
@@ -52,16 +48,21 @@ const pay = ({ user, userToken }) => {
     }
   };
 
+  const handleCloseModal: Function = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
       <Header classes="dashboard__header">
         <Logo classes="dashboard__logo" />
-        <Nav plan={user.plan} name={user.name} />
+        <Nav plan={user.plan} name={user.name} shortId={user.short_id} />
       </Header>
       <div className="pay__container">
         <button onClick={() => setOpenModal(true)} className="howtopay__btn">
           <span>?</span> Tutorial - Como pagar con criptomonedas
         </button>
+
         <ArrowBackBtn src="/dashboard" />
         <h2>Plan Premium</h2>
         {user.first_month ? (
@@ -127,16 +128,16 @@ const pay = ({ user, userToken }) => {
                 "Generar factura"
               )}
             </Button>
-            <AuthModal
-              open={openModal}
-              close={handleCloseModal}
-              title="Como pagar con criptomonedas"
-            >
-              <CriptoVideos />
-            </AuthModal>
           </>
         )}
       </div>
+      <AuthModal
+        open={openModal}
+        close={handleCloseModal}
+        title="Como pagar con criptomonedas"
+      >
+        <CriptoVideos />
+      </AuthModal>
     </>
   );
 };

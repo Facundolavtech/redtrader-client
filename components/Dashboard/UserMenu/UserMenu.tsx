@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const UserMenu = ({ plan }) => {
+const UserMenu = ({ plan, shortId }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -98,6 +98,11 @@ const UserMenu = ({ plan }) => {
         onClose={handleClose}
       >
         <h2 className={classes.menuTitle}>Menu</h2>
+        {shortId ? (
+          <h3 className="menu__shortid">
+            Tu id: <span>{shortId}</span>
+          </h3>
+        ) : null}
         {plan && <h3 className="activePlan__badge">Plan activo</h3>}
         <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
           <MenuItem

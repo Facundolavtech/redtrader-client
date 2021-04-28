@@ -129,8 +129,8 @@
   }
 
   .partner-action__btn {
-    margin: auto;
-    margin-top: 60px;
+    margin-left: 2.5%;
+    margin-top: 40px;
     width: 160px;
     min-width: 160px;
     height: 45px;
@@ -153,7 +153,7 @@
   .fxprimus__section {
     width: 100%;
     display: flex;
-    margin-top: 80px;
+    margin-top: 40px;
     height: 400px;
 
     .fxprimus__img {
@@ -167,8 +167,8 @@
       img {
         max-width: 100%;
         object-fit: contain;
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         margin: auto;
         max-width: 100%;
         object-fit: contain;
@@ -193,7 +193,7 @@
         font-size: 1.1em;
         color: rgb(121, 121, 121);
         font-weight: 400;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
 
         span {
           font-size: 1.2em;
@@ -228,6 +228,10 @@
 @media screen and (max-width: 768px) {
   .partner__section {
     padding: 60px 0 100px 0;
+
+    .partner-action__btn {
+      margin: 40px auto auto;
+    }
 
     .partner__info {
       flex-direction: column;
@@ -291,13 +295,14 @@
     .fxprimus__section {
       flex-direction: column;
       height: auto;
+      margin-top: 100px;
 
       .fxprimus__img {
         width: 95%;
 
         img {
-          width: 250px;
-          height: 250px;
+          width: 220px;
+          height: 220px;
         }
       }
 
