@@ -56,7 +56,12 @@ const pay = ({ user, userToken }) => {
     <>
       <Header classes="dashboard__header">
         <Logo classes="dashboard__logo" />
-        <Nav plan={user.plan} name={user.name} shortId={user.short_id} />
+        <Nav
+          plan={user.plan}
+          name={user.name}
+          shortId={user.short_id}
+          admin={user.isSuperAdmin}
+        />
       </Header>
       <div className="pay__container">
         <button onClick={() => setOpenModal(true)} className="howtopay__btn">

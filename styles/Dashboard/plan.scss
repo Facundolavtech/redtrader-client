@@ -89,6 +89,7 @@
       color: rgb(145, 145, 145);
       font-weight: 400;
       margin-top: 10px;
+      padding-bottom: 0;
       border: none;
 
       span {
@@ -100,7 +101,7 @@
 
     h4 {
       font-size: 0.9em;
-      margin-top: 10px;
+      margin-top: 5px;
       color: $primary-red;
       font-weight: 500;
     }

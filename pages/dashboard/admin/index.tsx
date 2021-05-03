@@ -1,12 +1,12 @@
-import parseCookies from "../../helpers/cookies";
-import axiosClient from "../../config/axiosClient";
-import { getVideos } from "../../services/videos";
-import Header from "../../components/Header";
-import Logo from "../../components/Header/Logo";
-import Nav from "../../components/Dashboard/Nav";
-import DashboardTabs from "../../components/Dashboard/Tabs";
+import React from "react";
+import Nav from "../../../components/Dashboard/Nav";
+import Header from "../../../components/Header";
+import Logo from "../../../components/Header/Logo";
+import axiosClient from "../../../config/axiosClient";
+import parseCookies from "../../../helpers/cookies";
+import AdminNav from "../../../components/Admin/AdminNav";
 
-const dashboard = ({ user, videos }) => {
+const index = ({ user }) => {
   return (
     <>
       <Header classes={"dashboard__header"}>
@@ -18,12 +18,12 @@ const dashboard = ({ user, videos }) => {
           admin={user.isSuperAdmin}
         />
       </Header>
-      <DashboardTabs videos={videos} plan={user.plan} />
+      <AdminNav />
     </>
   );
 };
 
-export default dashboard;
+export default index;
 
 export async function getServerSideProps(ctx) {
   const cookies = parseCookies(ctx.req);
@@ -52,12 +52,19 @@ export async function getServerSideProps(ctx) {
         };
       }
 
-      const videoList = await getVideos(cookies.userToken);
+      if (!authUser.data.isSuperAdmin) {
+        return {
+          redirect: {
+            destination: "/dashboard",
+            permanent: false,
+          },
+        };
+      }
 
-      const response = { user: authUser.data, videos: videoList };
+      const response = { user: authUser.data };
 
       return {
-        props: { user: response.user, videos: response.videos },
+        props: { user: response.user },
       };
     } catch (err) {
       return {

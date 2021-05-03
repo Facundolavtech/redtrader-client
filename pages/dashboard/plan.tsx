@@ -9,25 +9,20 @@ import ArrowBackBtn from "../../components/BackArrow";
 const plan = ({ user }) => {
   const expireDate = new Date(user.plan_details.expire);
 
-  const [planExpireDate, setPlanExpireDate] = useState({
+  const [planExpireDate] = useState({
     day: expireDate.toLocaleDateString(),
-    time: expireDate.toLocaleTimeString(),
   });
-
-  useEffect(() => {
-    planExpireDate &&
-      formatExpirePlanTime(
-        planExpireDate.time,
-        planExpireDate,
-        setPlanExpireDate
-      );
-  }, []);
 
   return (
     <>
       <Header classes={"dashboard__header"}>
         <Logo classes={"dashboard__logo"} />
-        <Nav name={user.name} plan={user.plan} shortId={user.short_id} />
+        <Nav
+          name={user.name}
+          plan={user.plan}
+          shortId={user.short_id}
+          admin={user.isSuperAdmin}
+        />
       </Header>
       <div className="info-plan__container">
         <ArrowBackBtn src="/dashboard" />
@@ -42,10 +37,7 @@ const plan = ({ user }) => {
             Valor mensual: <span>34.99 U$D</span>
           </p>
           <p className="expiresIn__info">
-            Tu plan expira el:{" "}
-            <span>
-              {planExpireDate.day} a la(s) {planExpireDate.time}
-            </span>
+            Tu plan expira el: <span>{planExpireDate.day}</span>
           </p>
           <h4>
             Recuerda renovarlo dentro de la primer semana de caducado el plan
@@ -111,15 +103,15 @@ export async function getServerSideProps(ctx) {
   }
 }
 
-const formatExpirePlanTime = (time, state, setStateFn) => {
-  let hour;
-  if (time.slice("").length === 8) {
-    hour = time.slice(0, 2);
-  } else {
-    hour = time.slice(0, 1);
-  }
+// const formatExpirePlanTime = (time, state, setStateFn) => {
+//   let hour;
+//   if (time.slice("").length === 8) {
+//     hour = time.slice(0, 2);
+//   } else {
+//     hour = time.slice(0, 1);
+//   }
 
-  const formatedTime = `${hour} hs`;
+//   const formatedTime = `${hour} hs`;
 
-  setStateFn({ ...state, time: formatedTime });
-};
+//   setStateFn({ ...state, time: formatedTime });
+// };

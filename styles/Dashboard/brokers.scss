@@ -17,6 +17,8 @@
       font-size: 1.5em;
       font-weight: 500;
       color: rgb(80, 80, 80);
+      padding: 0 10%;
+      margin-bottom: 20px;
     }
   }
 
@@ -115,7 +117,9 @@
 
     .brokers__info {
       h2 {
+        margin-bottom: 0;
         font-size: 1.2em;
+        padding: 0;
       }
     }
 

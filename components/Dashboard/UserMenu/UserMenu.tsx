@@ -8,6 +8,7 @@ import {
   Info,
   ExitToApp,
   AddShoppingCart,
+  OfflineBolt,
 } from "@material-ui/icons";
 import {
   createStyles,
@@ -16,7 +17,6 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
-import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const UserMenu = ({ plan, shortId }) => {
+const UserMenu = ({ plan, shortId, admin }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -103,25 +103,56 @@ const UserMenu = ({ plan, shortId }) => {
             Tu id: <span>{shortId}</span>
           </h3>
         ) : null}
-        {plan && <h3 className="activePlan__badge">Plan activo</h3>}
-        <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
-          <MenuItem
-            className={classes.menuItem}
-            onClick={handleClose}
-            style={{
-              background: !plan ? "rgb(48, 216, 14)" : "",
-              color: !plan ? "#fff" : "rgb(48, 216, 14)",
-              borderRadius: !plan ? "5px" : "",
-            }}
-          >
-            {plan ? "Informacion del plan" : "Adquirir plan"}
-            {plan ? (
-              <Info className={classes.menuItemIcon} />
-            ) : (
-              <AddShoppingCart className={classes.menuItemIcon} />
-            )}
-          </MenuItem>
-        </Link>
+        {admin ? (
+          <>
+            <h3
+              style={{
+                textAlign: "center",
+                fontWeight: 400,
+                color: "#494949",
+              }}
+            >
+              Administrador
+            </h3>
+            <Link href="/dashboard/admin">
+              <MenuItem
+                className={classes.menuItem}
+                onClick={handleClose}
+                style={{
+                  background: "#f50606",
+                  color: "#fff",
+                  borderRadius: "5px",
+                  marginBottom: "10px",
+                }}
+              >
+                {"Panel de Admin"}
+                <OfflineBolt className={classes.menuItemIcon} />
+              </MenuItem>
+            </Link>
+          </>
+        ) : (
+          <>
+            {plan && <h3 className="activePlan__badge">Plan activo</h3>}
+            <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
+              <MenuItem
+                className={classes.menuItem}
+                onClick={handleClose}
+                style={{
+                  background: !plan ? "rgb(48, 216, 14)" : "",
+                  color: !plan ? "#fff" : "rgb(48, 216, 14)",
+                  borderRadius: !plan ? "5px" : "",
+                }}
+              >
+                {plan ? "Informacion del plan" : "Adquirir plan"}
+                {plan ? (
+                  <Info className={classes.menuItemIcon} />
+                ) : (
+                  <AddShoppingCart className={classes.menuItemIcon} />
+                )}
+              </MenuItem>
+            </Link>
+          </>
+        )}
         <Link href="/dashboard/password">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
             Cambiar contraseña
