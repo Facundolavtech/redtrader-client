@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Drawer,
@@ -9,6 +9,7 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import NavItems from "./NavItems";
+import Plan from "./Tabs/Plan/Plan";
 
 const drawerWidth = 240;
 
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     content: {
+      marginLeft: 260,
       flexGrow: 1,
       padding: theme.spacing(3),
     },
@@ -56,6 +58,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function AdminNav() {
+  const [tab, setTab] = useState(tabList[0].value);
+
   const classes = useStyles();
 
   return (
@@ -74,6 +78,7 @@ export default function AdminNav() {
                 button
                 key={index}
                 style={{ marginBottom: "5px", minHeight: "70px" }}
+                onClick={() => setTab(tabList[index].value)}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
@@ -82,7 +87,14 @@ export default function AdminNav() {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}></main>
+      <main className={classes.content}>{tab}</main>
     </div>
   );
 }
+
+const tabList = [
+  {
+    value: <Plan />,
+  },
+  { value: <h2>dwdwada</h2> },
+];

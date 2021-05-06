@@ -1,0 +1,16 @@
+.plan__admintab {
+  margin: auto;
+  margin-top: 60px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  .plan__switch {
+    margin-bottom: 30px;
+  }
+
+  .submit__btn {
+    height: 45px;
+    margin-top: 20px;
+  }
+}
