@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import NavItems from "./NavItems";
 import Plan from "./Tabs/Plan/Plan";
+import Admin from "./Tabs/Admin/Admin";
+import DeleteAccount from "./Tabs/DeleteAccount/DeleteAccount";
 
 const drawerWidth = 240;
 
@@ -57,7 +59,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function AdminNav() {
+export default function AdminNav({ id }) {
+  const tabList = [
+    {
+      value: <Plan id={id} />,
+    },
+    { value: <Admin id={id} /> },
+    { value: <h2>Cupones aqui</h2> },
+    { value: <DeleteAccount id={id} /> },
+  ];
+
   const [tab, setTab] = useState(tabList[0].value);
 
   const classes = useStyles();
@@ -91,10 +102,3 @@ export default function AdminNav() {
     </div>
   );
 }
-
-const tabList = [
-  {
-    value: <Plan />,
-  },
-  { value: <h2>dwdwada</h2> },
-];

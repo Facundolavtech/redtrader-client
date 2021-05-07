@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
 import {
   Button,
   CircularProgress,
@@ -8,13 +6,11 @@ import {
   Switch,
   TextField,
 } from "@material-ui/core";
+import { updateAdmin } from "../../../../services/admin";
 import { Email } from "@material-ui/icons";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { es } from "date-fns/locale";
-import { updatePlanAdmin } from "../../../../services/admin";
 import { toast } from "react-toastify";
 
-const Plan = ({ id }) => {
+const Admin = ({ id }) => {
   const initialFormValues = {
     email: "",
   };
@@ -22,11 +18,9 @@ const Plan = ({ id }) => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [processingForm, setProcessingForm] = useState(false);
   const [fieldErrors, setFieldErrors] = useState(null);
-  const [planSwitch, setPlanSwitch] = useState({
+  const [adminSwitch, setAdminSwitch] = useState({
     checked: true,
   });
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString());
-  const [openPicker, setOpenPicker] = useState(false);
 
   const { email } = formValues;
 
@@ -40,19 +34,15 @@ const Plan = ({ id }) => {
     }
   }, [formValues]);
 
+  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAdminSwitch({ ...adminSwitch, [e.target.name]: e.target.checked });
+  };
+
   const handleChange = (e) => {
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPlanSwitch({ ...planSwitch, [e.target.name]: e.target.checked });
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date.toISOString());
   };
 
   const handleSubmit = async (e) => {
@@ -61,16 +51,15 @@ const Plan = ({ id }) => {
     if (email === "" || formValues === initialFormValues) return;
 
     const data = {
-      active: planSwitch.checked,
+      add: adminSwitch.checked,
       email,
       id,
-      expireDate: selectedDate,
     };
 
     setProcessingForm(true);
 
     try {
-      const response = await updatePlanAdmin(data);
+      const response = await updateAdmin(data);
 
       if (response.status === 200) {
         toast.success(response.msg);
@@ -90,15 +79,15 @@ const Plan = ({ id }) => {
   return (
     <form className="plan__admintab" onSubmit={handleSubmit}>
       <div className="plan__switch">
-        <label>Desactivar</label>
+        <label>Eliminar</label>
         <Switch
           color="primary"
-          checked={planSwitch.checked}
+          checked={adminSwitch.checked}
           onChange={handleSwitchChange}
           name="checked"
           inputProps={{ "aria-label": "primary checkbox" }}
         />
-        <label>Activar</label>
+        <label>Añadir</label>
       </div>
       <TextField
         type="email"
@@ -117,23 +106,6 @@ const Plan = ({ id }) => {
           ),
         }}
       />
-      {planSwitch.checked && (
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={es}>
-          <DatePicker
-            open={openPicker}
-            onOpen={() => setOpenPicker(true)}
-            onClose={() => setOpenPicker(false)}
-            className="plan__datepicker"
-            minDate={new Date()}
-            id="date-picker-dialog"
-            label="Selecciona la fecha de caducidad del plan"
-            format="dd/MM/yyyy"
-            minDateMessage="La fecha de caducidad no puede ser menor que la fecha actual"
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-        </MuiPickersUtilsProvider>
-      )}
       <Button
         className="submit__btn"
         color="primary"
@@ -150,4 +122,4 @@ const Plan = ({ id }) => {
   );
 };
 
-export default Plan;
+export default Admin;

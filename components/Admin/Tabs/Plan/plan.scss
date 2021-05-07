@@ -13,4 +13,15 @@
     height: 45px;
     margin-top: 20px;
   }
+
+  .plan__datepicker {
+    margin-top: 20px;
+
+    label {
+      color: #333;
+      font-weight: 500;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  }
 }

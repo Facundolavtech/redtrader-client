@@ -18,7 +18,7 @@ const index = ({ user }) => {
           admin={user.isSuperAdmin}
         />
       </Header>
-      <AdminNav />
+      <AdminNav id={user._id} />
     </>
   );
 };
