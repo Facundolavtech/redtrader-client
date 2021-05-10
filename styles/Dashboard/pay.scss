@@ -64,6 +64,16 @@
     font-weight: 400;
     border-bottom: 1px solid rgb(231, 231, 231);
 
+    .coupon__name {
+      color: rgb(4, 161, 4);
+      font-size: 0.8em;
+
+      span {
+        font-size: 0.9em;
+        color: #333;
+      }
+    }
+
     span {
       font-size: 1.8em;
       font-weight: 500;
@@ -159,6 +169,29 @@
 
   .pay__btn-img {
     cursor: pointer;
+  }
+
+  .apply-coupon__container {
+    min-width: 240px;
+    max-width: 60%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .apply-coupon__form {
+      display: flex;
+
+      .MuiFormControl-root {
+        margin-bottom: 20px;
+        margin-right: 20px;
+      }
+    }
   }
 }
 

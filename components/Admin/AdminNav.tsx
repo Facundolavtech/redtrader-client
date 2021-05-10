@@ -12,6 +12,7 @@ import NavItems from "./NavItems";
 import Plan from "./Tabs/Plan/Plan";
 import Admin from "./Tabs/Admin/Admin";
 import DeleteAccount from "./Tabs/DeleteAccount/DeleteAccount";
+import UpdateCoupon from "./Tabs/Coupons/UpdateCoupon";
 
 const drawerWidth = 240;
 
@@ -59,13 +60,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function AdminNav({ id }) {
+export default function AdminNav({ id, token }) {
   const tabList = [
     {
       value: <Plan id={id} />,
     },
     { value: <Admin id={id} /> },
-    { value: <h2>Cupones aqui</h2> },
+    { value: <UpdateCoupon id={id} token={token} /> },
     { value: <DeleteAccount id={id} /> },
   ];
 

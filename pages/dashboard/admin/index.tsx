@@ -6,7 +6,7 @@ import axiosClient from "../../../config/axiosClient";
 import parseCookies from "../../../helpers/cookies";
 import AdminNav from "../../../components/Admin/AdminNav";
 
-const index = ({ user }) => {
+const index = ({ user, token }) => {
   return (
     <>
       <Header classes={"dashboard__header"}>
@@ -18,7 +18,7 @@ const index = ({ user }) => {
           admin={user.isSuperAdmin}
         />
       </Header>
-      <AdminNav id={user._id} />
+      <AdminNav id={user._id} token={token} />
     </>
   );
 };
@@ -64,7 +64,7 @@ export async function getServerSideProps(ctx) {
       const response = { user: authUser.data };
 
       return {
-        props: { user: response.user },
+        props: { user: response.user, token: cookies.userToken },
       };
     } catch (err) {
       return {

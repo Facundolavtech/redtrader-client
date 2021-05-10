@@ -18,6 +18,7 @@ import { createPay } from "../../services/pays";
 import ArrowBackBtn from "../../components/BackArrow";
 import AuthModal from "../../components/Modal/Modal";
 import CriptoVideos from "../../components/Dashboard/CriptoVideos";
+import ApplyCoupon from "../../components/ApplyCoupon";
 
 const useStyles = makeStyles((theme: Theme) => ({
   dropDown: {
@@ -33,11 +34,19 @@ const pay = ({ user, userToken }) => {
 
   const classes = useStyles();
 
-  const createPayFunction = async () => {
+  let amount;
+
+  if (user.discount.active) {
+    amount = user.first_month
+      ? 34.99 - (34.99 * user.discount.percent) / 100
+      : 70 - (70 * user.discount.percent) / 100;
+  } else {
+    amount = user.first_month ? 34.99 : 70;
+  }
+
+  async function createPayFunction() {
     if (currencySelected !== null) {
       setCreatingPay(true);
-
-      const amount = user.first_month ? 34.99 : 70;
 
       const response = await createPay(amount, currencySelected, userToken);
 
@@ -46,7 +55,7 @@ const pay = ({ user, userToken }) => {
         setCheckoutLink(response.payUrl);
       }
     }
-  };
+  }
 
   const handleCloseModal: Function = () => {
     setOpenModal(false);
@@ -70,15 +79,29 @@ const pay = ({ user, userToken }) => {
 
         <ArrowBackBtn src="/dashboard" />
         <h2>Plan Premium</h2>
-        {user.first_month ? (
-          <h3>
-            <span>34.99 U$D</span> / mes
-          </h3>
-        ) : (
-          <h3>
-            <span>70 U$D</span> / Primer mes
-          </h3>
-        )}
+        <h3>
+          {user.discount.active && (
+            <span
+              style={{
+                textDecoration: "line-through",
+                color: "#8a8a8a",
+                marginRight: "15px",
+                fontSize: "1.5em",
+                fontWeight: "lighter",
+              }}
+            >
+              {user.first_month ? 34.99 : 70} U$D
+            </span>
+          )}
+          <span>{amount.toFixed(2)} U$D</span> /{" "}
+          {user.first_month ? "Mes" : "Primer mes"}
+          {user.discount.active && (
+            <h4 className="coupon__name">
+              <span>Cupon: </span>"{user.discount.coupon_name}"{" "}
+              <span>{user.discount.percent}% de descuento</span>
+            </h4>
+          )}
+        </h3>
         <h4>
           Cuenta: <strong>{user.email}</strong>
         </h4>
@@ -133,6 +156,19 @@ const pay = ({ user, userToken }) => {
                 "Generar factura"
               )}
             </Button>
+            {user.discount.active ? (
+              <span
+                style={{
+                  marginTop: "20px",
+                  fontSize: "1.4em",
+                  color: "#029c02",
+                }}
+              >
+                ¡Cupon activo!
+              </span>
+            ) : (
+              <ApplyCoupon userToken={userToken} />
+            )}
           </>
         )}
       </div>
