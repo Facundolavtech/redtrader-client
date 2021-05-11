@@ -110,6 +110,7 @@ const UpdateCoupon = ({ id, token }) => {
         <Button
           className="submit__btn"
           color="primary"
+          disabled={!formValues.percent}
           variant="contained"
           type={processingForm ? "button" : "submit"}
         >

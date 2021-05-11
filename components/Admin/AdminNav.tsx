@@ -82,6 +82,7 @@ export default function AdminNav({ id, token }) {
         classes={{
           paper: classes.paper,
         }}
+        className="admin-nav__drawer"
       >
         <List>
           {NavItems.map(({ name, icon }, index) => (
@@ -99,7 +100,7 @@ export default function AdminNav({ id, token }) {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>{tab}</main>
+      <main className="admin-nav__content">{tab}</main>
     </div>
   );
 }
