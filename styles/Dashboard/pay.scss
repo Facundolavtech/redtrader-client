@@ -201,6 +201,24 @@
     box-shadow: none;
     margin-top: 80px;
 
+    .apply-coupon__container {
+      max-width: 95%;
+      width: 95%;
+
+      .apply-coupon__form {
+        flex-direction: column;
+
+        .MuiFormControl-root {
+          margin: auto;
+          width: 100%;
+        }
+
+        .MuiButtonBase-root {
+          width: 100%;
+        }
+      }
+    }
+
     .howtopay__btn {
       left: 0;
       right: 0;
