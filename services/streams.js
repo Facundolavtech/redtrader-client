@@ -1,11 +1,11 @@
 import axios from "axios";
 import axiosClient from "../config/axiosClient";
 
-const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002";
+const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002/api/";
 
 export async function getLiveStreams() {
   try {
-    const response = await axios.get(`${NMS_ENDPOINT}/api/streams`);
+    const response = await axios.get(`${NMS_ENDPOINT}streams`);
     let streams = response.data;
 
     return streams;
