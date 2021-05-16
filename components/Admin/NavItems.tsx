@@ -3,6 +3,7 @@ import {
   EditAttributes,
   HighlightOff,
   LocalOffer,
+  LiveTv,
 } from "@material-ui/icons";
 
 const NavItems = [
@@ -13,6 +14,10 @@ const NavItems = [
   {
     name: "Añadir/Eliminar un Administrador",
     icon: <OfflineBolt />,
+  },
+  {
+    name: "Añadir/Eliminar un Educador",
+    icon: <LiveTv />,
   },
   {
     name: "Crear/Eliminar cupon de descuento",

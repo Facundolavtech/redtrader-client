@@ -19,6 +19,7 @@ const password = ({ user, token }) => {
           plan={user.plan}
           shortId={user.short_id}
           admin={user.isSuperAdmin}
+          educator={user.role_educator}
         />
       </Header>
       <ChangePasswordForm userId={user._id} token={token} />

@@ -36,6 +36,24 @@ export async function updateAdmin(data) {
   }
 }
 
+export async function updateEducator(data) {
+  const { id } = data;
+
+  try {
+    const response = await axiosClient.put(
+      `/users/admin/updateEducator/${id}`,
+      data
+    );
+
+    return {
+      msg: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return error.response.data;
+  }
+}
+
 export async function deleteAccount(data) {
   const { id, email } = data;
 

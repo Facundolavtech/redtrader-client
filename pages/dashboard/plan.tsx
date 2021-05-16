@@ -22,6 +22,7 @@ const plan = ({ user }) => {
           plan={user.plan}
           shortId={user.short_id}
           admin={user.isSuperAdmin}
+          educator={user.role_educator}
         />
       </Header>
       <div className="info-plan__container">

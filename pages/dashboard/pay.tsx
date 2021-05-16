@@ -70,6 +70,7 @@ const pay = ({ user, userToken }) => {
           name={user.name}
           shortId={user.short_id}
           admin={user.isSuperAdmin}
+          educator={user.role_educator}
         />
       </Header>
       <div className="pay__container">

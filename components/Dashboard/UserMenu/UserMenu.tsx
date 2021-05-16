@@ -9,6 +9,7 @@ import {
   ExitToApp,
   AddShoppingCart,
   OfflineBolt,
+  LiveTv,
 } from "@material-ui/icons";
 import {
   createStyles,
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const UserMenu = ({ plan, shortId, admin }) => {
+const UserMenu = ({ plan, shortId, admin, educator }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -108,8 +109,8 @@ const UserMenu = ({ plan, shortId, admin }) => {
             <h3
               style={{
                 textAlign: "center",
-                fontWeight: 400,
-                color: "#494949",
+                fontWeight: 500,
+                color: "#2b2b2b",
               }}
             >
               Administrador
@@ -132,25 +133,56 @@ const UserMenu = ({ plan, shortId, admin }) => {
           </>
         ) : (
           <>
-            {plan && <h3 className="activePlan__badge">Plan activo</h3>}
-            <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
-              <MenuItem
-                className={classes.menuItem}
-                onClick={handleClose}
-                style={{
-                  background: !plan ? "rgb(48, 216, 14)" : "",
-                  color: !plan ? "#fff" : "rgb(48, 216, 14)",
-                  borderRadius: !plan ? "5px" : "",
-                }}
-              >
-                {plan ? "Informacion del plan" : "Adquirir plan"}
-                {plan ? (
-                  <Info className={classes.menuItemIcon} />
-                ) : (
-                  <AddShoppingCart className={classes.menuItemIcon} />
-                )}
-              </MenuItem>
-            </Link>
+            {educator ? (
+              <>
+                <h3
+                  style={{
+                    textAlign: "center",
+                    fontWeight: 500,
+                    color: "#2b2b2b",
+                  }}
+                >
+                  Educador
+                </h3>
+                <Link href="/dashboard/educator/settings">
+                  <MenuItem
+                    className={classes.menuItem}
+                    onClick={handleClose}
+                    style={{
+                      background: "#0431c7",
+                      color: "#fff",
+                      borderRadius: "5px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {"Panel de Educador"}
+                    <LiveTv className={classes.menuItemIcon} />
+                  </MenuItem>
+                </Link>
+              </>
+            ) : (
+              <>
+                {plan && <h3 className="activePlan__badge">Plan activo</h3>}
+                <Link href={plan ? "/dashboard/plan" : "/dashboard/pay"}>
+                  <MenuItem
+                    className={classes.menuItem}
+                    onClick={handleClose}
+                    style={{
+                      background: !plan ? "rgb(48, 216, 14)" : "",
+                      color: !plan ? "#fff" : "rgb(48, 216, 14)",
+                      borderRadius: !plan ? "5px" : "",
+                    }}
+                  >
+                    {plan ? "Informacion del plan" : "Adquirir plan"}
+                    {plan ? (
+                      <Info className={classes.menuItemIcon} />
+                    ) : (
+                      <AddShoppingCart className={classes.menuItemIcon} />
+                    )}
+                  </MenuItem>
+                </Link>
+              </>
+            )}
           </>
         )}
         <Link href="/dashboard/password">

@@ -1,12 +1,12 @@
-import parseCookies from "../../helpers/cookies";
-import axiosClient from "../../config/axiosClient";
-import { getVideos } from "../../services/videos";
+import React from "react";
+import LivesList from "../../components/Dashboard/Live/LivesList";
+import Nav from "../../components/Dashboard/Nav";
 import Header from "../../components/Header";
 import Logo from "../../components/Header/Logo";
-import Nav from "../../components/Dashboard/Nav";
-import DashboardTabs from "../../components/Dashboard/Tabs";
+import axiosClient from "../../config/axiosClient";
+import parseCookies from "../../helpers/cookies";
 
-const dashboard = ({ user, videos }) => {
+const lives = ({ user, token }) => {
   return (
     <>
       <Header classes={"dashboard__header"}>
@@ -19,12 +19,12 @@ const dashboard = ({ user, videos }) => {
           educator={user.role_educator}
         />
       </Header>
-      <DashboardTabs videos={videos} plan={user.plan} />
+      <LivesList token={token} />
     </>
   );
 };
 
-export default dashboard;
+export default lives;
 
 export async function getServerSideProps(ctx) {
   const cookies = parseCookies(ctx.req);
@@ -53,12 +53,19 @@ export async function getServerSideProps(ctx) {
         };
       }
 
-      const videoList = await getVideos(cookies.userToken);
+      if (!authUser.data.plan) {
+        return {
+          redirect: {
+            destination: "/dashboard/pay",
+            permanent: false,
+          },
+        };
+      }
 
-      const response = { user: authUser.data, videos: videoList };
+      const response = { user: authUser.data, token: cookies.userToken };
 
       return {
-        props: { user: response.user, videos: response.videos },
+        props: { user: response.user, token: response.token },
       };
     } catch (err) {
       return {
