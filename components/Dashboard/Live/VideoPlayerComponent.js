@@ -10,7 +10,7 @@ const VideoPlayer = dynamic(() => import("react-video-js-player"), {
 const VideoPlayerComponent = ({ stream_key }) => {
   const [videoSettings, setVideoSettings] = useState({
     video: {
-      src: `${NMS_ENDPOINT}live/${stream_key}/index.m3u8`,
+      src: `${NMS_ENDPOINT}/live/${stream_key}/index.m3u8`,
       type: "aplication/x-mpegURL",
     },
   });

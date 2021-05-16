@@ -5,7 +5,7 @@ const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002/api/";
 
 export async function getLiveStreams() {
   try {
-    const response = await axios.get(`${NMS_ENDPOINT}streams`);
+    const response = await axios.get(`${NMS_ENDPOINT}/streams`);
     let streams = response.data;
 
     return streams;
