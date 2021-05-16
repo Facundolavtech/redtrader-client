@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
 
 const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002";
 
@@ -25,4 +26,5 @@ const VideoPlayerComponent = ({ stream_key }) => {
     </div>
   );
 };
+
 export default VideoPlayerComponent;
