@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
-const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002/api/";
+const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002";
 
 const VideoPlayer = dynamic(() => import("react-video-js-player"), {
   ssr: false,
@@ -10,7 +10,7 @@ const VideoPlayer = dynamic(() => import("react-video-js-player"), {
 const VideoPlayerComponent = ({ stream_key }) => {
   const [videoSettings, setVideoSettings] = useState({
     video: {
-      src: `${NMS_ENDPOINT}/live/${stream_key}/index.m3u8`,
+      src: `${NMS_ENDPOINT}/api/live/${stream_key}/index.m3u8`,
       type: "aplication/x-mpegURL",
     },
   });
