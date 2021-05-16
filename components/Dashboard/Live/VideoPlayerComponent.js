@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
-const NMS_ENDPOINT = process.env.NMS_ENDPOINT || "http://localhost:4002";
+const NMS_ENDPOINT = process.env.NMS_ENDPOINT2 || "http://localhost:4002";
 
 const VideoPlayer = dynamic(() => import("react-video-js-player"), {
   ssr: false,
