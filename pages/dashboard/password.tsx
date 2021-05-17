@@ -20,7 +20,7 @@ const password = () => {
 
   return (
     <>
-      {userInfo !== null && token !== null ? (
+      {userInfo !== null && tokenState !== null ? (
         <>
           <Header classes={"dashboard__header"}>
             <Logo classes={"dashboard__logo"} />

@@ -1,17 +1,22 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import LivesList from "../../components/Dashboard/Live/LivesList";
 import Nav from "../../components/Dashboard/Nav";
 import Header from "../../components/Header";
 import Logo from "../../components/Header/Logo";
-import usePlan from "../../hooks/usePlan";
+import useAuth from "../../hooks/useAuth";
 
 const lives = () => {
-  const { user, token } = usePlan();
+  const router = useRouter();
+  const { user, token } = useAuth();
   const [userInfo, setUserInfo] = useState(null);
   const [tokenState, setTokenState] = useState(null);
 
   useEffect(() => {
     setUserInfo(user);
+    if (user !== null && user.plan === false) {
+      router.push("/dashboard");
+    }
   }, [user]);
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const lives = () => {
 
   return (
     <>
-      {userInfo !== null && token !== null ? (
+      {userInfo !== null && tokenState !== null ? (
         <>
           <Header classes={"dashboard__header"}>
             <Logo classes={"dashboard__logo"} />

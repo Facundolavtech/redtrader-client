@@ -5,35 +5,38 @@ import { useRouter } from "next/router";
 const useAuth = () => {
   const { push } = useRouter();
   const [user, setUser] = useState(null);
-  const [tokenState, setTokenState] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(async () => {
-    const token = await localStorage.getItem("userToken");
+    const getToken = await localStorage.getItem("userToken");
 
-    setTokenState(token);
-
-    if (!token) {
+    if (!getToken) {
       push("/");
       return;
     }
-    const response = await axiosClient.get("/users/auth", {
-      headers: {
-        Authorization: token,
-      },
-    });
 
-    if (response.status !== 200) {
-      push("/");
-    }
+    setToken(getToken);
 
-    if (response.data.confirmed === false) {
-      push("/confirm");
-    }
-
-    setUser(response.data);
+    await axiosClient
+      .get("/users/auth", {
+        headers: {
+          Authorization: getToken,
+        },
+      })
+      .then((response) => {
+        if (!response.data.confirmed) {
+          push("/confirm");
+        }
+        setUser(response.data);
+      })
+      .catch(() => {
+        localStorage.removeItem("userToken");
+        push("/");
+        return;
+      });
   }, []);
 
-  return { user, token: tokenState };
+  return { user, token };
 };
 
 export default useAuth;

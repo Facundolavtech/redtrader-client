@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import axiosClient from "../config/axiosClient";
 
-const { push } = useRouter();
-
 export async function register(data) {
   try {
     const newUser = await axiosClient.post("/users/register", data);
@@ -55,6 +53,7 @@ export async function login(data) {
 }
 
 export async function removeToken() {
+  const { push } = useRouter();
   const token = await localStorage.getItem("userToken");
 
   if (token) {

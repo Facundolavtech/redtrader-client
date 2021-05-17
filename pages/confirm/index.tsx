@@ -10,32 +10,32 @@ import {
 } from "../../services/user";
 import ArrowBackBtn from "../../components/BackArrow";
 
-const confirm = ({ email, token }) => {
+const confirm = () => {
   const [emailSended, setEmailSended] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  const sendNewConfirmEmail = async () => {
-    if (!email && !token) return;
+  // const sendNewConfirmEmail = async () => {
+  //   if (!email && !token) return;
 
-    try {
-      setSendingEmail(true);
-      const response = await sendConfirmAccountEmail(email);
+  //   try {
+  //     setSendingEmail(true);
+  //     const response = await sendConfirmAccountEmail(email);
 
-      if (response.status === 200) {
-        setEmailSended(true);
-      } else {
-        setSendingEmail(false);
-        toast.error(response);
-      }
-    } catch (error) {
-      setSendingEmail(false);
-      toast.error("Ocurrio un error");
-    }
-  };
+  //     if (response.status === 200) {
+  //       setEmailSended(true);
+  //     } else {
+  //       setSendingEmail(false);
+  //       toast.error(response);
+  //     }
+  //   } catch (error) {
+  //     setSendingEmail(false);
+  //     toast.error("Ocurrio un error");
+  //   }
+  // };
 
   return (
     <div className="confirm__container">
-      <Logo classes="" />
+      {/* <Logo classes="" />
       <ArrowBackBtn src="/" />
       <h2>
         Te hemos enviado un email para confirmar tu cuenta a
@@ -67,58 +67,59 @@ const confirm = ({ email, token }) => {
             "Email enviado"
           )}
         </h3>
-      )}
+      )} */}
+      confirm
     </div>
   );
 };
 
 export default confirm;
 
-export async function getServerSideProps(ctx) {
-  const cookies = parseCookies(ctx.req);
+// export async function getServerSideProps(ctx) {
+//   const cookies = parseCookies(ctx.req);
 
-  if (!cookies.userToken) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  } else {
-    try {
-      const authUser = await axiosClient.get("/users/auth", {
-        headers: {
-          Authorization: cookies.userToken,
-        },
-      });
+//   if (!cookies.userToken) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   } else {
+//     try {
+//       const authUser = await axiosClient.get("/users/auth", {
+//         headers: {
+//           Authorization: cookies.userToken,
+//         },
+//       });
 
-      if (authUser.data.confirmed) {
-        return {
-          redirect: {
-            destination: "/dashboard",
-            permanent: false,
-          },
-        };
-      }
+//       if (authUser.data.confirmed) {
+//         return {
+//           redirect: {
+//             destination: "/dashboard",
+//             permanent: false,
+//           },
+//         };
+//       }
 
-      const getToken = await getConfirmAccountToken(authUser.data._id);
+//       const getToken = await getConfirmAccountToken(authUser.data._id);
 
-      if (getToken.status === 200) {
-        return {
-          props: { email: authUser.data.email, token: false },
-        };
-      } else {
-        return {
-          props: { email: authUser.data.email, token: true },
-        };
-      }
-    } catch (error) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      };
-    }
-  }
-}
+//       if (getToken.status === 200) {
+//         return {
+//           props: { email: authUser.data.email, token: false },
+//         };
+//       } else {
+//         return {
+//           props: { email: authUser.data.email, token: true },
+//         };
+//       }
+//     } catch (error) {
+//       return {
+//         redirect: {
+//           destination: "/",
+//           permanent: false,
+//         },
+//       };
+//     }
+//   }
+// }
