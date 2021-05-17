@@ -74,6 +74,7 @@ const UserMenu = ({ plan, shortId, admin, educator }) => {
 
   const logout = () => {
     removeToken();
+    router.push("/");
   };
 
   const classes = useStyles();

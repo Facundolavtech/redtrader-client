@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import axiosClient from "../config/axiosClient";
 
 export async function register(data) {
@@ -53,8 +52,5 @@ export async function login(data) {
 }
 
 export async function removeToken() {
-  const { push } = useRouter();
-
   await localStorage.removeItem("userToken");
-  push("/");
 }
