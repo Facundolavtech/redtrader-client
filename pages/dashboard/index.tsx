@@ -29,20 +29,26 @@ const dashboard = () => {
 
   return (
     <>
-      <Header classes={"dashboard__header"}>
-        <Logo classes={"dashboard__logo"} />
-        <Nav
-          name={userInfo.name}
-          plan={userInfo.plan}
-          shortId={userInfo.short_id}
-          admin={userInfo.isSuperAdmin}
-          educator={userInfo.role_educator}
-        />
-      </Header>
-      <DashboardTabs
-        videos={videos !== null ? videos : []}
-        plan={userInfo.plan}
-      />
+      {userInfo ? (
+        <>
+          <Header classes={"dashboard__header"}>
+            <Logo classes={"dashboard__logo"} />
+            <Nav
+              name={userInfo.name}
+              plan={userInfo.plan}
+              shortId={userInfo.short_id}
+              admin={userInfo.isSuperAdmin}
+              educator={userInfo.role_educator}
+            />
+          </Header>
+          <DashboardTabs
+            videos={videos !== null ? videos : []}
+            plan={userInfo.plan}
+          />
+        </>
+      ) : (
+        "Cargando"
+      )}
     </>
   );
 };
