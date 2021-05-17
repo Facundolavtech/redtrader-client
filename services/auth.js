@@ -54,10 +54,7 @@ export async function login(data) {
 
 export async function removeToken() {
   const { push } = useRouter();
-  const token = await localStorage.getItem("userToken");
 
-  if (token) {
-    await localStorage.removeItem("userToken");
-    push("/");
-  }
+  await localStorage.removeItem("userToken");
+  push("/");
 }
