@@ -1,8 +1,8 @@
 import axios from "axios";
 import axiosClient from "../config/axiosClient";
 
-const NMS_ENDPOINTv2 =
-  process.env.NMS_ENDPOINTv2 || "http://localhost:4002/api/";
+const NMS_ENDPOINTv2 = "https://redtrader-api.com"
+  // process.env.NMS_ENDPOINTv2 || "http://localhost:4002/api/";
 
 export async function getLiveStreams() {
   try {
