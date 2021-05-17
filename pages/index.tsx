@@ -41,6 +41,8 @@ export default function Inicio() {
           }
         });
     };
+
+    getAuth();
   }, []);
 
   return (
