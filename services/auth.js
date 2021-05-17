@@ -1,7 +1,4 @@
 import axiosClient from "../config/axiosClient";
-import { Cookies } from "react-cookie";
-
-const cookies = new Cookies();
 
 export async function register(data) {
   try {
@@ -15,7 +12,7 @@ export async function register(data) {
       status: newUser.status,
     };
 
-    cookies.set("userToken", token);
+    await localStorage.setItem("userToken", token);
 
     if (newUser.status === 200) {
       const { email } = data;
@@ -46,7 +43,7 @@ export async function login(data) {
       status: loginUser.status,
     };
 
-    cookies.set("userToken", token);
+    await localStorage.setItem("userToken", token);
 
     return response;
   } catch (error) {
@@ -55,7 +52,7 @@ export async function login(data) {
 }
 
 export async function removeToken() {
-  const token = cookies.get("userToken");
+  const token = await localStorage.getItem("userToken");
 
   if (token) {
     await cookies.remove("userToken");

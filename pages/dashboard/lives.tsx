@@ -7,6 +7,7 @@ import axiosClient from "../../config/axiosClient";
 import parseCookies from "../../helpers/cookies";
 
 const lives = ({ user, token }) => {
+
   return (
     <>
       <Header classes={"dashboard__header"}>

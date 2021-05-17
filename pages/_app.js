@@ -4,7 +4,6 @@ import HeadLayout from "../layout/Head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../libs/mui-theme";
-import { CookiesProvider } from "react-cookie";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,12 +19,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <HeadLayout />
-      <CookiesProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </CookiesProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
       <ToastContainer
         position="top-right"
         autoClose={2000}

@@ -8,24 +8,40 @@ import HomeNav from "../components/Home/HomeNav";
 import Sections from "../components/Home/Sections";
 import HomeFooter from "../components/Home/HomeFooter";
 import FloatingWhatsapp from "../components/Home/FloatingWhatsapp";
-import parseCookies from "../helpers/cookies";
 import axiosClient from "../config/axiosClient";
-import { removeToken } from "../services/auth";
 
-export default function Inicio({ loggedIn }) {
+export default function Inicio() {
   const [openModal, setOpenModal] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(null);
   const [backdrop, setBackdrop] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
 
   const handleCloseModal: Function = () => {
     setOpenModal(false);
   };
 
   useEffect(() => {
-    if (!loggedIn) {
-      removeToken();
-    }
-  }, [loggedIn]);
+    const getAuth = async () => {
+      const token = await localStorage.getItem("userToken");
+      if (!token) {
+        return setLoggedIn(false);
+      }
+
+      await axiosClient
+        .get("/users/auth", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setLoggedIn(true);
+          } else {
+            setLoggedIn(false);
+          }
+        });
+    };
+  }, []);
 
   return (
     <>
@@ -73,36 +89,4 @@ export default function Inicio({ loggedIn }) {
       <FloatingWhatsapp />
     </>
   );
-}
-
-export async function getServerSideProps(ctx) {
-  const cookies = parseCookies(ctx.req);
-
-  if (!cookies.userToken) {
-    return {
-      props: { loggedIn: false },
-    };
-  } else {
-    try {
-      const authUser = await axiosClient.get("/users/auth", {
-        headers: {
-          Authorization: cookies.userToken,
-        },
-      });
-
-      if (authUser.status === 200 && authUser.data.confirmed === true) {
-        return {
-          props: { loggedIn: true },
-        };
-      } else {
-        return {
-          props: { loggedIn: false },
-        };
-      }
-    } catch (error) {
-      return {
-        props: { loggedIn: false },
-      };
-    }
-  }
 }
