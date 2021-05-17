@@ -5,9 +5,12 @@ import { useRouter } from "next/router";
 const useAuth = () => {
   const { push } = useRouter();
   const [user, setUser] = useState(null);
+  const [tokenState, setTokenState] = useState(null);
 
   useEffect(async () => {
     const token = await localStorage.getItem("userToken");
+
+    setTokenState(token);
 
     if (!token) {
       push("/");
@@ -30,7 +33,7 @@ const useAuth = () => {
     setUser(response.data);
   }, []);
 
-  return { user };
+  return { user, token: tokenState };
 };
 
 export default useAuth;

@@ -1,66 +1,44 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import axiosClient from "../../config/axiosClient";
-import parseCookies from "../../helpers/cookies";
 import Header from "../../components/Header";
 import Logo from "../../components/Header/Logo";
 import Nav from "../../components/Dashboard/Nav";
 import ChangePasswordForm from "../../components/Dashboard/ChangePassword";
-import { ArrowBack } from "@material-ui/icons";
-import { Button } from "@material-ui/core";
+import useAuth from "../../hooks/useAuth";
 
-const password = ({ user, token }) => {
+const password = () => {
+  const { user, token } = useAuth();
+  const [userInfo, setUserInfo] = useState(null);
+  const [tokenState, setTokenState] = useState(null);
+
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
+
+  useEffect(() => {
+    setTokenState(token);
+  }, [token]);
+
   return (
     <>
-      <Header classes={"dashboard__header"}>
-        <Logo classes={"dashboard__logo"} />
-        <Nav
-          name={user.name}
-          plan={user.plan}
-          shortId={user.short_id}
-          admin={user.isSuperAdmin}
-          educator={user.role_educator}
-        />
-      </Header>
-      <ChangePasswordForm userId={user._id} token={token} />
+      {userInfo !== null && token !== null ? (
+        <>
+          <Header classes={"dashboard__header"}>
+            <Logo classes={"dashboard__logo"} />
+            <Nav
+              name={userInfo.name}
+              plan={userInfo.plan}
+              shortId={userInfo.short_id}
+              admin={userInfo.isSuperAdmin}
+              educator={userInfo.role_educator}
+            />
+          </Header>
+          <ChangePasswordForm userId={user._id} token={tokenState} />
+        </>
+      ) : (
+        "Cargando"
+      )}
     </>
   );
 };
 
 export default password;
-
-export async function getServerSideProps(ctx) {
-  const cookies = parseCookies(ctx.req);
-
-  if (!cookies.userToken) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  } else {
-    try {
-      const authUser = await axiosClient.get("/users/auth", {
-        headers: {
-          Authorization: cookies.userToken,
-        },
-      });
-
-      if (!authUser.data.confirmed) {
-        return {
-          redirect: {
-            destination: "/confirm",
-            permanent: false,
-          },
-        };
-      }
-
-      const response = authUser.data;
-
-      return {
-        props: { user: response, token: cookies.userToken },
-      };
-    } catch (error) {}
-  }
-}

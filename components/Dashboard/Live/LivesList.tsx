@@ -1,7 +1,7 @@
 import { Button, CircularProgress } from "@material-ui/core";
 import { ArrowBack, LiveTv } from "@material-ui/icons";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import useStreams from "../../../hooks/useStreams";
 import ArrowBackBtn from "../../BackArrow";
 
