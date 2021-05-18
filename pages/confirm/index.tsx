@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../components/Header/Logo";
-import axiosClient from "../../config/axiosClient";
-import parseCookies from "../../helpers/cookies";
 import { CircularProgress } from "@material-ui/core";
 import { toast } from "react-toastify";
 import {
@@ -9,117 +7,108 @@ import {
   getConfirmAccountToken,
 } from "../../services/user";
 import ArrowBackBtn from "../../components/BackArrow";
+import useAuth from "../../hooks/useAuth";
+import { useRouter } from "next/router";
 
 const confirm = () => {
+  const router = useRouter();
   const [emailSended, setEmailSended] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
+  const [confirmAccountToken, setConfirmAccountToken] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
-  // const sendNewConfirmEmail = async () => {
-  //   if (!email && !token) return;
+  const { user } = useAuth();
 
-  //   try {
-  //     setSendingEmail(true);
-  //     const response = await sendConfirmAccountEmail(email);
+  useEffect(() => {
+    if (user !== null) {
+      setUserInfo(user);
+    }
+  }, [user]);
 
-  //     if (response.status === 200) {
-  //       setEmailSended(true);
-  //     } else {
-  //       setSendingEmail(false);
-  //       toast.error(response);
-  //     }
-  //   } catch (error) {
-  //     setSendingEmail(false);
-  //     toast.error("Ocurrio un error");
-  //   }
-  // };
+  useEffect(() => {
+    if (userInfo && userInfo.confirmed) {
+      router.push("/");
+    } else {
+      try {
+        getConfirmAccountToken(userInfo._id)
+          .then((res) => {
+            if (res.status === 200) {
+              setConfirmAccountToken(false);
+            } else {
+              setConfirmAccountToken(true);
+            }
+          })
+          .catch(() => {
+            setConfirmAccountToken(true);
+          });
+      } catch (error) {
+        return;
+      }
+    }
+  }, [userInfo]);
+
+  const sendNewConfirmEmail = async () => {
+    try {
+      setSendingEmail(true);
+      const response = await sendConfirmAccountEmail(userInfo.email);
+
+      if (response.status === 200) {
+        setEmailSended(true);
+      } else {
+        setSendingEmail(false);
+        toast.error(response);
+      }
+    } catch (error) {
+      setSendingEmail(false);
+      toast.error("Ocurrio un error");
+    }
+  };
 
   return (
-    <div className="confirm__container">
-      {/* <Logo classes="" />
-      <ArrowBackBtn src="/" />
-      <h2>
-        Te hemos enviado un email para confirmar tu cuenta a
-        <br />
-        <span>{email}</span>
-      </h2>
+    <>
+      {userInfo && confirmAccountToken !== null ? (
+        <>
+          <div className="confirm__container">
+            <Logo classes="" />
+            <ArrowBackBtn src="/" />
+            <h2>
+              Te hemos enviado un email para confirmar tu cuenta a
+              <br />
+              <span>{userInfo.email}</span>
+            </h2>
 
-      {token === true ? (
-        <h3 style={{ color: "#228f01" }}>
-          Revisa tu casilla de correo no deseado o spam
-          <span style={{ color: "#333", fontWeight: 400 }}>
-            Podras reenviar el email de confirmacion en 20 minutos
-          </span>
-        </h3>
-      ) : (
-        <h3>
-          {!emailSended && !token ? (
-            <>
-              ¿Quieres reenviar el email de confirmacion?{" "}
-              <button onClick={sendNewConfirmEmail}>
-                {sendingEmail ? (
-                  <CircularProgress style={{ color: "#fff" }} size={23} />
+            {confirmAccountToken === true ? (
+              <h3 style={{ color: "#228f01" }}>
+                Revisa tu casilla de correo no deseado o spam
+                <span style={{ color: "#333", fontWeight: 400 }}>
+                  Podras reenviar el email de confirmacion en 20 minutos
+                </span>
+              </h3>
+            ) : (
+              <h3>
+                {!emailSended ? (
+                  <>
+                    ¿Quieres reenviar el email de confirmacion?{" "}
+                    <button onClick={sendNewConfirmEmail}>
+                      {sendingEmail ? (
+                        <CircularProgress style={{ color: "#fff" }} size={23} />
+                      ) : (
+                        "Click aquí"
+                      )}
+                    </button>
+                  </>
                 ) : (
-                  "Click aquí"
+                  "Email enviado"
                 )}
-              </button>
-            </>
-          ) : (
-            "Email enviado"
-          )}
-        </h3>
-      )} */}
-      confirm
-    </div>
+              </h3>
+            )}
+          </div>
+        </>
+      ) : (
+        "Cargando"
+      )}
+    </>
   );
 };
 
 export default confirm;
-
-// export async function getServerSideProps(ctx) {
-//   const cookies = parseCookies(ctx.req);
-
-//   if (!cookies.userToken) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   } else {
-//     try {
-//       const authUser = await axiosClient.get("/users/auth", {
-//         headers: {
-//           Authorization: cookies.userToken,
-//         },
-//       });
-
-//       if (authUser.data.confirmed) {
-//         return {
-//           redirect: {
-//             destination: "/dashboard",
-//             permanent: false,
-//           },
-//         };
-//       }
-
-//       const getToken = await getConfirmAccountToken(authUser.data._id);
-
-//       if (getToken.status === 200) {
-//         return {
-//           props: { email: authUser.data.email, token: false },
-//         };
-//       } else {
-//         return {
-//           props: { email: authUser.data.email, token: true },
-//         };
-//       }
-//     } catch (error) {
-//       return {
-//         redirect: {
-//           destination: "/",
-//           permanent: false,
-//         },
-//       };
-//     }
-//   }
-// }

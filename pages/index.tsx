@@ -24,7 +24,8 @@ export default function Inicio() {
     const getAuth = async () => {
       const token = await localStorage.getItem("userToken");
       if (!token) {
-        return setLoggedIn(false);
+        setLoggedIn(false);
+        return;
       }
 
       await axiosClient
@@ -39,6 +40,9 @@ export default function Inicio() {
           } else {
             setLoggedIn(false);
           }
+        })
+        .catch((err) => {
+          setLoggedIn(false);
         });
     };
 

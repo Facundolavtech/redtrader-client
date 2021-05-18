@@ -4,17 +4,22 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Logo from "../../components/Header/Logo";
-import axiosClient from "../../config/axiosClient";
-import parseCookies from "../../helpers/cookies";
+import useAuth from "../../hooks/useAuth";
 import { confirmAccount } from "../../services/user";
 
 const params = () => {
   const router = useRouter();
   const { id, token } = router.query;
-
   const [accountConfirmed, setAccountConfirmed] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user !== null && user.confirmed === true) {
+      router.push("/dashboard");
+    }
+  }, [user]);
 
   useEffect(() => {
     (async () => {
@@ -65,44 +70,3 @@ const params = () => {
 };
 
 export default params;
-
-export async function getServerSideProps(ctx) {
-  const cookies = parseCookies(ctx.req);
-
-  if (!cookies.userToken) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  } else {
-    try {
-      const authUser = await axiosClient.get("/users/auth", {
-        headers: {
-          Authorization: cookies.userToken,
-        },
-      });
-
-      if (authUser.data.confirmed) {
-        return {
-          redirect: {
-            destination: "/dashboard",
-            permanent: false,
-          },
-        };
-      }
-
-      return {
-        props: {},
-      };
-    } catch (error) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      };
-    }
-  }
-}
