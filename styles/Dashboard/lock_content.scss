@@ -1,0 +1,46 @@
+.lock__container {
+  .lock__title {
+    color: rgb(37, 37, 37);
+    font-weight: 500;
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .lock__p {
+    color: rgb(131, 131, 131);
+    font-size: 1.2em;
+  }
+
+  .lock__btn {
+    text-transform: uppercase;
+    width: 200px;
+    min-width: 200px;
+    height: 45px;
+    margin-top: 30px;
+    font-size: unset;
+  }
+
+  .lock__img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 20px;
+
+    path {
+      fill: rgb(143, 143, 143);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .lock__container {
+    .lock__title {
+      font-size: 1.6em;
+    }
+
+    .lock__p {
+      font-size: 1.1em;
+    }
+  }
+}

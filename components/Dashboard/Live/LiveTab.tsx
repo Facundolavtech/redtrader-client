@@ -2,6 +2,7 @@ import { Button } from "@material-ui/core";
 import { AddShoppingCart, LiveTv, Lock } from "@material-ui/icons";
 import Link from "next/link";
 import React from "react";
+import LockContent from "../LockContent/LockContent";
 
 const LiveTab = ({ plan }) => {
   return (
@@ -25,17 +26,7 @@ const LiveTab = ({ plan }) => {
           </div>
         </>
       ) : (
-        <>
-          <Lock className="lock__img" />
-          <h2>¡No tienes plan!</h2>
-          <p>Adquiere el plan premium para acceder a las clases en vivo</p>
-          <hr />
-          <Link href="/dashboard/pay">
-            <Button variant="contained" color="primary">
-              Adquirir Plan <AddShoppingCart />
-            </Button>
-          </Link>
-        </>
+        <LockContent />
       )}
     </>
   );

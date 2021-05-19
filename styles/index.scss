@@ -15,7 +15,7 @@
 @import "./Dashboard/index.scss";
 @import "./Dashboard/header.scss";
 @import "./Dashboard/videolist.scss";
-@import "./Dashboard/telegram.scss";
+@import "./Dashboard/signals_tab.scss";
 @import "./Dashboard/live.scss";
 @import "./Dashboard/liveslist.scss";
 @import "./Dashboard/livestream.scss";
@@ -26,6 +26,7 @@
 @import "./Forgot/forgot.scss";
 @import "./ResetPassword/resetpassword.scss";
 @import "./ConfirmAccount/confirm.scss";
+@import "../styles/Dashboard/lock_content.scss";
 
 //Components
 @import "../components/Auth/authForms.scss";
@@ -37,3 +38,4 @@
 @import "../components/Admin/Tabs/Plan/plan.scss";
 @import "../components/Admin/Tabs/Admin/admin.scss";
 @import "../components/Admin/Tabs/Coupons/updateCoupon.scss";
+@import "../components/Dashboard/Tabs/tabs.scss";

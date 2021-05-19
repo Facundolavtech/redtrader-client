@@ -21,7 +21,11 @@ const plan = () => {
   }, [user]);
 
   useEffect(() => {
-    if (userInfo !== null && userInfo.plan_details.expire !== null) {
+    if (
+      userInfo !== null &&
+      userInfo.plan_details &&
+      userInfo.plan_details.expire !== null
+    ) {
       setUserPlanExpireDate(new Date(userInfo.plan_details.expire));
     }
   }, [userInfo]);

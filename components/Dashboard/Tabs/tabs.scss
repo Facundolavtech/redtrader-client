@@ -1,0 +1,38 @@
+.tabs__appbar {
+  background-color: $primary-red !important;
+
+  .MuiButtonBase-root {
+    color: rgba(255, 255, 255, 0.801);
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.199);
+      transition: background-color 0.2s;
+    }
+  }
+
+  .Mui-selected {
+    color: #fff !important;
+  }
+
+  .MuiTabScrollButton-root {
+    color: #fff;
+  }
+
+  .MuiTabs-indicator {
+    background-color: #fff !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tabs__appbar {
+    .MuiButtonBase-root {
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}

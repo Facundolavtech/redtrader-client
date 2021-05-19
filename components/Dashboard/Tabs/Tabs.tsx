@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import { School, Telegram, AccountBalance, LiveTv } from "@material-ui/icons";
+import { School, AccountBalance, LiveTv, Smartphone } from "@material-ui/icons";
 import VideoList from "../VideoList";
-import TelegramTab from "../Telegram";
+import SignalsTab from "../Signals";
 import BrokersTab from "../Brokers";
 import LiveTab from "../Live/LiveTab";
 
@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
+  tabs: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "auto",
+  },
 }));
 
 export default function DashboardTabs({ videos, plan }) {
@@ -54,7 +59,7 @@ export default function DashboardTabs({ videos, plan }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className="tabs__appbar">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -62,12 +67,12 @@ export default function DashboardTabs({ videos, plan }) {
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
-          style={{ display: "flex", justifyContent: "center", margin: "auto" }}
+          className={classes.tabs}
         >
           <Tab label="Academia" icon={<School />} {...a11yProps(0)} />
-          <Tab label="Señales" icon={<Telegram />} {...a11yProps(1)} />
-          <Tab label="Brokers" icon={<AccountBalance />} {...a11yProps(2)} />
-          <Tab label="RedTrader Live" icon={<LiveTv />} {...a11yProps(3)} />
+          <Tab label="RedTrader GO" icon={<Smartphone />} {...a11yProps(1)} />
+          <Tab label="RedTrader Live" icon={<LiveTv />} {...a11yProps(2)} />
+          <Tab label="Brokers" icon={<AccountBalance />} {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -76,18 +81,18 @@ export default function DashboardTabs({ videos, plan }) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div className="telegram__container">
-          <TelegramTab plan={plan} />
+        <div className="signals__tab__container">
+          <SignalsTab plan={plan} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div className="brokers__container">
-          <BrokersTab />
+        <div className="lives__container">
+          <LiveTab plan={plan} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <div className="lives__container">
-          <LiveTab plan={plan} />
+        <div className="brokers__container">
+          <BrokersTab />
         </div>
       </TabPanel>
     </div>
