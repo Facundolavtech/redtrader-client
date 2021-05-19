@@ -2,7 +2,6 @@ import { CircularProgress } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Logo from "../../components/Header/Logo";
 import useAuth from "../../hooks/useAuth";
 import { confirmAccount } from "../../services/user";
 
@@ -46,7 +45,6 @@ const params = () => {
 
   return (
     <div className="confirm__container">
-      <Logo classes="" />
       {loading && <CircularProgress style={{ color: "#fff" }} size={23} />}
     </div>
   );
