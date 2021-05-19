@@ -64,6 +64,10 @@ const confirm = () => {
     }
   };
 
+  const removeToken = () => {
+    localStorage.removeItem("userToken");
+  };
+
   return (
     <>
       {userInfo && confirmAccountToken !== null ? (

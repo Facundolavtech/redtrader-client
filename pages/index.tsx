@@ -35,7 +35,7 @@ export default function Inicio() {
           },
         })
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 200 && res.data.confirmed === true) {
             setLoggedIn(true);
           } else {
             setLoggedIn(false);
