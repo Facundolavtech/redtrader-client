@@ -19,10 +19,10 @@ const params = () => {
   }, [user]);
 
   useEffect(() => {
-    if (user !== null && id && token) {
+    if (id && token) {
       confirmAccountFunction();
     }
-  }, [user, id, token]);
+  }, [id, token]);
 
   const confirmAccountFunction = async () => {
     try {
