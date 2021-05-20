@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ArrowBackBtn from "../../components/BackArrow";
 import useAuth from "../../hooks/useAuth";
 import { useRouter } from "next/router";
+import Loading from "../../components/Loading";
 
 const plan = () => {
   const router = useRouter();
@@ -73,7 +74,7 @@ const plan = () => {
           </div>
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

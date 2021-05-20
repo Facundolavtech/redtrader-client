@@ -9,6 +9,7 @@ import {
 import ArrowBackBtn from "../../components/BackArrow";
 import useAuth from "../../hooks/useAuth";
 import { useRouter } from "next/router";
+import Loading from "../../components/Loading";
 
 const confirm = () => {
   const router = useRouter();
@@ -109,7 +110,7 @@ const confirm = () => {
           </div>
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

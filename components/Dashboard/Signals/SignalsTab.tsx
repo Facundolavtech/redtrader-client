@@ -10,7 +10,7 @@ const TelegramTab = ({ plan }) => {
           </div>
           <div className="signals__tab-info">
             <h2>
-              Descarga <span>RedTrader GO</span> desde las tiendas y comienza a
+              Descarga <span>Red Trade</span> desde las tiendas y comienza a
               generar ingresos con nuestras señales
             </h2>
             <div className="signals__tab-info__buttons">

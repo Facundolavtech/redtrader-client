@@ -4,6 +4,7 @@ import LivesList from "../../components/Dashboard/Live/LivesList";
 import Nav from "../../components/Dashboard/Nav";
 import Header from "../../components/Header";
 import Logo from "../../components/Header/Logo";
+import Loading from "../../components/Loading";
 import useAuth from "../../hooks/useAuth";
 
 const lives = () => {
@@ -40,7 +41,7 @@ const lives = () => {
           <LivesList token={tokenState} />
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

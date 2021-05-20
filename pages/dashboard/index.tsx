@@ -5,6 +5,7 @@ import Nav from "../../components/Dashboard/Nav";
 import DashboardTabs from "../../components/Dashboard/Tabs";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 const dashboard = () => {
   const { user } = useAuth();
@@ -47,7 +48,7 @@ const dashboard = () => {
           />
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

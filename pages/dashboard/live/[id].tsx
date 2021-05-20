@@ -7,6 +7,7 @@ import Nav from "../../../components/Dashboard/Nav";
 import { CircularProgress } from "@material-ui/core";
 import LiveStream from "../../../components/Dashboard/Live/LiveStream";
 import useAuth from "../../../hooks/useAuth";
+import Loading from "../../../components/Loading";
 
 const id = () => {
   const {
@@ -92,7 +93,7 @@ const id = () => {
           )}
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

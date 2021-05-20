@@ -5,6 +5,7 @@ import Logo from "../../../components/Header/Logo";
 import AdminNav from "../../../components/Admin/AdminNav";
 import useAuth from "../../../hooks/useAuth";
 import { useRouter } from "next/router";
+import Loading from "../../../components/Loading";
 
 const index = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const index = () => {
           <AdminNav id={userInfo._id} token={tokenState} />
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

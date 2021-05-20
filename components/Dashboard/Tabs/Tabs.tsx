@@ -70,7 +70,7 @@ export default function DashboardTabs({ videos, plan }) {
           className={classes.tabs}
         >
           <Tab label="Academia" icon={<School />} {...a11yProps(0)} />
-          <Tab label="RedTrader GO" icon={<Smartphone />} {...a11yProps(1)} />
+          <Tab label="Red Trade App" icon={<Smartphone />} {...a11yProps(1)} />
           <Tab label="RedTrader Live" icon={<LiveTv />} {...a11yProps(2)} />
           <Tab label="Brokers" icon={<AccountBalance />} {...a11yProps(3)} />
         </Tabs>

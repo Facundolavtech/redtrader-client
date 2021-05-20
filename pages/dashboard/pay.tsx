@@ -19,6 +19,7 @@ import CriptoVideos from "../../components/Dashboard/CriptoVideos";
 import ApplyCoupon from "../../components/ApplyCoupon";
 import { useRouter } from "next/router";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/Loading";
 
 const useStyles = makeStyles((theme: Theme) => ({
   dropDown: {
@@ -194,7 +195,7 @@ const pay = () => {
           </AuthModal>
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );

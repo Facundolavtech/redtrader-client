@@ -4,6 +4,7 @@ import Logo from "../../components/Header/Logo";
 import Nav from "../../components/Dashboard/Nav";
 import ChangePasswordForm from "../../components/Dashboard/ChangePassword";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/Loading";
 
 const password = () => {
   const { user, token } = useAuth();
@@ -35,7 +36,7 @@ const password = () => {
           <ChangePasswordForm userId={user._id} token={tokenState} />
         </>
       ) : (
-        "Cargando"
+        <Loading />
       )}
     </>
   );
