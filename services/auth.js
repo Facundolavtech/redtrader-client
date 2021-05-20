@@ -29,7 +29,7 @@ export async function register(data) {
 
 export async function login(data) {
   try {
-    const loginUser = await axiosClient.post("/users/login", data);
+    const loginUser = await axiosClient.post("/users/login/", data);
 
     const token = loginUser.data.token;
 
