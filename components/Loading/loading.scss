@@ -13,10 +13,10 @@
     width: 200px;
     object-fit: contain;
     position: relative;
-    animation: updown 2s;
+    animation: loadingScale 2s;
   }
 
-  @keyframes updown {
+  @keyframes loadingScale {
     0% {
       transform: scale(0);
     }
