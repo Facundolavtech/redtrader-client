@@ -1,29 +1,67 @@
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
+import React, { Component } from "react";
+import videojs from "video.js";
+import "video.js/dist/video-js.css";
 
-const NMS_ENDPOINTv2 = "https://redtrader-api.com:8443";
+class VideoPlayerComponent extends Component {
+  constructor(props) {
+    super(props);
 
-const VideoPlayer = dynamic(() => import("react-video-js-player"), {
-  ssr: false,
-});
+    this.state = {
+      stream: false,
+      videoJsOptions: null,
+      NMS_ENDPOINT: "https://redtrader-api.com:8443",
+    };
+  }
 
-const VideoPlayerComponent = ({ stream_key }) => {
-  const [videoSettings] = useState({
-    video: {
-      src: `${NMS_ENDPOINTv2}/live/${stream_key}/index.m3u8`,
-      type: "aplication/x-mpegURL",
-    },
-  });
+  componentDidMount() {
+    this.setState(
+      {
+        stream: true,
+        videoJsOptions: {
+          autoplay: false,
+          controls: true,
+          sources: [
+            {
+              src: `${this.state.NMS_ENDPOINT}/live/${this.props.stream_key}/index.m3u8`,
+              type: "application/x-mpegURL",
+            },
+          ],
+        },
+      },
+      () => {
+        this.player = videojs(
+          this.videoNode,
+          this.state.videoJsOptions,
+          function onPlayerReady() {
+            console.log("Player ready", this);
+          }
+        );
+      }
+    );
+  }
 
-  return (
-    <div className="videojs__container">
-      <VideoPlayer
-        controls={true}
-        src={videoSettings.video.src}
-        bigPlayButton={true}
-      />
-    </div>
-  );
-};
+  // destroy player on unmount
+  componentWillUnmount() {
+    if (this.player) {
+      this.player.dispose();
+    }
+  }
 
+  render() {
+    return (
+      <div className="videojs__container">
+        {this.state.stream ? (
+          <div data-vjs-player>
+            <video
+              ref={(node) => (this.videoNode = node)}
+              className="video-js vjs-big-play-centered vjs-default-skin"
+            ></video>
+          </div>
+        ) : (
+          "Cargando..."
+        )}
+      </div>
+    );
+  }
+}
 export default VideoPlayerComponent;

@@ -38,7 +38,7 @@
       justify-content: center;
 
       h2 {
-        font-size: 1.6em;
+        font-size: 1.5em;
         font-weight: 400;
         color: rgb(26, 26, 26);
         margin-bottom: 20px;
@@ -68,7 +68,7 @@
 
 @media screen and (max-width: 768px) {
   .signals__tab__container {
-    width: 100%;
+    margin-top: 50px;
 
     .signals__tab {
       flex-direction: column;
@@ -87,12 +87,13 @@
         width: 95%;
 
         h2 {
-          font-size: 1.4em;
+          font-size: 1.3em;
           padding-bottom: 20px;
         }
       }
       .signals__tab-info__buttons {
         flex-direction: column;
+        margin-bottom: 100px;
       }
     }
   }

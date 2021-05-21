@@ -5,16 +5,17 @@
   flex-direction: column;
 
   .livestream__title {
-    width: 90%;
+    width: 87%;
     margin: auto;
-    border-bottom: 1px solid #bebebe;
-    padding-bottom: 10px;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 20px;
     text-align: center;
     margin-bottom: 50px;
 
     h2 {
-      font-size: 1.8em;
-      color: #333333;
+      font-size: 1.7em;
+      color: #555555;
+      font-weight: 400;
     }
   }
 
@@ -25,21 +26,27 @@
     padding: 0 5%;
     margin-bottom: 200px;
 
-    .videojs__container,
-    .chat__container {
-      margin: auto;
-      height: 100%;
-    }
-
     .videojs__container {
-      width: 65%;
+      width: 65% !important;
+      height: 100%;
       display: flex;
       justify-content: flex-start;
 
       .video-js {
         width: 100%;
         height: 100%;
+
+        video {
+          width: 100% !important;
+          height: 100% !important;
+        }
       }
+    }
+
+    .videojs__container,
+    .chat__container {
+      margin: auto;
+      height: 100%;
     }
 
     .chat__container {
@@ -128,7 +135,7 @@
 
       .videojs__container,
       .chat__container {
-        width: 100%;
+        width: 100% !important;
       }
 
       .videojs__container {

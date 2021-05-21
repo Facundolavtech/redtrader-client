@@ -61,3 +61,14 @@ button {
 .lazyload-wrapper {
   transition: all 0.3s;
 }
+
+.vjs-control-bar {
+  * {
+    font-family: VideoJS, "sans-serif" !important;
+    font-weight: 500;
+  }
+}
+
+.video-js .vjs-control-bar {
+  background-color: $primary-red !important;
+}

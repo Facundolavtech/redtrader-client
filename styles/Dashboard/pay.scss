@@ -2,16 +2,17 @@
   width: 80%;
   max-width: 600px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
   padding-bottom: 80px;
-  box-shadow: 0 0 5px 1px rgb(245, 245, 245);
+  box-shadow: 0 0 5px 1px rgb(230, 230, 230);
   margin-bottom: 100px;
   position: relative;
+  background-color: #fff;
 
   .howtopay__btn {
     color: $primary-red;
@@ -233,7 +234,7 @@
 
     span.arrowback__btn {
       position: absolute;
-      top: -10%;
+      top: -5%;
       left: 5%;
     }
 

@@ -12,7 +12,7 @@ const LiveTab = ({ plan }) => {
           <div className="lives-tab__info">
             <LiveTv className="lives-tab__img" />
 
-            <h2>Ingresa a las clases en vivo de RedTrader Live aqui</h2>
+            <h2>Ingresa a RedTrader Live aquí</h2>
 
             <Link href="/dashboard/lives">
               <Button
