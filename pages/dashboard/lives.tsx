@@ -1,44 +1,32 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import LivesList from "../../components/Dashboard/Live/LivesList";
-import Nav from "../../components/Dashboard/Nav";
-import Header from "../../components/Header";
-import Logo from "../../components/Header/Logo";
 import Loading from "../../components/Loading";
-import useAuth from "../../hooks/useAuth";
+import AuthContext from "../../context/Auth";
+import DashboardHeader from "../../components/UI/Header/DashboardHeader";
+import SEO from "../../components/SEO";
 
 const lives = () => {
   const router = useRouter();
-  const { user, token } = useAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  const [tokenState, setTokenState] = useState(null);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    setUserInfo(user);
-    if (user !== null && user.plan === false) {
+    if (user && !user.plan.active) {
       router.push("/dashboard");
+    }
+    if (user && !user.confirmed) {
+      router.push("/confirm");
     }
   }, [user]);
 
-  useEffect(() => {
-    setTokenState(token);
-  }, [token]);
-
   return (
     <>
-      {userInfo !== null && tokenState !== null ? (
+      <SEO title="RedTrader Live" />
+
+      {user && user.plan.active ? (
         <>
-          <Header classes={"dashboard__header"}>
-            <Logo classes={"dashboard__logo"} />
-            <Nav
-              name={userInfo.name}
-              plan={userInfo.plan}
-              shortId={userInfo.short_id}
-              admin={userInfo.isSuperAdmin}
-              educator={userInfo.role_educator}
-            />
-          </Header>
-          <LivesList token={tokenState} />
+          <DashboardHeader />
+          <LivesList />
         </>
       ) : (
         <Loading />

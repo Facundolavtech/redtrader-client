@@ -1,85 +1,68 @@
-import { useEffect, useState } from "react";
-import Logo from "../../components/Header/Logo";
+import { useContext, useEffect, useState } from "react";
+import Logo from "../../components/UI/Logo/Logo";
 import { CircularProgress } from "@material-ui/core";
-import { toast } from "react-toastify";
 import {
-  sendConfirmAccountEmail,
   getConfirmAccountToken,
-} from "../../services/user";
+  sendConfirmAccountEmail,
+} from "../../services/confirmAccount";
 import ArrowBackBtn from "../../components/BackArrow";
-import useAuth from "../../hooks/useAuth";
 import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
+import AuthContext from "../../context/Auth";
+import SEO from "../../components/SEO";
 
 const confirm = () => {
   const router = useRouter();
   const [emailSended, setEmailSended] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
   const [confirmAccountToken, setConfirmAccountToken] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
 
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user !== null) {
-      setUserInfo(user);
+    if (user) {
+      if (user.confirmed) {
+        router.push("/dashboard");
+      } else {
+        getConfirmToken();
+      }
     }
   }, [user]);
 
-  useEffect(() => {
-    if (userInfo && userInfo.confirmed) {
-      router.push("/");
+  const getConfirmToken = async () => {
+    const response = await getConfirmAccountToken(user._id);
+
+    if (response === 200) {
+      setConfirmAccountToken(true);
     } else {
-      try {
-        getConfirmAccountToken(userInfo._id)
-          .then((res) => {
-            if (res.status === 200) {
-              setConfirmAccountToken(false);
-            } else {
-              setConfirmAccountToken(true);
-            }
-          })
-          .catch(() => {
-            setConfirmAccountToken(true);
-          });
-      } catch (error) {
-        return;
-      }
-    }
-  }, [userInfo]);
-
-  const sendNewConfirmEmail = async () => {
-    try {
-      setSendingEmail(true);
-      const response = await sendConfirmAccountEmail(userInfo.email);
-
-      if (response.status === 200) {
-        setEmailSended(true);
-      } else {
-        setSendingEmail(false);
-        toast.error(response);
-      }
-    } catch (error) {
-      setSendingEmail(false);
-      toast.error("Ocurrio un error");
+      setConfirmAccountToken(false);
     }
   };
 
-  const removeToken = () => {
-    localStorage.removeItem("userToken");
+  const sendNewConfirmEmail = async () => {
+    setSendingEmail(true);
+    const response = await sendConfirmAccountEmail(user.email);
+
+    if (response === 200) {
+      setEmailSended(true);
+    } else {
+      setSendingEmail(false);
+    }
   };
 
   return (
     <>
-      {userInfo && confirmAccountToken !== null ? (
+      <SEO title="Confirmar cuenta" />
+
+      {user && confirmAccountToken !== null ? (
         <>
           <div className="confirm__container">
-            <Logo classes="" />
+            <Logo href="/" />
             <ArrowBackBtn src="/" />
             <h2>
               Te hemos enviado un email para confirmar tu cuenta a
               <br />
-              <span>{userInfo.email}</span>
+              <span>{user.email}</span>
             </h2>
 
             {confirmAccountToken === true ? (

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Drawer,
   List,
@@ -9,70 +8,12 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import NavItems from "./NavItems";
-import Plan from "./Tabs/Plan/Plan";
-import Admin from "./Tabs/Admin/Admin";
-import UpdateEducator from "./Tabs/Educator/UpdateEducator";
-import DeleteAccount from "./Tabs/DeleteAccount/DeleteAccount";
-import UpdateCoupon from "./Tabs/Coupons/UpdateCoupon";
+import useStyles from "./Styles";
+import ArrowBackBtn from "../BackArrow";
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      flexDirection: "row",
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    paper: {
-      marginTop: "80px",
-      width: 260,
-      borderRight: "1px solid rgba(73, 73, 73, 0.05)",
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
-    menuButton: {
-      marginRight: 36,
-    },
-    hide: {
-      display: "none",
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: "nowrap",
-    },
-    toolbar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-    },
-    content: {
-      marginLeft: 260,
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  })
-);
-
-export default function AdminNav({ id, token }) {
-  const tabList = [
-    {
-      value: <Plan id={id} />,
-    },
-    { value: <Admin id={id} /> },
-    { value: <UpdateEducator id={id} /> },
-    { value: <UpdateCoupon id={id} token={token} /> },
-    { value: <DeleteAccount id={id} /> },
-  ];
-
-  const [tab, setTab] = useState(tabList[0].value);
+export default function AdminNav() {
+  const [tab, setTab] = useState(NavItems[0].value);
+  const [selectedTab, setSelectedTab] = useState(0);
 
   const classes = useStyles();
 
@@ -87,13 +28,16 @@ export default function AdminNav({ id, token }) {
         className="admin-nav__drawer"
       >
         <List>
-          {NavItems.map(({ name, icon }, index) => (
+          {NavItems.map(({ name, icon, value }, index) => (
             <>
               <ListItem
                 button
                 key={index}
                 style={{ marginBottom: "5px", minHeight: "70px" }}
-                onClick={() => setTab(tabList[index].value)}
+                onClick={() => {
+                  setTab(value), setSelectedTab(index);
+                }}
+                className={selectedTab === index && "selected"}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
@@ -102,7 +46,12 @@ export default function AdminNav({ id, token }) {
           ))}
         </List>
       </Drawer>
-      <main className="admin-nav__content">{tab}</main>
+      <main className="admin-nav__content">
+        <>
+          <ArrowBackBtn src="/dashboard" />
+          {tab}
+        </>
+      </main>
     </div>
   );
 }

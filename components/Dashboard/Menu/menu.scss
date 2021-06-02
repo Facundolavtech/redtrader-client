@@ -1,0 +1,208 @@
+.dashboard__menu-container {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .MuiButtonBase-root {
+    width: 90%;
+    border-radius: 0;
+    font-weight: 0.9em;
+    text-transform: unset;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      margin-left: 10px;
+    }
+  }
+
+  .dashboard__menu-person {
+    width: 50px;
+    height: 50px;
+    fill: $primary-red;
+    margin: 30px 0 15px 0;
+  }
+
+  h1 {
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 1.3em;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    word-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .dashboard__menu-email {
+    font-size: 1em;
+    color: #565656;
+    font-weight: 500;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    word-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .dashboard__menu-shortid {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: rgb(121, 121, 121);
+    margin-bottom: 10px;
+
+    span {
+      color: rgb(49, 49, 49);
+    }
+  }
+
+  .dashboard__menu-rolBadge {
+    font-weight: 500;
+    font-size: 1.3em;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+  }
+
+  .educator {
+    color: rgb(5, 42, 161);
+  }
+
+  .admin {
+    color: rgb(245, 20, 20);
+  }
+
+  .dashboard__menu-adminPanel-btn {
+    background-color: rgb(245, 20, 20);
+    height: 45px;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 15px;
+
+    &:hover {
+      background-color: rgb(255, 53, 53);
+    }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .dashboard__menu-adquire__plan-btn {
+    height: 40px;
+    background-color: #2dbe00;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #3de612;
+    }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .dashboard_menu-planBadge {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .badge-premium {
+    background: #565656;
+  }
+
+  .badge-premium_plus {
+    background: $primary-red;
+  }
+
+  hr {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .dashboard__menu-update-plan-btn {
+    border-radius: 5px;
+    height: 40px;
+    margin-bottom: 15px;
+    color: #333333;
+    background-color: #e2e2e2;
+  }
+
+  .dashboard__menu-info__plan-btn {
+    background: rgb(52, 187, 18);
+    height: 40px;
+    border-radius: 5px;
+    color: #fff;
+
+    &:hover {
+      background-color: #3de612;
+    }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .dashboard__menu-educatorPanel-btn {
+    background-color: rgb(20, 61, 197);
+    color: #fff;
+    height: 45px;
+    border-radius: 5px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: rgb(42, 89, 243);
+    }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .dashboard__menu-changePassword-btn {
+    color: rgb(51, 51, 51);
+    font-weight: 400;
+    font-weight: 1em;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 15px;
+
+    &:hover {
+      background-color: rgb(230, 230, 230);
+    }
+  }
+
+  .dashboard__menu-logout-btn {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-weight: 400;
+    height: 40px;
+    color: $primary-red;
+
+    &:hover {
+      background-color: rgb(231, 231, 231);
+    }
+  }
+}

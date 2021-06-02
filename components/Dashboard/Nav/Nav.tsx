@@ -1,15 +1,12 @@
-import UserMenu from "../UserMenu";
+import { useContext } from "react";
+import AuthContext from "../../../context/Auth";
+import DrawerMenu from "../DrawerMenu";
+import Menu from "../Menu";
 
-const Nav = ({ name, plan, shortId, admin, educator }) => {
+const Nav = () => {
   return (
     <div className="dashboard__nav">
-      <h1 style={{ textTransform: "capitalize" }}>{name}</h1>
-      <UserMenu
-        plan={plan}
-        shortId={shortId}
-        admin={admin}
-        educator={educator}
-      />
+      <DrawerMenu />
     </div>
   );
 };

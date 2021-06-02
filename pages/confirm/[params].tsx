@@ -1,18 +1,20 @@
-import { CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import useAuth from "../../hooks/useAuth";
-import { confirmAccount } from "../../services/user";
+import { useContext, useEffect, useState } from "react";
+import SEO from "../../components/SEO";
+import AuthContext from "../../context/Auth";
+import { confirmAccount } from "../../services/confirmAccount";
 
 const params = () => {
   const router = useRouter();
   const { id, token } = router.query;
   const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
+  const [accountConfirmed, setAccountConfirmed] = useState(false);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user !== null && user.confirmed === true) {
+    if (user && user.confirmed) {
       router.push("/dashboard");
     }
   }, [user]);
@@ -24,29 +26,39 @@ const params = () => {
   }, [id, token]);
 
   const confirmAccountFunction = async () => {
-    try {
-      const response = await confirmAccount(id, token);
+    const response = await confirmAccount(id, token);
 
-      if (response.status === 200) {
-        setLoading(false);
-        toast.success(response.msg);
-        router.push("/dashboard");
-      } else {
-        setLoading(false);
-        toast.error(response);
-        router.push("/");
-      }
-    } catch (error) {
+    if (response === 200) {
+      setAccountConfirmed(true);
       setLoading(false);
-      toast.error("Ocurrio un error");
+    } else {
       router.push("/");
     }
   };
 
   return (
-    <div className="confirm__container">
-      {loading && <CircularProgress style={{ color: "#fff" }} size={23} />}
-    </div>
+    <>
+      <SEO title="Confirmar cuenta" />
+
+      {!accountConfirmed ? (
+        <div className="confirm__container">
+          {loading && <CircularProgress style={{ color: "#fff" }} size={23} />}
+        </div>
+      ) : (
+        <div className="confirm__container">
+          <h2 style={{ fontSize: "1.3em" }}>Cuenta confirmada</h2>
+          <Link href="/">
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ width: "240px", textTransform: "unset", height: "45px" }}
+            >
+              Volver al inicio
+            </Button>
+          </Link>
+        </div>
+      )}
+    </>
   );
 };
 

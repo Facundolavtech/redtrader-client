@@ -9,7 +9,7 @@ class VideoPlayerComponent extends Component {
     this.state = {
       stream: false,
       videoJsOptions: null,
-      NMS_ENDPOINT: "https://redtrader-api.com:8443",
+      NMS_ENDPOINT: process.env.NEXT_PUBLIC_NMS_ENDPOINT,
     };
   }
 
@@ -20,6 +20,7 @@ class VideoPlayerComponent extends Component {
         videoJsOptions: {
           autoplay: false,
           controls: true,
+          fluid: true,
           sources: [
             {
               src: `${this.state.NMS_ENDPOINT}/live/${this.props.stream_key}/index.m3u8`,
@@ -29,18 +30,11 @@ class VideoPlayerComponent extends Component {
         },
       },
       () => {
-        this.player = videojs(
-          this.videoNode,
-          this.state.videoJsOptions,
-          function onPlayerReady() {
-            console.log("Player ready", this);
-          }
-        );
+        this.player = videojs(this.videoNode, this.state.videoJsOptions);
       }
     );
   }
 
-  // destroy player on unmount
   componentWillUnmount() {
     if (this.player) {
       this.player.dispose();

@@ -1,13 +1,15 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
-import React, { useState } from "react";
-import { toast } from "react-toastify";
+import React, { useContext, useState } from "react";
 import { applyCoupon } from "../../services/coupon";
 import { useRouter } from "next/router";
+import AuthContext from "../../context/Auth";
 
-const ApplyCoupon = ({ userToken }) => {
+const ApplyCoupon = () => {
   const router = useRouter();
   const [couponName, setCouponName] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { token } = useContext(AuthContext);
 
   const applyCouponFunction = async () => {
     if (couponName.trim() === "") {
@@ -16,18 +18,14 @@ const ApplyCoupon = ({ userToken }) => {
 
     setLoading(true);
 
-    const response = await applyCoupon(userToken, couponName);
+    const response = await applyCoupon(token, couponName);
 
-    if (response.status === 200) {
-      toast.success(response.msg);
-      setCouponName("");
-      setLoading(false);
+    if (response === 200) {
       router.reload();
     } else {
-      toast.error(response);
       setCouponName("");
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (

@@ -3,7 +3,7 @@
   width: 100%;
   box-shadow: 1px 0 4px 1px #1f1f1fbd;
   background: rgb(255, 255, 255);
-  position: relative;
+  position: fixed;
   z-index: 999;
 
   .header__container {
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: space-between;
 
-    .header__logo {
+    .logo {
       height: 80%;
       width: 80px;
 
@@ -23,140 +23,5 @@
         object-fit: contain;
       }
     }
-
-    .home__nav {
-      display: flex;
-      height: 100%;
-
-      li {
-        height: 50%;
-        width: auto;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 30px;
-
-        &:first-of-type {
-          margin-left: 0;
-        }
-
-        .MuiSvgIcon-root {
-          width: 0.75em;
-          height: 0.75em;
-          margin-left: 5px;
-        }
-
-        img {
-          width: 0.95em;
-          height: 0.95em;
-          display: block;
-          margin-left: 10px;
-
-          svg {
-            fill: rgb(133, 133, 133);
-          }
-        }
-
-        a {
-          text-decoration: none;
-          color: $black;
-          font-size: 0.95em;
-
-          &:hover {
-            color: $primary-red;
-            transition: color 0.2s ease-in-out;
-          }
-        }
-      }
-
-      .nav__vertical-line {
-        height: 50%;
-        border: 1px solid rgba(54, 54, 54, 0.05);
-        margin: auto 15px;
-      }
-
-      .go-dashboard__btn {
-        width: 150px;
-        max-width: 150px;
-        height: 40px;
-        margin: auto;
-        font-size: 0.9em;
-        text-transform: unset;
-        box-shadow: none;
-      }
-
-      .nav__login {
-        margin-left: 0;
-
-        a {
-          &:hover {
-            color: $primary-red;
-            transition: color 0.2s ease-in-out;
-          }
-        }
-      }
-
-      .nav__comenzar-btn {
-        padding: 0 25px;
-        background: $primary-red;
-        cursor: pointer;
-
-        &:hover {
-          background: #d80505;
-          transition: background 0.2s ease;
-        }
-
-        button {
-          width: 100%;
-          text-transform: unset;
-          display: block;
-          color: #fff !important;
-          text-transform: uppercase;
-          font-size: 0.8em;
-          font-weight: 500;
-
-          .MuiTouchRipple-root {
-            display: none;
-          }
-        }
-      }
-    }
   }
 }
-
-@media screen and (max-width: 768px) {
-  .home__header {
-    .header__container {
-      .home__nav {
-        flex-direction: column;
-        position: absolute;
-        left: 0;
-        top: 80px;
-        background-color: #fff;
-        width: 100%;
-        padding: 20px 0;
-        height: auto;
-        transition: 0.2s;
-
-        li {
-          height: 50px;
-          width: 90%;
-          margin: 0 auto !important;
-          display: flex;
-          justify-content: center;
-        }
-      }
-
-      .go-dashboard__btn {
-        margin-top: 20px !important;
-      }
-
-      .hidden__nav {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.2s, visibility 0.2s;
-      }
-    }
-  }
-} ;

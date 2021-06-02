@@ -1,51 +1,33 @@
-import { getVideos } from "../../services/videos";
-import Header from "../../components/Header";
-import Logo from "../../components/Header/Logo";
-import Nav from "../../components/Dashboard/Nav";
 import DashboardTabs from "../../components/Dashboard/Tabs";
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Loading from "../../components/Loading";
+import AuthContext from "../../context/Auth";
+import { useRouter } from "next/router";
+import DashboardHeader from "../../components/UI/Header/DashboardHeader";
+import SEO from "../../components/SEO";
 
 const dashboard = () => {
-  const { user } = useAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  const [videos, setVideos] = useState(null);
+  const router = useRouter();
+  const { user, authUser } = useContext(AuthContext);
 
   useEffect(() => {
-    setUserInfo(user);
+    if (user && !user.confirmed) {
+      router.push("/confirm");
+    }
   }, [user]);
 
   useEffect(() => {
-    const getVideosFunction = async () => {
-      const token = await localStorage.getItem("userToken");
-
-      const response = await getVideos(token);
-
-      setVideos(response);
-    };
-
-    getVideosFunction();
+    authUser();
   }, []);
 
   return (
     <>
-      {userInfo ? (
+      <SEO title="Dashboard" />
+
+      {user && user.confirmed ? (
         <>
-          <Header classes={"dashboard__header"}>
-            <Logo classes={"dashboard__logo"} />
-            <Nav
-              name={userInfo.name}
-              plan={userInfo.plan}
-              shortId={userInfo.short_id}
-              admin={userInfo.isSuperAdmin}
-              educator={userInfo.role_educator}
-            />
-          </Header>
-          <DashboardTabs
-            videos={videos !== null ? videos : []}
-            plan={userInfo.plan}
-          />
+          <DashboardHeader />
+          <DashboardTabs />
         </>
       ) : (
         <Loading />

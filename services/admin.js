@@ -1,72 +1,98 @@
+import { toast } from "react-toastify";
 import axiosClient from "../config/axiosClient";
 
 export async function updatePlanAdmin(data) {
-  const { id } = data;
-
   try {
-    const response = await axiosClient.put(
-      `/users/admin/updatePlan/${id}`,
-      data
-    );
+    const response = await axiosClient
+      .put(`/admin/updatePlan`, data, {
+        headers: { Authorization: data.token },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      msg: response.data,
-      status: response.status,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
 export async function updateAdmin(data) {
-  const { id } = data;
-
   try {
-    const response = await axiosClient.put(
-      `/users/admin/updateAdmin/${id}`,
-      data
-    );
+    const response = await axiosClient
+      .put(`/admin/updateAdmin`, data, {
+        headers: {
+          Authorization: data.token,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      msg: response.data,
-      status: response.status,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
 export async function updateEducator(data) {
-  const { id } = data;
+  const { active, email, token } = data;
 
   try {
-    const response = await axiosClient.put(
-      `/users/admin/updateEducator/${id}`,
-      data
-    );
+    const response = await axiosClient
+      .put(
+        `/admin/updateEducator`,
+        { active, email },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      msg: response.data,
-      status: response.status,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
 export async function deleteAccount(data) {
-  const { id, email } = data;
+  const { email, token } = data;
 
   try {
-    const response = await axiosClient.delete(
-      `/users/admin/deleteAccount/${id}/${email}`
-    );
+    const response = await axiosClient
+      .delete(`/admin/deleteAccount/${email}`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      msg: response.data,
-      status: response.status,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }

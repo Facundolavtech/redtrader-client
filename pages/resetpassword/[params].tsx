@@ -1,16 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Logo from "../../components/Header/Logo";
-import { resetPassword } from "../../services/user";
+import Logo from "../../components/UI/Logo/Logo";
 import { toast } from "react-toastify";
-import {
-  TextField,
-  Button,
-  InputAdornment,
-  CircularProgress,
-} from "@material-ui/core";
+import { TextField, InputAdornment } from "@material-ui/core";
 import { VpnKey } from "@material-ui/icons";
-import handleValidateResetPassword from "../../utils/handleValidateResetPassword";
+import SubmitButton from "../../components/UI/SubmitButton";
+import handleValidate from "../../utils/handleValidate";
+import resetPasswordValidations from "../../utils/Validations/ResetPassword/resetPasswordValidations";
+import { resetPassword } from "../../services/resetPassword";
+import SEO from "../../components/SEO";
 
 const initialFormValues = {
   password: "",
@@ -19,18 +17,20 @@ const initialFormValues = {
 
 export default function index() {
   const router = useRouter();
-
   const { id, token } = router.query;
-
   const [formValues, setFormValues] = useState(initialFormValues);
   const [processingForm, setProcessingForm] = useState(false);
   const [fieldErrors, setFieldErrors] = useState(null);
-
   const { password, confirm } = formValues;
 
   useEffect(() => {
     if (formValues !== initialFormValues) {
-      handleValidateResetPassword(formValues, fieldErrors, setFieldErrors);
+      handleValidate(
+        formValues,
+        resetPasswordValidations,
+        fieldErrors,
+        setFieldErrors
+      );
     }
   }, [formValues]);
 
@@ -44,7 +44,13 @@ export default function index() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleValidateResetPassword(formValues, fieldErrors, setFieldErrors);
+    handleValidate(
+      formValues,
+      resetPasswordValidations,
+      fieldErrors,
+      setFieldErrors
+    );
+
     if (fieldErrors !== null || formValues === initialFormValues) {
       return;
     }
@@ -55,77 +61,53 @@ export default function index() {
       return;
     }
 
-    try {
-      setProcessingForm(true);
-      const response = await resetPassword(id, token, password);
-
-      if (response.status === 200) {
-        setProcessingForm(false);
-        toast.success(response.msg);
-        setFormValues(initialFormValues);
-        router.push("/");
-      } else {
-        setProcessingForm(false);
-        toast.error(response);
-        response.msg ? toast.error(response.msg) : null;
-        router.push("/");
-      }
-    } catch (error) {
-      toast.error("Ocurrio un error");
-      setProcessingForm(false);
-      setFormValues(initialFormValues);
-      return;
-    }
+    setProcessingForm(true);
+    await resetPassword(id, token, password);
+    router.push("/");
   };
 
   return (
-    <div className="resetpassword__container">
-      <Logo classes="" />
-      <form onSubmit={handleSubmit}>
-        <TextField
-          error={fieldErrors && fieldErrors.errors.password ? true : false}
-          helperText={fieldErrors && fieldErrors.errors.password}
-          type="password"
-          name="password"
-          label="Contraseña"
-          value={password}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <VpnKey />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          error={fieldErrors && fieldErrors.errors.confirm ? true : false}
-          helperText={fieldErrors && fieldErrors.errors.confirm}
-          type="password"
-          name="confirm"
-          label="Confirmar contraseña"
-          value={confirm}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <VpnKey />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          type={processingForm ? "button" : "submit"}
-        >
-          {processingForm ? (
-            <CircularProgress style={{ color: "#fff" }} size={23} />
-          ) : (
-            "Enviar"
-          )}
-        </Button>
-      </form>
-    </div>
+    <>
+      <SEO title="Restablecer contraseña" />
+
+      <div className="resetpassword__container">
+        <Logo href="/" />
+        <form onSubmit={handleSubmit}>
+          <TextField
+            error={fieldErrors && fieldErrors.errors.password ? true : false}
+            helperText={fieldErrors && fieldErrors.errors.password}
+            type="password"
+            name="password"
+            label="Contraseña"
+            value={password}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <VpnKey />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            error={fieldErrors && fieldErrors.errors.confirm ? true : false}
+            helperText={fieldErrors && fieldErrors.errors.confirm}
+            type="password"
+            name="confirm"
+            label="Confirmar contraseña"
+            value={confirm}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <VpnKey />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <SubmitButton loading={processingForm} buttonText="Enviar" />
+        </form>
+      </div>
+    </>
   );
 }

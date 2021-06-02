@@ -1,11 +1,14 @@
 import { Button, CircularProgress } from "@material-ui/core";
 import { ArrowBack, LiveTv } from "@material-ui/icons";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../../context/Auth";
 import useStreams from "../../../hooks/useStreams";
 import ArrowBackBtn from "../../BackArrow";
 
-const LivesList = ({ token }) => {
+const LivesList = () => {
+  const { token } = useContext(AuthContext);
+
   const { liveStreams } = useStreams(token);
 
   const streams =
@@ -18,7 +21,7 @@ const LivesList = ({ token }) => {
               <span className="stream__live-label">En Vivo</span>
               <Link href={`/dashboard/live/${stream.short_id}`}>
                 <div className="stream__thumbnail">
-                  <img src="/assets/img/educador-img.jpg" />
+                  <img src={stream.educator_info.educator_thumb} />
                 </div>
               </Link>
               <Link href={`/dashboard/live/${stream.short_id}`}>

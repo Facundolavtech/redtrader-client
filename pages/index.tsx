@@ -1,98 +1,82 @@
-import { useEffect, useState } from "react";
-import Hero from "../components/Home/HomeHero/HomeHero";
-import AuthModal from "../components/Modal/Modal";
-import AuthForm from "../components/Auth/AuthForms";
-import Header from "../components/Header";
-import Logo from "../components/Header/Logo";
-import HomeNav from "../components/Home/HomeNav";
+import { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import handleAuthModalAction, {
+  handleCloseAuthModalAction,
+} from "../redux/actions/Modal";
+import Hero from "../components/Home/Hero/Hero";
+import HomeFooter from "../components/Home/Footer";
+import AuthContext from "../context/Auth";
+import HomeHeader from "../components/UI/Header/HomeHeader";
+import Modal from "../components/Modal/Modal";
+import Forms from "../components/Auth/Forms";
+import Whatsapp from "../components/Home/Whatsapp";
 import Sections from "../components/Home/Sections";
-import HomeFooter from "../components/Home/HomeFooter";
-import FloatingWhatsapp from "../components/Home/FloatingWhatsapp";
-import axiosClient from "../config/axiosClient";
+import SEO from "../components/SEO";
 
 export default function Inicio() {
-  const [openModal, setOpenModal] = useState(false);
-  const [isLoginForm, setIsLoginForm] = useState(null);
-  const [backdrop, setBackdrop] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(null);
+  const backdrop = useSelector((state: any) => state.backdrop.active);
 
-  const handleCloseModal: Function = () => {
-    setOpenModal(false);
-  };
+  const { user, setUser, setToken } = useContext(AuthContext);
 
   useEffect(() => {
-    const getAuth = async () => {
-      const token = await localStorage.getItem("userToken");
-      if (!token) {
-        setLoggedIn(false);
-        return;
-      }
-
-      await axiosClient
-        .get("/users/auth", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200 && res.data.confirmed === true) {
-            setLoggedIn(true);
-          } else {
-            setLoggedIn(false);
-          }
-        })
-        .catch((err) => {
-          setLoggedIn(false);
-        });
-    };
-
-    getAuth();
+    if (user && !user.confirmed) {
+      setUser(null);
+      setToken(null);
+    }
+    dispatch(handleCloseAuthModalAction());
   }, []);
+
+  const dispatch = useDispatch();
+
+  const { open } = useSelector((state: any) => state.modal.auth_modal);
+  const signInForm = useSelector((state: any) => state.auth.signInForm);
 
   return (
     <>
+      <SEO title="Inicio" />
       <style jsx global>
         {`
+          html {
+            overflow-y: ${backdrop ? "hidden !important" : "unset"};
+          }
+
+          html,
           body {
-            overflow-y: ${backdrop ? "hidden" : "unset"};
+            overflow-x: hidden;
+          }
+
+          body::-webkit-scrollbar {
+            display: block;
+            width: 12px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 9000;
+          }
+
+          body::-webkit-scrollbar-track {
+            background: none;
+          }
+
+          body::-webkit-scrollbar-thumb {
+            background-color: rgba(245, 6, 6, 0.705);
+            border-radius: 20px;
+            border: 3px solid #ffffff;
           }
         `}
       </style>
       <div className={backdrop ? "backdrop" : ""}></div>
-      <Header
-        style={openModal ? { boxShadow: "none" } : null}
-        classes={"home__header"}
-      >
-        <div className="header__container">
-          <Logo classes={"header__logo"} />
-          <HomeNav
-            classes={"home__nav"}
-            setOpenModal={setOpenModal}
-            setIsLoginForm={setIsLoginForm}
-            setBackdrop={setBackdrop}
-            loggedIn={loggedIn}
-          />
-        </div>
-      </Header>
-      <Hero
-        setOpenModal={setOpenModal}
-        setIsLoginForm={setIsLoginForm}
-        loggedIn={loggedIn}
-      />
-      <Sections
-        setIsLoginForm={setIsLoginForm}
-        setOpenModal={setOpenModal}
-        loggedIn={loggedIn}
-      />
+      <HomeHeader />
+      <Hero />
+      <Sections />
       <HomeFooter />
-      <AuthModal
-        open={openModal}
-        close={handleCloseModal}
-        title={isLoginForm ? "Iniciar Sesion" : "Registrarse"}
+      <Modal
+        open={open}
+        close={() => dispatch(handleAuthModalAction())}
+        title={signInForm ? "Iniciar Sesion" : "Registrarse"}
       >
-        <AuthForm isLoginForm={isLoginForm} setIsLoginForm={setIsLoginForm} />
-      </AuthModal>
-      <FloatingWhatsapp />
+        <Forms />
+      </Modal>
+      <Whatsapp />
     </>
   );
 }

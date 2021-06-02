@@ -1,45 +1,31 @@
-import React, { useEffect, useState } from "react";
-import Nav from "../../../components/Dashboard/Nav";
-import Header from "../../../components/Header";
-import Logo from "../../../components/Header/Logo";
+import React, { useContext, useEffect } from "react";
 import AdminNav from "../../../components/Admin/AdminNav";
-import useAuth from "../../../hooks/useAuth";
 import { useRouter } from "next/router";
 import Loading from "../../../components/Loading";
+import AuthContext from "../../../context/Auth";
+import DashboardHeader from "../../../components/UI/Header/DashboardHeader";
+import SEO from "../../../components/SEO";
 
 const index = () => {
   const router = useRouter();
-  const { user, token } = useAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  const [tokenState, setTokenState] = useState(null);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user !== null && user.isSuperAdmin === false) {
+    if (user && !user.confirmed) {
+      router.push("/");
+    }
+    if (user && !user.roles.admin) {
       router.push("/dashboard");
-    } else {
-      setUserInfo(user);
     }
   }, [user]);
 
-  useEffect(() => {
-    setTokenState(token);
-  }, [token]);
-
   return (
     <>
-      {userInfo !== null && tokenState !== null ? (
+      <SEO title="Panel de Administrador" />
+      {user && user.roles.admin ? (
         <>
-          <Header classes={"dashboard__header"}>
-            <Logo classes={"dashboard__logo"} />
-            <Nav
-              name={userInfo.name}
-              plan={userInfo.plan}
-              shortId={userInfo.short_id}
-              admin={userInfo.isSuperAdmin}
-              educator={userInfo.role_educator}
-            />
-          </Header>
-          <AdminNav id={userInfo._id} token={tokenState} />
+          <DashboardHeader />
+          <AdminNav />
         </>
       ) : (
         <Loading />

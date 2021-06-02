@@ -6,8 +6,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { Email } from "@material-ui/icons";
-import { sendResetPasswordEmail } from "../../services/user";
-import { toast } from "react-toastify";
+import { sendResetPasswordEmail } from "../../services/resetPassword";
 
 const initialFormValues = "";
 
@@ -45,24 +44,17 @@ const ForgotPasswordForm = () => {
     if (emailValue === initialFormValues || fieldErrors.email !== null) {
       return;
     }
-    try {
-      setProcessingForm(true);
+    setProcessingForm(true);
 
-      const response = await sendResetPasswordEmail(emailValue);
+    const response = await sendResetPasswordEmail(emailValue);
 
-      if (response.status === 200) {
-        toast.success(response.msg);
-        setEmailSend(true);
-        setProcessingForm(false);
-      } else {
-        setProcessingForm(false);
-        toast.error(response);
-        setEmailValue("");
-      }
-    } catch (error) {
-      toast.error("Ocurrio un error");
+    if (response === 200) {
+      setEmailSend(true);
       setProcessingForm(false);
+    } else {
+      setEmailValue("");
     }
+    setProcessingForm(false);
   };
 
   return (

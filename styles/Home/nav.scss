@@ -1,0 +1,220 @@
+.home__nav {
+  display: flex;
+  height: 100%;
+
+  .homemenu__dropdown {
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+
+    span {
+      display: flex;
+      align-items: center;
+
+      .MuiSvgIcon-root {
+        transition: transform 0.05s ease;
+        path {
+          fill: rgb(100, 100, 100);
+        }
+        width: 0.6em;
+        height: 0.6em;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .homemenu__dropdown-content {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    padding: 20px 16px;
+    z-index: 1;
+    left: -100%;
+    right: -100%;
+
+    a {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      color: #040203;
+      font-size: 0.95em;
+      text-decoration: none;
+      text-align: center;
+
+      .MuiSvgIcon-root {
+        width: 0.75em;
+        height: 0.75em;
+        margin-left: 5px;
+      }
+
+      &:first-of-type {
+        margin-bottom: 15px;
+      }
+
+      &:hover {
+        color: $primary-red;
+        transition: color 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .homemenu__dropdown:hover .homemenu__dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.2s ease, opacity 0.2s ease;
+  }
+
+  .homemenu__dropdown:hover span .MuiSvgIcon-root {
+    transform: rotate(180deg);
+    transition: transform 0.05s ease;
+  }
+
+  li {
+    height: 50%;
+    width: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+
+    .MuiSvgIcon-root {
+      width: 0.75em;
+      height: 0.75em;
+      margin-left: 5px;
+    }
+
+    img {
+      width: 0.95em;
+      height: 0.95em;
+      display: block;
+      margin-left: 10px;
+
+      svg {
+        fill: rgb(133, 133, 133);
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $black;
+      font-size: 0.95em;
+
+      &:hover {
+        color: $primary-red;
+        transition: color 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .nav__vertical-line {
+    height: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: auto 20px;
+  }
+
+  .go-dashboard__btn {
+    width: 150px;
+    max-width: 150px;
+    height: 40px;
+    margin: auto;
+    font-size: 0.9em;
+    text-transform: unset;
+    box-shadow: none;
+  }
+
+  .nav__login {
+    margin-left: 0;
+
+    a {
+      &:hover {
+        color: $primary-red;
+        transition: color 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .nav__comenzar-btn {
+    padding: 0 25px;
+    background: $primary-red;
+    cursor: pointer;
+
+    &:hover {
+      background: #d80505;
+      transition: background 0.2s ease;
+    }
+
+    button {
+      width: 100%;
+      text-transform: unset;
+      display: block;
+      color: #fff !important;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      font-weight: 500;
+      border-radius: 5px;
+
+      .MuiTouchRipple-root {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home__nav {
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    background-color: #fff;
+    width: 100%;
+    padding: 20px 0;
+    height: auto;
+    transition: 0.2s;
+
+    .nav__vertical-line {
+      margin: 10px 0;
+    }
+
+    .homemenu__dropdown {
+      height: 50px;
+      display: flex;
+      align-items: center;
+
+      .homemenu__dropdown-content {
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        top: 80%;
+
+        a:first-of-type {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    li {
+      height: 50px;
+      width: 90%;
+      margin: 0 auto !important;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .go-dashboard__btn {
+    margin-top: 20px !important;
+  }
+
+  .hidden__nav {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+}

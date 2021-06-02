@@ -1,8 +1,23 @@
 .dashboard__nav {
   display: flex;
   align-items: center;
-  max-width: 200px;
+  max-width: 300px;
   justify-content: flex-end;
+
+  .dashboard__drawer-open-btn {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgb(58, 58, 58);
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+
+    svg {
+      fill: rgb(58, 58, 58);
+      margin-left: 5px;
+      font-size: 2em;
+    }
+  }
 
   h1 {
     display: block;
@@ -13,52 +28,5 @@
     overflow: hidden;
     max-width: 90%;
     white-space: nowrap;
-  }
-
-  .dashboard__menu {
-    > button {
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      min-width: unset;
-      background-color: unset;
-      border-radius: 50%;
-      font-weight: 500;
-      text-transform: capitalize;
-      box-shadow: none;
-
-      svg {
-        display: block;
-        width: 30px;
-        height: 30px;
-
-        path {
-          fill: $primary-red;
-        }
-      }
-    }
-  }
-}
-
-.activePlan__badge {
-  text-align: center;
-  font-size: 0.9em;
-  border-radius: 5px;
-  background-color: rgb(48, 216, 14);
-  color: #fff;
-  padding: 9px 0;
-  width: 90%;
-  margin: auto;
-}
-
-.menu__shortid {
-  text-align: center;
-  font-weight: 400;
-  color: rgb(102, 102, 102);
-  margin-bottom: 20px;
-
-  span {
-    color: #252525;
-    font-weight: 500;
   }
 }

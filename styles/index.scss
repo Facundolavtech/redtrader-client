@@ -1,42 +1,56 @@
 //Pages
-@import "./Home/header.scss";
-@import "./Home/hero.scss";
-@import "./Home/after-hero-benefits.scss";
-@import "./Home/academy.scss";
-@import "./Home/signals.scss";
-@import "./Home/partner.scss";
-@import "./Home/partner.scss";
-@import "./Home/price.scss";
-@import "./Home/markets.scss";
-@import "./Home/hamburger.scss";
-@import "./Home/footer.scss";
-@import "./Home/floatingwhatsapp.scss";
-@import "./Home/contact.scss";
-@import "./Dashboard/index.scss";
-@import "./Dashboard/header.scss";
-@import "./Dashboard/videolist.scss";
-@import "./Dashboard/signals_tab.scss";
-@import "./Dashboard/live.scss";
-@import "./Dashboard/liveslist.scss";
-@import "./Dashboard/livestream.scss";
-@import "./Dashboard/brokers.scss";
-@import "./Dashboard/pay.scss";
-@import "./Dashboard/plan.scss";
-@import "./Dashboard/criptovideos.scss";
-@import "./Forgot/forgot.scss";
-@import "./ResetPassword/resetpassword.scss";
-@import "./ConfirmAccount/confirm.scss";
-@import "../styles/Dashboard/lock_content.scss";
 
-//Components
-@import "../components/Auth/authForms.scss";
-@import "../components/Modal/modal.scss";
+//Home
+@import "./Home/header.scss";
+@import "./Home/nav.scss";
+@import "./Home/hamburger.scss";
+@import "./Home/hero.scss";
+@import "./Home/Sections/after-hero-cards.scss";
+@import "./Home/Sections/markets.scss";
+@import "./Home/Sections/academy.scss";
+@import "./Home/Sections/signals.scss";
+@import "./Home/Sections/partner.scss";
+@import "./Home/Sections/plans.scss";
+@import "./Home/contact.scss";
+@import "./Home/footer.scss";
+@import "./Home/whatsapp.scss";
+
+//Dashboard
+@import "./Dashboard/header.scss";
+@import "./Dashboard/index.scss";
+@import "./Dashboard/DashboardTabs/academy.scss";
+@import "./Dashboard/DashboardTabs/signals.scss";
+@import "./Dashboard/DashboardTabs/live.scss";
+@import "./Dashboard/DashboardTabs/brokers.scss";
+@import "./Dashboard/Lives/liveslist.scss";
+@import "./Dashboard/Lives/livestream.scss";
+@import "./Dashboard/Checkout/checkout.scss";
+@import "./Dashboard/plan.scss";
+@import "./Dashboard/Checkout/bitsoVideos.scss";
+@import "./Dashboard/lock_content.scss";
 @import "../components/Dashboard/Nav/nav.scss";
+@import "../components/Dashboard/Menu/menu.scss";
 @import "../components/Dashboard/ChangePassword/changePassword.scss";
-@import "../components/BackArrow/backarrow.scss";
+@import "../components/Dashboard/Tabs/tabs.scss";
+@import "../components/Dashboard/EducatorSettings/educatorSettings.scss";
+
+//Forgot
+@import "./Forgot/forgot.scss";
+
+//Reset password
+@import "./ResetPassword/resetpassword.scss";
+
+//Confirm
+@import "./ConfirmAccount/confirm.scss";
+
+//Admin
 @import "../components/Admin/adminNav.scss";
 @import "../components/Admin/Tabs/Plan/plan.scss";
 @import "../components/Admin/Tabs/Admin/admin.scss";
 @import "../components/Admin/Tabs/Coupons/updateCoupon.scss";
-@import "../components/Dashboard/Tabs/tabs.scss";
+
+//Components
+@import "../components/Auth/forms.scss";
+@import "../components/Modal/modal.scss";
+@import "../components/BackArrow/backarrow.scss";
 @import "../components/Loading/loading.scss";

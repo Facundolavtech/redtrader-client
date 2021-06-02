@@ -1,53 +1,76 @@
+import { toast } from "react-toastify";
 import axiosClient from "../config/axiosClient";
-import { getConfirmAccountToken } from "./user";
 
 export async function createCoupon(data) {
-  const { id, percent, name } = data;
+  const { token, percent, name } = data;
 
   try {
-    const response = await axiosClient.post(`/coupons/new/${id}`, {
-      discount: percent,
-      coupon_name: name,
-    });
+    const response = await axiosClient
+      .post(
+        `/coupons/new/`,
+        {
+          discount: percent,
+          coupon_name: name,
+        },
+        { headers: { Authorization: token } }
+      )
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      msg: response.data,
-      status: response.status,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
 export async function getAllCoupons(token) {
   try {
-    const response = await axiosClient.get("/coupons/getAllCoupons", {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const response = await axiosClient
+      .get("/coupons/getAllCoupons", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        return {
+          status: res.status,
+          coupons: res.data,
+        };
+      })
+      .catch((err) => {
+        return err.response.status;
+      });
 
-    return {
-      status: response.status,
-      data: response.data,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
-export async function deleteCoupon(couponId, id) {
+export async function deleteCoupon(couponId, token) {
   try {
-    const response = await axiosClient.delete(
-      `/coupons/deleteCoupon/${id}/${couponId}`
-    );
+    const response = await axiosClient
+      .delete(`/coupons/deleteCoupon/${couponId}`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      status: response.status,
-      msg: response.data,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }
 
@@ -57,17 +80,23 @@ export async function applyCoupon(token, couponName) {
       coupon_name: couponName,
     };
 
-    const response = await axiosClient.post("/coupons/apply", data, {
-      headers: {
-        Authorization: token,
-      },
-    });
+    const response = await axiosClient
+      .post("/coupons/apply", data, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
-    return {
-      status: response.status,
-      msg: response.data,
-    };
+    return response;
   } catch (error) {
-    return error.response.data;
+    return toast.error("Ocurrio un error");
   }
 }

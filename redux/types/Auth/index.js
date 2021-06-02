@@ -1,0 +1,1 @@
+export const HANDLE_AUTH_FORMS = "HANDLE_AUTH_FORMS";

@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import { School, AccountBalance, LiveTv, Smartphone } from "@material-ui/icons";
-import VideoList from "../VideoList";
-import SignalsTab from "../Signals";
-import BrokersTab from "../Brokers";
-import LiveTab from "../Live/LiveTab";
+import AuthContext from "../../../context/Auth";
+import TabList from "../../../helpers/DashboardTabList";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function DashboardTabs({ videos, plan }) {
+export default function DashboardTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -69,32 +66,21 @@ export default function DashboardTabs({ videos, plan }) {
           textColor="primary"
           className={classes.tabs}
         >
-          <Tab label="Academia" icon={<School />} {...a11yProps(0)} />
-          <Tab label="Red Trade App" icon={<Smartphone />} {...a11yProps(1)} />
-          <Tab label="RedTrader Live" icon={<LiveTv />} {...a11yProps(2)} />
-          <Tab label="Brokers" icon={<AccountBalance />} {...a11yProps(3)} />
+          {TabList.map((tab, index) => (
+            <Tab
+              icon={tab.icon}
+              label={tab.name}
+              key={index}
+              {...a11yProps(index)}
+            />
+          ))}
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <div className="videolist__container">
-          <VideoList videos={videos} />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <div className="signals__tab__container">
-          <SignalsTab plan={plan} />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <div className="lives__container">
-          <LiveTab plan={plan} />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <div className="brokers__container">
-          <BrokersTab />
-        </div>
-      </TabPanel>
+      {TabList.map((tab, index) => (
+        <TabPanel value={value} index={index} key={index}>
+          {tab.component}
+        </TabPanel>
+      ))}
     </div>
   );
 }

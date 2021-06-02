@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   CircularProgress,
   IconButton,
@@ -9,80 +9,81 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import { Delete, LocalOffer } from "@material-ui/icons";
-import { getAllCoupons, deleteCoupon } from "../../../../services/coupon";
-import { toast } from "react-toastify";
+import AuthContext from "../../../../context/Auth";
+import {
+  deleteCouponAction,
+  getCouponsAction,
+} from "../../../../redux/actions/Admin/Coupons";
+import { useDispatch, useSelector } from "react-redux";
 
-const CouponsList = ({ token, getCoupons, id }) => {
-  const [coupons, setCoupons] = useState([]);
-  const [loadingCoupons, setLoadingCoupons] = useState(true);
+const CouponsList = () => {
+  const { token } = useContext(AuthContext);
+
+  const dispatch = useDispatch();
+
+  const { loadingCoupons, coupons } = useSelector(
+    (state: any) => state.coupons
+  );
 
   useEffect(() => {
-    (async () => {
-      const response = await getAllCoupons(token);
+    getCoupons();
+  }, []);
 
-      if (response.status === 200) {
-        setCoupons(response.data.coupons);
-        setLoadingCoupons(false);
-      }
-    })();
-  }, [getCoupons]);
-
-  const deleteCouponFunction = async (couponId, id) => {
-    const response = await deleteCoupon(couponId, id);
-
-    toast.success(response.msg);
-
-    let newArr = coupons.filter((coupon) => coupon._id !== couponId);
-    setCoupons(newArr);
+  const getCoupons = () => {
+    dispatch(getCouponsAction(token));
   };
 
-  {
-    return loadingCoupons ? (
+  const deleteCoupon = (id) => {
+    dispatch(deleteCouponAction(token, id));
+  };
+
+  return (
+    <>
       <div className="coupon__list">
-        <CircularProgress
-          size={23}
-          color="primary"
-          style={{ margin: "auto" }}
-        />
-      </div>
-    ) : (
-      <div className="coupon__list">
-        {coupons.length === 0 ? (
-          <h2>No hay cupones</h2>
+        {loadingCoupons ? (
+          <CircularProgress
+            size={23}
+            color="primary"
+            style={{ margin: "auto" }}
+          />
         ) : (
           <>
-            <h2>Cupones</h2>
-            <hr />
-            <List style={{ overflowY: "auto", maxHeight: "350px" }}>
+            {coupons.length === 0 ? (
+              <h2>No hay cupones</h2>
+            ) : (
               <>
-                {coupons.map((coupon) => (
-                  <ListItem key={coupon._id}>
-                    <ListItemAvatar>
-                      <LocalOffer color="primary" />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={coupon.coupon_name}
-                      secondary={`${coupon.discount}%`}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        color="primary"
-                        onClick={() => deleteCouponFunction(coupon._id, id)}
-                      >
-                        <Delete />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
+                <h2>Cupones</h2>
+                <hr />
+                <List style={{ overflowY: "auto", maxHeight: "350px" }}>
+                  {coupons.map((coupon) => (
+                    <ListItem key={coupon._id}>
+                      <ListItemAvatar>
+                        <LocalOffer color="primary" />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={coupon.coupon_name}
+                        secondary={`${coupon.discount}%`}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          color="primary"
+                          onClick={() => deleteCoupon(coupon._id)}
+                        >
+                          <Delete />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </List>
               </>
-            </List>
+            )}
           </>
         )}
       </div>
-    );
-  }
+    </>
+  );
 };
 
 export default CouponsList;

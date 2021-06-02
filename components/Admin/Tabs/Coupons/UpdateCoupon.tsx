@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  CircularProgress,
-  InputAdornment,
-  TextField,
-} from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { InputAdornment, TextField } from "@material-ui/core";
 import { createCoupon } from "../../../../services/coupon";
 import { LocalOffer } from "@material-ui/icons";
-import { toast } from "react-toastify";
 import CouponsList from "./CouponsList";
+import SubmitButton from "../../../UI/SubmitButton";
+import AuthContext from "../../../../context/Auth";
+import { useDispatch } from "react-redux";
+import { getCouponsAction } from "../../../../redux/actions/Admin/Coupons";
 
-const UpdateCoupon = ({ id, token }) => {
+const UpdateCoupon = () => {
   const initialFormValues = {
     name: "",
-    percent: null,
+    percent: 0,
   };
+
+  const dispatch = useDispatch();
+
+  const { token } = useContext(AuthContext);
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [processingForm, setProcessingForm] = useState(false);
   const [fieldErrors, setFieldErrors] = useState(null);
-  const [getCoupons, setGetCoupons] = useState(false);
 
   const { name, percent } = formValues;
 
@@ -29,9 +30,9 @@ const UpdateCoupon = ({ id, token }) => {
         setFieldErrors({
           name: "El nombre del cupon debe ser mayor a 6 caracteres",
         });
-      } else if (percent < 0 || percent > 100) {
+      } else if (percent < 1 || percent > 99) {
         setFieldErrors({
-          percent: "El porcentaje debe estar entre 0 y 100",
+          percent: "El porcentaje debe estar entre 1 y 99",
         });
       } else {
         setFieldErrors(null);
@@ -54,75 +55,57 @@ const UpdateCoupon = ({ id, token }) => {
     const data = {
       name: name.toUpperCase().replace(" ", ""),
       percent,
-      id,
+      token,
     };
 
     setProcessingForm(true);
 
-    try {
-      const response = await createCoupon(data);
+    const response = await createCoupon(data);
 
-      if (response.status === 200) {
-        toast.success(response.msg);
-        setProcessingForm(false);
-        setFormValues(initialFormValues);
-        setGetCoupons(!getCoupons);
-      } else {
-        toast.error(response);
-        setProcessingForm(false);
-        setFormValues(initialFormValues);
-      }
-    } catch (error) {
-      setProcessingForm(false);
-      toast.error("Ocurrio un error");
+    if (response === 200) {
+      dispatch(getCouponsAction(token));
+      setFormValues(initialFormValues);
     }
+
+    setProcessingForm(false);
   };
 
   return (
-    <div className="coupon-tabs__container">
-      <form className="coupon__admintab" onSubmit={handleSubmit}>
-        <TextField
-          type="text"
-          label="Nombre del cupon"
-          name="name"
-          variant="outlined"
-          error={fieldErrors && fieldErrors.name ? true : false}
-          helperText={fieldErrors && fieldErrors.name}
-          value={name}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LocalOffer />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <input
-          type="number"
-          value={percent}
-          name="percent"
-          onChange={handleChange}
-          min="0"
-          max="100"
-          placeholder="Ingrese porcentaje de descuento del cupon"
-        />
-        <Button
-          className="submit__btn"
-          color="primary"
-          disabled={!formValues.percent}
-          variant="contained"
-          type={processingForm ? "button" : "submit"}
-        >
-          {processingForm ? (
-            <CircularProgress style={{ color: "#fff" }} size={23} />
-          ) : (
-            "Enviar"
-          )}
-        </Button>
-      </form>
-      <CouponsList token={token} getCoupons={getCoupons} id={id} />
-    </div>
+    <>
+      <h2 className="admin-tab__title">Crear/Eliminar cupones de descuento</h2>
+      <div className="coupon-tabs__container">
+        <form className="coupon__admintab" onSubmit={handleSubmit}>
+          <TextField
+            type="text"
+            label="Nombre del cupon"
+            name="name"
+            variant="outlined"
+            error={fieldErrors && fieldErrors.name ? true : false}
+            helperText={fieldErrors && fieldErrors.name}
+            value={name}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LocalOffer />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <input
+            type="number"
+            value={percent}
+            name="percent"
+            onChange={handleChange}
+            min="1"
+            max="99"
+            placeholder="Ingrese porcentaje de descuento del cupon"
+          />
+          <SubmitButton loading={processingForm} buttonText="Enviar" />
+        </form>
+        <CouponsList />
+      </div>
+    </>
   );
 };
 

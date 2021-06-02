@@ -1,4 +1,5 @@
 const currencies = [
+  { name: "LTCT", img: "https://www.coinpayments.net/images/coins/LTCT.png" },
   {
     name: "BTC",
     img: "https://www.coinpayments.net/images/coins/BTC.png",

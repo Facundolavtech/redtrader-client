@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { getLiveStreams, getStreamsInfo } from "../services/streams";
 
 const useStreams = (token) => {
@@ -16,6 +17,7 @@ const useStreams = (token) => {
         setLiveStreams(response.streams);
       } else {
         router.push("/dashboard");
+        toast.error("Ocurrio un error al cargar los educadores");
       }
     } else {
       setLiveStreams([]);

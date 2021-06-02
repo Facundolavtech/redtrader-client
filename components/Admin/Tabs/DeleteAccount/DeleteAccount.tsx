@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  CircularProgress,
-  InputAdornment,
-  Switch,
-  TextField,
-} from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { InputAdornment, TextField } from "@material-ui/core";
 import { deleteAccount } from "../../../../services/admin";
 import { Email } from "@material-ui/icons";
-import { toast } from "react-toastify";
+import AuthContext from "../../../../context/Auth";
+import SubmitButton from "../../../UI/SubmitButton";
 
-const DeleteAccount = ({ id }) => {
+const DeleteAccount = () => {
   const initialFormValues = {
     email: "",
   };
+
+  const { token } = useContext(AuthContext);
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [processingForm, setProcessingForm] = useState(false);
@@ -41,67 +38,44 @@ const DeleteAccount = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(email);
-
     if (email === "" || formValues === initialFormValues) return;
 
     const data = {
       email,
-      id,
+      token,
     };
 
     setProcessingForm(true);
 
-    try {
-      const response = await deleteAccount(data);
+    await deleteAccount(data);
 
-      if (response.status === 200) {
-        toast.success(response.msg);
-        setProcessingForm(false);
-        setFormValues(initialFormValues);
-      } else {
-        toast.error(response);
-        setProcessingForm(false);
-        setFormValues(initialFormValues);
-      }
-    } catch (error) {
-      setProcessingForm(false);
-      toast.error("Ocurrio un error");
-    }
+    setProcessingForm(false);
   };
 
   return (
-    <form className="plan__admintab" onSubmit={handleSubmit}>
-      <TextField
-        type="email"
-        label="Email"
-        name="email"
-        variant="outlined"
-        error={fieldErrors && fieldErrors.email ? true : false}
-        helperText={fieldErrors && fieldErrors.email}
-        value={email}
-        onChange={handleChange}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Email />
-            </InputAdornment>
-          ),
-        }}
-      />
-      <Button
-        className="submit__btn"
-        color="primary"
-        variant="contained"
-        type={processingForm ? "button" : "submit"}
-      >
-        {processingForm ? (
-          <CircularProgress style={{ color: "#fff" }} size={23} />
-        ) : (
-          "Enviar"
-        )}
-      </Button>
-    </form>
+    <>
+      <h2 className="admin-tab__title">Borrar una cuenta</h2>
+      <form className="plan__admintab" onSubmit={handleSubmit}>
+        <TextField
+          type="email"
+          label="Email"
+          name="email"
+          variant="outlined"
+          error={fieldErrors && fieldErrors.email ? true : false}
+          helperText={fieldErrors && fieldErrors.email}
+          value={email}
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Email />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <SubmitButton loading={processingForm} buttonText="Enviar" />
+      </form>
+    </>
   );
 };
 

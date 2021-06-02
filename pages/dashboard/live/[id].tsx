@@ -1,78 +1,66 @@
-import React, { useEffect, useState } from "react";
-import { Router, useRouter } from "next/router";
+import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { getEducator } from "../../../services/streams";
-import Header from "../../../components/Header";
-import Logo from "../../../components/Header/Logo";
-import Nav from "../../../components/Dashboard/Nav";
 import { CircularProgress } from "@material-ui/core";
 import LiveStream from "../../../components/Dashboard/Live/LiveStream";
-import useAuth from "../../../hooks/useAuth";
 import Loading from "../../../components/Loading";
+import AuthContext from "../../../context/Auth";
+import { toast } from "react-toastify";
+import DashboardHeader from "../../../components/UI/Header/DashboardHeader";
+import SEO from "../../../components/SEO";
 
 const id = () => {
   const {
-    push,
     query: { id },
   } = useRouter();
 
+  const router = useRouter();
   const [educatorInfo, setEducatorInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { user, token } = useAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  const [tokenState, setTokenState] = useState(null);
+  const { user, token } = useContext(AuthContext);
 
   useEffect(() => {
-    setUserInfo(user);
-    if (user !== null && user.plan === false) {
-      push("/dashboard");
+    if (token) {
+      getEducatorFunction();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && !user.confirmed) {
+      router.push("/");
+    }
+    if (user && !user.plan.active) {
+      router.push("/dashboard");
     }
   }, [user]);
 
   useEffect(() => {
-    setTokenState(token);
-  }, [token]);
-
-  useEffect(() => {
-    if (tokenState !== null) {
-      getEducatorFunction();
-    }
-  }, [tokenState]);
-
-  useEffect(() => {
     {
       if (typeof id === "undefined") {
-        push("/dashboard/lives");
+        router.push("/dashboard/lives");
       }
     }
   }, [id]);
 
   const getEducatorFunction = async () => {
-    const response = await getEducator(id, tokenState);
-
-    console.log(response);
+    const response = await getEducator(id, token);
 
     if (response.status === 200) {
       setEducatorInfo(response.educator);
       setLoading(false);
     } else {
-      console.log(response);
+      toast.error("Ocurrio un error");
+      router.push("/lives");
     }
   };
 
   return (
     <>
-      {userInfo !== null && tokenState !== null ? (
+      <SEO title="RedTrader Live" />
+
+      {user && user.plan.active ? (
         <>
-          <Header classes={"dashboard__header"}>
-            <Logo classes={"dashboard__logo"} />
-            <Nav
-              name={userInfo.name}
-              plan={userInfo.plan}
-              shortId={userInfo.short_id}
-              admin={userInfo.isSuperAdmin}
-              educator={userInfo.role_educator}
-            />
-          </Header>
+          <DashboardHeader />
           {loading && !educatorInfo ? (
             <div
               style={{

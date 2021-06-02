@@ -1,0 +1,178 @@
+.stream-settings__keys__container {
+  width: 80%;
+  margin: 50px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .arrowback__btn {
+    left: 0;
+    position: absolute;
+  }
+
+  h1 {
+    font-size: 2.8em;
+    font-weight: 500;
+  }
+
+  .keys__fields {
+    width: 100%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    margin-top: 30px;
+
+    .MuiFormControl-root {
+      width: 50%;
+      .MuiInput-underline:after {
+        border-bottom: none;
+      }
+
+      .renew__btn {
+        margin-top: 20px;
+        height: 40px;
+        color: #fff;
+        background: $primary-red;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      &:first-of-type {
+        margin-right: 20px;
+      }
+
+      label {
+        color: #333;
+        font-weight: 500;
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+.stream-settings__instructions {
+  width: 80%;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .steps {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+
+    h2 {
+      width: 100%;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      font-size: 2.6em;
+      font-weight: 500;
+      color: #565656;
+      text-decoration: underline;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  }
+  .step1 {
+    a {
+      text-decoration: underline;
+      font-size: 1.1em;
+      color: $primary-red;
+      font-weight: 400;
+      margin: 0 5px;
+    }
+  }
+
+  .step2 {
+    p {
+      margin: 30px 0;
+      span {
+        font-weight: 500;
+        font-size: 1.2em;
+      }
+    }
+
+    img {
+      width: 800px;
+      max-height: 600px;
+      object-fit: contain;
+    }
+
+    strong {
+      margin-left: 5px;
+    }
+  }
+
+  .step3 {
+    p {
+      margin: 30px 0;
+      span {
+        font-weight: 500;
+        font-size: 1.2em;
+      }
+    }
+
+    span {
+      font-size: 1.8em;
+      font-weight: 500;
+      color: #333;
+      text-decoration: underline;
+    }
+
+    .end {
+      font-size: 1.5em;
+      font-weight: 400;
+      color: #565656;
+      margin-top: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stream-settings__keys__container {
+    margin-top: 100px;
+    text-align: center;
+    width: 90%;
+
+    .arrowback__btn {
+      left: 0;
+      top: -15%;
+    }
+
+    h1 {
+      font-size: 2.4em;
+    }
+
+    .keys__fields {
+      flex-direction: column;
+
+      .MuiFormControl-root {
+        width: 100%;
+
+        .renew__btn:first-of-type {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  .stream-settings__instructions {
+    width: 90%;
+    margin-top: 50px;
+
+    .steps img {
+      width: 100%;
+    }
+
+    .steps {
+      width: 100%;
+    }
+  }
+}

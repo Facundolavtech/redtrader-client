@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { updateUser } from "../../../services/user";
+import React, { useState, useEffect, useContext } from "react";
+import { changePassword } from "../../../services/user";
 import {
   TextField,
   InputAdornment,
@@ -7,25 +7,32 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { VpnKey } from "@material-ui/icons";
-import handleValidateChangePassword from "../../../utils/handleValidateChangePassword";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import ArrowBackBtn from "../../BackArrow";
+import handleValidate from "../../../utils/handleValidate";
+import changePasswordValidations from "../../../utils/Validations/ChangePassword/changePasswordValidations";
+import AuthContext from "../../../context/Auth";
 
 const initialFormValues = {
-  old: "",
   new: "",
   repeatNew: "",
 };
-export default function ChangePasswordForm({ userId, token }) {
+export default function ChangePasswordForm() {
   const router = useRouter();
   const [fieldErrors, setFieldErrors] = useState(null);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [processingForm, setProcessingForm] = useState(false);
+  const { user, token } = useContext(AuthContext);
 
   useEffect(() => {
     formValues !== initialFormValues &&
-      handleValidateChangePassword(formValues, fieldErrors, setFieldErrors);
+      handleValidate(
+        formValues,
+        changePasswordValidations,
+        fieldErrors,
+        setFieldErrors
+      );
   }, [formValues]);
 
   const handleChange = (e) => {
@@ -38,7 +45,12 @@ export default function ChangePasswordForm({ userId, token }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleValidateChangePassword(formValues, fieldErrors, setFieldErrors);
+    handleValidate(
+      formValues,
+      changePasswordValidations,
+      fieldErrors,
+      setFieldErrors
+    );
     if (fieldErrors !== null || formValues === initialFormValues) return;
 
     if (formValues.new !== formValues.repeatNew) {
@@ -46,21 +58,14 @@ export default function ChangePasswordForm({ userId, token }) {
       return;
     }
 
-    try {
-      setProcessingForm(true);
-      const response = await updateUser(
-        userId,
-        { password: formValues.new },
-        token
-      );
+    setProcessingForm(true);
+    const data = { token, password: formValues.new, email: user.email };
+    const response = await changePassword(data);
 
-      if (response.status === 200) {
-        toast.success("Contraseña actualizada");
-        router.push("/dashboard");
-      }
-    } catch (error) {
-      setProcessingForm(false);
-      toast.error("Ocurrio un error");
+    if (response === 200) {
+      router.push("/dashboard");
+    } else {
+      setProcessingForm(true);
       setFormValues(initialFormValues);
     }
   };
@@ -72,22 +77,6 @@ export default function ChangePasswordForm({ userId, token }) {
         <h2>Cambiar contraseña</h2>
       </div>
       <form onSubmit={handleSubmit}>
-        <TextField
-          error={fieldErrors && fieldErrors.errors.old ? true : false}
-          helperText={fieldErrors && fieldErrors.errors.old}
-          type="password"
-          label="Contraseña actual"
-          name="old"
-          value={formValues.old}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <VpnKey />
-              </InputAdornment>
-            ),
-          }}
-        />
         <TextField
           error={fieldErrors && fieldErrors.errors.new ? true : false}
           helperText={fieldErrors && fieldErrors.errors.new}

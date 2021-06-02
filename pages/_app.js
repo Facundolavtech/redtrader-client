@@ -1,11 +1,13 @@
 import "../styles/globals.scss";
 import { useEffect } from "react";
-import HeadLayout from "../layout/Head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../libs/mui-theme";
+import theme from "../theme/mui";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthProvider from "../context/Auth/AuthProvider";
+import store from "../redux/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -18,11 +20,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <HeadLayout />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <AuthProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </Provider>
+      </AuthProvider>
       <ToastContainer
         position="top-right"
         autoClose={2000}

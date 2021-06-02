@@ -1,10 +1,10 @@
-import { Modal } from "@material-ui/core";
+import { Modal as MuiModal } from "@material-ui/core";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
-export default function AuthModal({ title, children, open, close }) {
+export default function Modal({ title, children, open, close }) {
   function getModalStyle() {
     const top = 10;
     const left = 0;
@@ -50,7 +50,7 @@ export default function AuthModal({ title, children, open, close }) {
   );
 
   return (
-    <Modal
+    <MuiModal
       open={open}
       onClose={close}
       aria-labelledby="simple-modal-title"
@@ -61,6 +61,6 @@ export default function AuthModal({ title, children, open, close }) {
       }}
     >
       <Fade in={open}>{body}</Fade>
-    </Modal>
+    </MuiModal>
   );
 }

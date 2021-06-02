@@ -1,4 +1,4 @@
-import VideoTemplate from "../VideoList/VideoTemplate";
+import VideoTemplate from "../Tabs/Items/Academy/VideoTemplate";
 
 const CriptoVideos = () => {
   return (

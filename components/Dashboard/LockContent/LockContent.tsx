@@ -11,7 +11,7 @@ const LockContent = () => {
       <p className="lock__p">
         Adquiere un plan para acceder a todo el contenido premium de RedTrader
       </p>
-      <Link href="/dashboard/pay">
+      <Link href="/dashboard/checkout">
         <Button variant="contained" color="primary" className="lock__btn">
           Adquirir Plan <AddShoppingCart />
         </Button>

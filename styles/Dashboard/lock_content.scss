@@ -1,4 +1,12 @@
 .lock__container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+
   .lock__title {
     color: rgb(37, 37, 37);
     font-weight: 500;
@@ -13,11 +21,20 @@
 
   .lock__btn {
     text-transform: uppercase;
-    width: 200px;
-    min-width: 200px;
+    width: 220px;
+    min-width: 220px;
+    box-shadow: none;
     height: 45px;
     margin-top: 30px;
     font-size: unset;
+
+    &:hover {
+      background: rgb(252, 33, 33);
+    }
+
+    svg {
+      margin-left: 10px;
+    }
   }
 
   .lock__img {

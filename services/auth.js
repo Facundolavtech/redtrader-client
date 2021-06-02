@@ -1,53 +1,49 @@
+import { toast } from "react-toastify";
 import axiosClient from "../config/axiosClient";
 
 export async function register(data) {
+  if (data.email === "" || data.password === "") return;
   try {
-    const newUser = await axiosClient.post("/users/register", data);
-
-    const token = newUser.data.token;
-
-    const response = {
-      msg: newUser.data.msg,
-      token,
-      status: newUser.status,
-    };
-
-    await localStorage.setItem("userToken", token);
-
-    if (newUser.status === 200) {
-      const { email } = data;
-      await axiosClient.post(`/users/sendconfirmemail`, {
-        email,
+    const { email } = data;
+    const response = await axiosClient
+      .post("/users/auth/register", data)
+      .then(async (res) => {
+        const token = res.data.token;
+        localStorage.setItem("userToken", token);
+        await axiosClient.post(`/users/confirm/sendconfirmemail`, {
+          email,
+        });
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.data;
       });
-    }
 
     return response;
   } catch (error) {
-    return error.response.data;
+    toast.error("Ocurrio un error");
   }
 }
 
 export async function login(data) {
+  if (data.email === "" || data.password === "") return;
   try {
-    const loginUser = await axiosClient.post("/users/login/", data);
-
-    const token = loginUser.data.token;
-
-    if (loginUser.status !== 200) {
-      return loginUser.data;
-    }
-
-    const response = {
-      msg: loginUser.data.msg,
-      token,
-      status: loginUser.status,
-    };
-
-    await localStorage.setItem("userToken", token);
+    const response = await axiosClient
+      .post("/users/auth/login", data)
+      .then((res) => {
+        const token = res.data.token;
+        localStorage.setItem("userToken", token);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
 
     return response;
   } catch (error) {
-    return error.response.data;
+    toast.error("Ocurrio un error");
   }
 }
 
