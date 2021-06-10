@@ -6,6 +6,7 @@
   margin-bottom: 50px;
   display: flex;
   flex-grow: 1;
+  justify-content: space-between;
 
   .Mui-selected .MuiTab-wrapper {
     color: rgb(31, 31, 31);
@@ -14,25 +15,51 @@
     }
   }
 
+  .MuiTabs-root {
+    width: 35%;
+    background-color: #f0f0f0;
+
+    .MuiTabs-flexContainer {
+      .MuiButtonBase-root {
+        width: 90%;
+        margin: auto;
+        max-width: unset;
+      }
+    }
+
+    .MuiTabScrollButton-root {
+      display: none;
+    }
+
+    .MuiButtonBase-root:first-of-type {
+      margin-top: 20px;
+    }
+    .MuiButtonBase-root:last-of-type {
+      margin-bottom: 20px;
+    }
+  }
+
   .MuiTab-root {
+    padding-left: 0;
     margin-bottom: 5px 0;
-    border-bottom: 1px solid rgba(41, 41, 41, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    min-height: 120px;
 
     span {
       display: flex;
-      flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      margin: auto;
       font-weight: 400;
       text-transform: none;
-      text-align: initial;
-      color: #3a3a3a;
-      font-size: 1.1em;
+      text-align: center;
+      color: #535353;
+      font-size: 1.2em;
+    }
 
-      svg {
-        margin-right: 10px;
-      }
+    svg {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
     }
   }
 }

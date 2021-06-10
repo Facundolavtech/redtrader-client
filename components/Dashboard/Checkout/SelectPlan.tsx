@@ -26,29 +26,40 @@ const SelectPlan = () => {
   };
 
   return (
-    <div className="selectplan__container">
-      <ArrowBackBtn src="/dashboard" />
-      {plans.map((plan, index) => (
-        <div className="selectplan__card" key={index}>
-          <div className="card__header">{plan.name}</div>
-          <div className="prices">
-            <h2>
-              ${plan.first_month}.00 <span>/ Primer mes</span>
-            </h2>
-            <h2>
-              ${plan.monthly}.00 <span>/ mensual</span>
-            </h2>
+    <>
+      <div className="selectplan__container">
+        <ArrowBackBtn src="/dashboard" />
+        {plans.map((plan, index) => (
+          <div className="selectplan__card" key={index}>
+            <div className="card__img">
+              {index + 1 === 1 ? (
+                <img src="/assets/img/selectplan01.jpg" />
+              ) : (
+                <img src="/assets/img/selectplan02.jpg" />
+              )}
+            </div>
+            <div className={`card__header card__header-${index + 1}`}>
+              {plan.name}
+            </div>
+            <div className="prices">
+              <h2>
+                ${plan.first_month}.00 <span>/ Primer mes</span>
+              </h2>
+              <h2>
+                ${plan.monthly}.00 <span>/ mensual</span>
+              </h2>
+            </div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setPlan(plan.monthly, plan.first_month, plan.name)}
+            >
+              Seleccionar
+            </Button>
           </div>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setPlan(plan.monthly, plan.first_month, plan.name)}
-          >
-            Seleccionar
-          </Button>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

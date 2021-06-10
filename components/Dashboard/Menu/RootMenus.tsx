@@ -1,8 +1,6 @@
 import { Person } from "@material-ui/icons";
 import React, { useContext } from "react";
-import { useDispatch } from "react-redux";
 import AuthContext from "../../../context/Auth";
-import { handleMenuAction } from "../../../redux/actions/UserMenu";
 import Admin from "./Items/Admin";
 import ChangePassword from "./Items/ChangePassword";
 import Educator from "./Items/Educator";
@@ -14,12 +12,6 @@ const RootMenus = () => {
   const { user } = useContext(AuthContext);
 
   const { short_id, roles } = user;
-
-  const dispatch = useDispatch();
-
-  const handleMenu = () => {
-    dispatch(handleMenuAction());
-  };
 
   return (
     <>

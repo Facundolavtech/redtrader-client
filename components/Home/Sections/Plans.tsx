@@ -7,7 +7,7 @@ const Plans = () => {
       <div className="plans__container">
         <Fade top>
           <div className="plans__title">
-            <h2>Comenzá a construir tu futuro financiero</h2>
+            <h2>Comienza hoy a construir tu futuro</h2>
             <p>
               Selecciona entre los distintos planes de RedTrader y comienza a
               generar ingresos con nuestros servicios

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Tab } from "@material-ui/core";
-import { Lock, PlayCircleFilled } from "@material-ui/icons";
+import { Lock, PlayCircleFilled, School } from "@material-ui/icons";
 import VideoTemplate from "./VideoTemplate";
 import AuthContext from "../../../../../context/Auth";
 import { getVideos } from "../../../../../services/videos";
-import VideoTitle from "./VideoTitle";
 import { toast } from "react-toastify";
 import LoadingVideos from "../../../../UI/LoadingVideos";
+import TabTitle from "../../TabTitle";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -72,7 +72,7 @@ export default function VideoList() {
 
   return (
     <>
-      <VideoTitle videos={videos} value={value} />
+      <TabTitle name="Academia basica" icon={<School />} />
       <div className="videolist__container">
         {videos !== null && token ? (
           <>
@@ -90,8 +90,8 @@ export default function VideoList() {
                   key={index}
                   label={video.title}
                   {...a11yProps(index)}
-                  disabled={video.src === null ? true : false}
-                  icon={video.src === null ? <Lock /> : <PlayCircleFilled />}
+                  disabled={!video.src}
+                  icon={!video.src ? <Lock /> : <PlayCircleFilled />}
                 />
               ))}
             </Tabs>

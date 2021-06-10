@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { Drawer, Button } from "@material-ui/core";
-import { Menu, VpnKey } from "@material-ui/icons";
+import { Menu } from "@material-ui/icons";
 import RootMenus from "../Menu/RootMenus";
 
 const useStyles = makeStyles({

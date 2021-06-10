@@ -1,36 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
-import { LiveTv } from "@material-ui/icons";
+import { PlayArrow } from "@material-ui/icons";
 import Link from "next/link";
 import AuthContext from "../../../../../context/Auth";
-import useSocket from "../../../../../hooks/useSocket";
 import LockContent from "../../../LockContent/LockContent";
 
 const LiveTab = () => {
-  const socket = useSocket();
-
   const {
-    user: { plan },
+    user: {
+      plan: { active },
+    },
   } = useContext(AuthContext);
-
-  useEffect(() => {
-    function handleEvent(payload) {
-      console.log(payload);
-    }
-
-    if (socket) {
-      socket.on("SOME_EVENT", handleEvent);
-    }
-  }, [socket]);
 
   return (
     <>
-      {plan.active ? (
+      {active ? (
         <>
           <div className="lives__container">
+            <div className="lives-tab__img">
+              <img src="/assets/img/livetab-img.png" alt="" />
+            </div>
             <div className="lives-tab__info">
-              <LiveTv className="lives-tab__img" />
-              <h2>Ingresa a RedTrader Live aquí</h2>
+              <PlayArrow />
               <Link href="/dashboard/lives">
                 <Button
                   variant="contained"

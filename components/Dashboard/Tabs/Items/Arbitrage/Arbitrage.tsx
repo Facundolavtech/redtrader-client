@@ -1,7 +1,8 @@
-import { SwapHoriz } from "@material-ui/icons";
+import { SwapHoriz, TrendingUp } from "@material-ui/icons";
 import React, { useContext } from "react";
 import AuthContext from "../../../../../context/Auth";
 import LockContent from "../../../LockContent/LockContent";
+import TabTitle from "../../TabTitle";
 import LevelTabs from "./LevelsTabs";
 
 const Arbitrage = () => {
@@ -9,19 +10,23 @@ const Arbitrage = () => {
     user: { plan },
   } = useContext(AuthContext);
 
-  if (!plan.active) {
+  const {
+    active,
+    plan_type: { premium_plus },
+  } = plan;
+
+  if (!active || !premium_plus) {
     return <LockContent />;
   } else {
     return (
-      <div className="arbitrage__container">
-        <div className="title">
-          <h2>Academia de Arbitraje</h2>
-          <SwapHoriz />
+      <>
+        <TabTitle name="Academia de Arbitraje" icon={<TrendingUp />} />
+        <div className="arbitrage__container">
+          <div className="leveltabs">
+            <LevelTabs />
+          </div>
         </div>
-        <div className="leveltabs">
-          <LevelTabs />
-        </div>
-      </div>
+      </>
     );
   }
 };

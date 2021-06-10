@@ -70,14 +70,14 @@ const checkout = () => {
             <SelectPlan />
           ) : (
             <>
+              <Button
+                onClick={goBackToSelectPlans}
+                className="goback-btn"
+                disableRipple
+              >
+                <ArrowBackBtn src="" />
+              </Button>
               <div className="pay__container">
-                <Button
-                  onClick={goBackToSelectPlans}
-                  className="goback-btn"
-                  disableRipple
-                >
-                  <ArrowBackBtn src="" />
-                </Button>
                 <HowToPayBtn onClickFunction={setOpenModal} />
                 <PlanInfo />
                 <h4>

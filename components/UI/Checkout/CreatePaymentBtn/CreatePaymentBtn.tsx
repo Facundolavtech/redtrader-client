@@ -37,7 +37,7 @@ const CreatePaymentBtn = () => {
       onClick={currency ? createPayment : null}
       style={{ boxShadow: "none", minWidth: "230px", height: "45px" }}
     >
-      {loading ? <BtnLoading size={23} color="#fff" /> : "Crear link de pago"}
+      {loading ? <BtnLoading size={23} color="#fff" /> : "Crear enlace de pago"}
     </Button>
   );
 };
