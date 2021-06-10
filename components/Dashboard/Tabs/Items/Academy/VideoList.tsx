@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import { Tabs, Tab, CircularProgress } from "@material-ui/core";
+import { Tabs, Tab } from "@material-ui/core";
 import { Lock, PlayCircleFilled } from "@material-ui/icons";
 import VideoTemplate from "./VideoTemplate";
 import AuthContext from "../../../../../context/Auth";
 import { getVideos } from "../../../../../services/videos";
 import VideoTitle from "./VideoTitle";
 import { toast } from "react-toastify";
+import LoadingVideos from "../../../../UI/LoadingVideos";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -111,13 +112,3 @@ export default function VideoList() {
     </>
   );
 }
-
-const LoadingVideos = () => {
-  return (
-    <CircularProgress
-      size={50}
-      color="primary"
-      style={{ margin: "auto", marginTop: "100px" }}
-    />
-  );
-};

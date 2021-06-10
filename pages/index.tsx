@@ -43,8 +43,9 @@ export default function Inicio() {
           html,
           body {
             overflow-x: hidden;
+            -ms-overflow-style: initial; /* IE and Edge */
+            scrollbar-width: initial; /* Firefox */
           }
-
           body::-webkit-scrollbar {
             display: block;
             width: 12px;
@@ -52,11 +53,9 @@ export default function Inicio() {
             position: absolute;
             z-index: 9000;
           }
-
           body::-webkit-scrollbar-track {
             background: none;
           }
-
           body::-webkit-scrollbar-thumb {
             background-color: rgba(245, 6, 6, 0.705);
             border-radius: 20px;

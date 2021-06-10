@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import AuthContext from "../../../context/Auth";
 import TabList from "../../../helpers/DashboardTabList";
 
 interface TabPanelProps {
