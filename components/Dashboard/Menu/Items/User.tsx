@@ -37,9 +37,11 @@ const WithPlan = () => {
     <>
       <PlanBadge />
       {!premium_plus && (
-        <Button className="dashboard__menu-update-plan-btn">
-          Actualizar plan
-        </Button>
+        <Link href="/dashboard/upgrade">
+          <Button className="dashboard__menu-update-plan-btn">
+            Actualizar plan
+          </Button>
+        </Link>
       )}
       <Link href="/dashboard/plan">
         <Button className="dashboard__menu-info__plan-btn">

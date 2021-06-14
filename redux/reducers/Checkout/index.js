@@ -6,6 +6,7 @@ const initialState = {
   price: null,
   currency: null,
   loading: false,
+  upgrade: false,
   checkout_link: null,
 };
 
@@ -17,6 +18,7 @@ export default function (state = initialState, action) {
         price: action.payload.price,
         plan_name: action.payload.plan_name,
         plan_selected: true,
+        upgrade: action.payload.upgrade,
       };
 
     case t.SET_CURRENCY:

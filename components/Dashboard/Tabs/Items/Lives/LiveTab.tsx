@@ -17,9 +17,11 @@ const LiveTab = () => {
       {active ? (
         <>
           <div className="lives__container">
-            <div className="lives-tab__img">
-              <img src="/assets/img/livetab-img.png" alt="" />
-            </div>
+            <img
+              src="/assets/img/livetab-img.png"
+              className="lives-tab__img"
+              alt="live image"
+            />
             <div className="lives-tab__info">
               <PlayArrow />
               <Link href="/dashboard/lives">

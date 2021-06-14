@@ -1,13 +1,11 @@
 import React from "react";
 import ArrowBackBtn from "../components/BackArrow";
 import SEO from "../components/SEO";
-import DashboardHeader from "../components/UI/Header/DashboardHeader";
 
 const _error = () => {
   return (
     <>
       <SEO title="404" />
-      <DashboardHeader />
 
       <h1
         style={{

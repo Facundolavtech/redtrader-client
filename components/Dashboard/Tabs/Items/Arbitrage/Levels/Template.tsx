@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Tab } from "@material-ui/core";
-import { Lock, PlayCircleFilled } from "@material-ui/icons";
+import { PlayCircleFilled } from "@material-ui/icons";
 import LoadingVideos from "../../../../../UI/LoadingVideos";
 import VideoTemplate from "../../Academy/VideoTemplate";
+import AuthContext from "../../../../../../context/Auth";
+import { getArbitrageVideos } from "../../../../../../services/videos";
+import notes from "../../../../../../helpers/arbitrageNotes";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
+  className?: any;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -41,44 +45,93 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function Template({ videos }) {
+export default function Template({ level }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [videos, setVideos] = useState(null);
+  const { token } = useContext(AuthContext);
+  const [note, setNote] = useState(null);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
+  useEffect((): any => {
+    setVideos(null);
+    if (level && !videos) {
+      getVideos();
+    }
+
+    return () => null;
+  }, [level]);
+
+  useEffect((): any => {
+    videos !== null && getVideoNote();
+  }, [value]);
+
+  const getVideos = async () => {
+    const response: any = await getArbitrageVideos(token, level);
+
+    if (response.status === 200) {
+      setVideos(response.videos);
+    }
+  };
+
+  const getVideoNote = () => {
+    const foundNote = notes.find((note) => note.index === videos[value].order);
+    foundNote ? setNote(foundNote) : setNote(null);
+  };
+
   return (
     <>
       <div className="videolist__container">
-        <>
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
-            className={classes.tabs}
-            indicatorColor="primary"
-          >
-            {videos.map((video, index) => (
-              <Tab
-                key={index}
-                label={video.title}
-                {...a11yProps(index)}
-                disabled={video.src === null ? true : false}
-                icon={video.src === null ? <Lock /> : <PlayCircleFilled />}
-              />
+        {videos !== null ? (
+          <>
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={value}
+              onChange={handleChange}
+              aria-label="arbitrage video tab"
+              className={classes.tabs}
+              indicatorColor="primary"
+            >
+              {videos.map(({ title, order }, index) => (
+                <Tab
+                  key={order}
+                  label={title}
+                  {...a11yProps(index)}
+                  icon={<PlayCircleFilled />}
+                  className={notes.map(
+                    (note) => note.index === order && "note__badge"
+                  )}
+                />
+              ))}
+            </Tabs>
+            {videos.map(({ title, order, src }, index) => (
+              <TabPanel value={value} index={index} key={order}>
+                <VideoTemplate title={title} src={src} key={order} />
+              </TabPanel>
             ))}
-          </Tabs>
-          {videos.map((video, index) => (
-            <TabPanel value={value} index={index} key={index}>
-              <VideoTemplate title={video.title} src={video.src} key={index} />
-            </TabPanel>
-          ))}
-        </>
+          </>
+        ) : (
+          <LoadingVideos />
+        )}
       </div>
+      {note !== null && (
+        <>
+          <h2 className="notes__title">Notas</h2>
+          <div
+            dangerouslySetInnerHTML={{ __html: note.title }}
+            className="note__title"
+          ></div>
+          <div
+            style={{ marginBottom: "50px" }}
+            dangerouslySetInnerHTML={{ __html: note.body }}
+            className="note__body"
+          ></div>
+        </>
+      )}
     </>
   );
 }

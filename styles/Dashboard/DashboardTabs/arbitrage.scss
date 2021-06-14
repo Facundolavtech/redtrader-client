@@ -10,7 +10,6 @@
   .leveltabs {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     .tabs {
       height: 70px;
@@ -29,6 +28,7 @@
             font-size: 1.3em;
             min-width: 320px;
             background-color: rgb(250, 250, 250);
+            position: relative;
 
             &:hover {
               transition: background-color 0.2s, color 0.2s;
@@ -56,6 +56,7 @@
     min-height: 400px;
     background-color: #fff;
     justify-content: space-between;
+    margin-bottom: 40px;
 
     .MuiTabs-root {
       width: 35%;
@@ -67,9 +68,23 @@
         width: 90%;
         margin: auto;
         max-width: unset;
+      }
 
-        span {
-          padding: 0 20px;
+      .note__badge {
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          content: "Notas";
+          height: 35px;
+          border-radius: 0 0 5px 5px;
+          width: 65px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.9em;
+          background-color: $primary-red;
+          color: #fff;
         }
       }
     }
@@ -83,6 +98,66 @@
     }
     .MuiButtonBase-root:last-of-type {
       margin-bottom: 20px;
+    }
+  }
+  .notes__title {
+    width: 100%;
+    font-size: 2.3em;
+    color: $primary-red;
+    font-weight: 500;
+    margin: 50px auto 30px auto;
+  }
+
+  .note__title {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-weight: 400;
+      font-size: 1.5em;
+    }
+  }
+
+  .note__body {
+    width: 100%;
+    margin: auto;
+  }
+
+  a {
+    display: inline;
+    font-size: 1.6em;
+    margin-bottom: 5px;
+    color: #292929;
+    text-decoration: underline;
+
+    &:hover {
+      transition: color 0.2s;
+      color: $primary-red;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arbitrage__container {
+    .videolist__container {
+      .MuiTabs-root {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+    .leveltabs {
+      .tabs {
+        margin-bottom: 40px;
+      }
+    }
+
+    .note__title,
+    .notes__title,
+    .note__body {
+      width: 90%;
     }
   }
 }

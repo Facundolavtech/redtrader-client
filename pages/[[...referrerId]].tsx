@@ -12,11 +12,22 @@ import Forms from "../components/Auth/Forms";
 import Whatsapp from "../components/Home/Whatsapp";
 import Sections from "../components/Home/Sections";
 import SEO from "../components/SEO";
+import { useRouter } from "next/router";
 
 export default function Inicio() {
   const backdrop = useSelector((state: any) => state.backdrop.active);
 
   const { user, setUser, setToken } = useContext(AuthContext);
+
+  const {
+    query: { referrerId },
+  } = useRouter();
+
+  useEffect(() => {
+    if (referrerId) {
+      localStorage.setItem("referrerId", referrerId[0]);
+    }
+  }, [referrerId]);
 
   useEffect(() => {
     if (user && !user.confirmed) {

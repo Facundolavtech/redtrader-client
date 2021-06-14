@@ -16,7 +16,7 @@ const Arbitrage = () => {
   } = plan;
 
   if (!active || !premium_plus) {
-    return <LockContent />;
+    return <LockContent premium_plus />;
   } else {
     return (
       <>

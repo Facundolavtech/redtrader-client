@@ -21,18 +21,22 @@ const SignalsTab = () => {
                 generar ingresos con nuestras señales
               </h2>
               <div className="signals__tab-info__buttons">
-                <a>
-                  <img
-                    src="/assets/img/appstore-btn.png"
-                    alt="appstore button"
-                  />
-                </a>
-                <a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.facuh1999.redtradermobile&hl=es_AR&gl=US"
+                  target="_blank"
+                >
                   <img
                     src="/assets/img/playstore-btn.png"
                     alt="playstore button"
                   />
                 </a>
+                {/* <a>
+                  <small>(Proximamente)</small>
+                  <img
+                    src="/assets/img/appstore-btn.png"
+                    alt="appstore button"
+                  />
+                </a> */}
               </div>
             </div>
           </div>

@@ -8,7 +8,9 @@ const PlanInfo = () => {
     user: { discount, first_month_payed },
   } = useContext(AuthContext);
 
-  const { price, plan_name } = useSelector((state: any) => state.checkout);
+  const { price, plan_name, upgrade } = useSelector(
+    (state: any) => state.checkout
+  );
 
   return (
     <>
@@ -18,11 +20,13 @@ const PlanInfo = () => {
           first_month_payed={first_month_payed}
           price={price}
           discount={discount}
+          upgrade={upgrade}
         />
       ) : (
         <PriceWithoutDiscount
           first_month_payed={first_month_payed}
           price={price}
+          upgrade={upgrade}
         />
       )}
     </>
