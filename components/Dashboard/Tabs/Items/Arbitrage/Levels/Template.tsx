@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Tab } from "@material-ui/core";
