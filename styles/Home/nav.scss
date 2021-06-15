@@ -143,17 +143,17 @@
   }
 
   .nav__comenzar-btn {
-    background: rgb(240, 240, 240);
+    background: #3e3e3e;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 30px;
     border-radius: 5px;
 
     &:hover {
-      background: rgb(220, 220, 220);
+      background: #505050;
     }
 
     &:active {
-      background: rgb(201, 201, 201);
+      background: #686868;
     }
 
     button {
@@ -163,11 +163,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #3a3a3a;
+      color: #ffffff;
       text-transform: unset;
       font-size: 0.99em;
       font-weight: 400;
-      margin: 0 20px;
+      margin: 0 15px;
       background: unset;
 
       svg {

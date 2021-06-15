@@ -6,7 +6,7 @@ const Signals = () => {
     <section className="signals__section" id="senales">
       <Fade right>
         <div className="signals__img">
-          <img src="assets/img/mt4.png" loading="lazy" />
+          <img src="assets/img/redtraderlive-img.png" loading="lazy" />
         </div>
         <div className="signals__info">
           <h2>RedTrader Live</h2>

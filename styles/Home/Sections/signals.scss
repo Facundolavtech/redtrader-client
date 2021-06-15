@@ -1,9 +1,8 @@
 .signals__section {
   width: 100%;
-  padding: 50px 10%;
+  padding: 80px 10%;
   display: flex;
   background-color: rgb(240, 240, 240);
-  padding-top: 80px;
 
   .signals__info {
     width: 50%;
@@ -15,7 +14,7 @@
       color: #3a3a3a;
       text-decoration: underline;
       text-align: center;
-      font-size: 3.3em;
+      font-size: 3.8em;
       font-weight: 500;
       text-transform: uppercase;
       margin-bottom: 15px;
@@ -45,7 +44,7 @@
     justify-content: center;
 
     img {
-      width: 350px;
+      width: 450px;
     }
   }
 }
