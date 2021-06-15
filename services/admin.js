@@ -96,3 +96,29 @@ export async function deleteAccount(data) {
     return toast.error("Ocurrio un error");
   }
 }
+
+export async function updatePartner(data) {
+  const { email, active, token } = data;
+  try {
+    const response = await axiosClient
+      .put(
+        "/admin/updatePartner",
+        { email, active },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data);
+        return res.status;
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+        return err.response.status;
+      });
+
+    return response;
+  } catch (error) {
+    return toast.error("Ocurrio un error");
+  }
+}

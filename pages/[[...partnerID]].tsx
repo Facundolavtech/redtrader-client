@@ -20,14 +20,14 @@ export default function Inicio() {
   const { user, setUser, setToken } = useContext(AuthContext);
 
   const {
-    query: { referrerId },
+    query: { partnerID },
   } = useRouter();
 
   useEffect(() => {
-    if (referrerId) {
-      localStorage.setItem("referrerId", referrerId[0]);
+    if (partnerID) {
+      localStorage.setItem("partnerID", partnerID[0]);
     }
-  }, [referrerId]);
+  }, [partnerID]);
 
   useEffect(() => {
     if (user && !user.confirmed) {
@@ -44,7 +44,7 @@ export default function Inicio() {
 
   return (
     <>
-      <SEO title="Inicio" />
+      <SEO title="Academia de trading" />
       <style jsx global>
         {`
           html {

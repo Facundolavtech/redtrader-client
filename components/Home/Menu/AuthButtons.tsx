@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import { HowToReg, KeyboardTab } from "@material-ui/icons";
 
 const AuthButtons = (props) => {
   const { handleModal, handleAuthForms, handleOpenMenu } = props;
@@ -25,7 +26,9 @@ const AuthButtons = (props) => {
           handleAuthForms(false);
         }}
       >
-        <Button>Comenzar</Button>
+        <Button>
+          Registrarse <KeyboardTab />
+        </Button>
       </li>
     </>
   );

@@ -1,0 +1,18 @@
+.partner-tab__container {
+  form {
+    margin: auto;
+    margin-top: 60px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    .partner-tab__switch {
+      margin-bottom: 30px;
+    }
+
+    .submit__btn {
+      height: 45px;
+      margin-top: 20px;
+    }
+  }
+}

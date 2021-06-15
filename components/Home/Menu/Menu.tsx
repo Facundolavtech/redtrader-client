@@ -47,7 +47,7 @@ const Menu = ({ handleOpenMenu }) => {
         </Link>
         <Group />
       </li>
-      <li>
+      <li className="planes">
         <Link href="#planes">
           <a onClick={handleOpenMenu}>Planes</a>
         </Link>

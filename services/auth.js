@@ -3,8 +3,14 @@ import axiosClient from "../config/axiosClient";
 
 export async function register(data) {
   if (data.email === "" || data.password === "") return;
+  const partnerID = localStorage.getItem("partnerID");
+  if (partnerID) data.partnerID = partnerID;
+
   try {
     const { email } = data;
+
+    console.log(data, partnerID);
+
     const response = await axiosClient
       .post("/users/auth/register", data)
       .then(async (res) => {

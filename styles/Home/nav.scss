@@ -10,6 +10,7 @@
     span {
       display: flex;
       align-items: center;
+      font-size: 0.99em;
 
       .MuiSvgIcon-root {
         transition: transform 0.05s ease;
@@ -92,8 +93,8 @@
     }
 
     img {
-      width: 0.95em;
-      height: 0.95em;
+      width: 0.98em;
+      height: 0.98em;
       display: block;
       margin-left: 10px;
 
@@ -104,8 +105,8 @@
 
     a {
       text-decoration: none;
-      color: $black;
-      font-size: 0.95em;
+      color: #3a3a3a;
+      font-size: 0.99em;
 
       &:hover {
         color: $primary-red;
@@ -142,27 +143,42 @@
   }
 
   .nav__comenzar-btn {
-    padding: 0 25px;
-    background: $primary-red;
+    background: rgb(240, 240, 240);
     cursor: pointer;
+    margin-left: 20px;
+    border-radius: 5px;
 
     &:hover {
-      background: #d80505;
-      transition: background 0.2s ease;
+      background: rgb(220, 220, 220);
+    }
+
+    &:active {
+      background: rgb(201, 201, 201);
     }
 
     button {
       width: 100%;
+      height: 100%;
       text-transform: unset;
-      display: block;
-      color: #fff !important;
-      text-transform: uppercase;
-      font-size: 0.8em;
-      font-weight: 500;
-      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3a3a3a;
+      text-transform: unset;
+      font-size: 0.99em;
+      font-weight: 400;
+      margin: 0 20px;
+      background: unset;
+
+      svg {
+        margin-left: 10px;
+      }
 
       .MuiTouchRipple-root {
         display: none;
+      }
+      &:hover {
+        background: unset;
       }
     }
   }

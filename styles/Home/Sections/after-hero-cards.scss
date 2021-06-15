@@ -29,20 +29,19 @@
       width: 60px;
       height: 60px;
       margin-bottom: 20px;
-
       opacity: 0.8;
     }
 
     h2 {
       font-size: 1.3em;
-      color: $primary-red;
+      color: #3a3a3a;
       margin-bottom: 20px;
       font-weight: 500;
     }
 
     p {
       font-size: 0.9em;
-      color: rgb(41, 41, 41);
+      color: rgb(105, 105, 105);
     }
   }
 }
@@ -57,6 +56,10 @@
       margin: auto;
       margin-bottom: 50px;
       box-shadow: 0 0 10px 0px rgba(41, 41, 41, 0.25);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
 
       &:hover {
         transform: none;
