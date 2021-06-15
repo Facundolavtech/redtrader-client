@@ -6,7 +6,7 @@ const Academy = () => {
     <section className="academy__section" id="academia">
       <Fade left>
         <div className="academy__info">
-          <h2>Academia</h2>
+          <h2>Academia Basica</h2>
           <p>
             <span>+20</span> Videos sobre como ganar dinero con nuestras
             señales, mas una introducción al trading de criptomonedas y forex
