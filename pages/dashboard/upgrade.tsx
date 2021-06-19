@@ -1,20 +1,25 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ApplyCoupon from "../../components/ApplyCoupon";
 import ArrowBackBtn from "../../components/BackArrow";
+import BitsoGuide from "../../components/Dashboard/Checkout/BitsoGuide";
 import PlanInfo from "../../components/Dashboard/Checkout/PlanInfo";
 import SelectCurrencies from "../../components/Dashboard/Checkout/SelectCurrencies";
+import CriptoVideos from "../../components/Dashboard/CriptoVideos";
 import Loading from "../../components/Loading";
+import Modal from "../../components/Modal/Modal";
 import SEO from "../../components/SEO";
+import HowToPayBtn from "../../components/UI/Checkout/HowToPayBtn";
 import PayBtn from "../../components/UI/Checkout/PayBtn";
 import DashboardHeader from "../../components/UI/Header/DashboardHeader";
 import AuthContext from "../../context/Auth";
 import { setPlanAction } from "../../redux/actions/Checkout";
 
 const upgrade = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { user } = useContext(AuthContext);
   const router = useRouter();
 
@@ -32,6 +37,10 @@ const upgrade = () => {
   const { checkout_link, plan_name } = useSelector(
     (state: any) => state.checkout
   );
+
+  const handleCloseModal: Function = () => {
+    setOpenModal(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -66,11 +75,10 @@ const upgrade = () => {
             }
           `}</style>
           <DashboardHeader />
-
-          <ArrowBackBtn src="/dashboard" />
-
-          <div className="pay__container">
+          <div className="pay__container upgrade__container">
+            <ArrowBackBtn src="/dashboard" />
             <PlanInfo />
+            <HowToPayBtn onClickFunction={setOpenModal} />
             <h4>
               Cuenta: <strong>{user.email}</strong>
             </h4>
@@ -86,6 +94,14 @@ const upgrade = () => {
                 {!user.discount.active && <ApplyCoupon />}
               </>
             )}
+            <BitsoGuide />
+            <Modal
+              open={openModal}
+              close={handleCloseModal}
+              title="Como pagar con criptomonedas"
+            >
+              <CriptoVideos />
+            </Modal>
           </div>
         </>
       ) : (

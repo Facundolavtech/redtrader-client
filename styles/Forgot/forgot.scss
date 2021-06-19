@@ -58,6 +58,9 @@
   flex-direction: column;
 
   button.MuiButtonBase-root {
+    background-color: #3a3a3a;
+    box-shadow: none;
+    font-size: 0.9em;
     margin-top: 25px;
     height: 45px;
   }

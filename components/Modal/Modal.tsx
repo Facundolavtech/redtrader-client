@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import { Close } from "@material-ui/icons";
 
 export default function Modal({ title, children, open, close }) {
   function getModalStyle() {
@@ -42,7 +43,7 @@ export default function Modal({ title, children, open, close }) {
       <div className="modal__header">
         <h2>{title}</h2>
         <button type="button" onClick={close}>
-          &#10006;
+          <Close />
         </button>
       </div>
       {children}

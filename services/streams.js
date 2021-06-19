@@ -71,3 +71,27 @@ export async function getEducator(id, token) {
     return toast.error("Ocurrio un error");
   }
 }
+
+export async function getEducators(token) {
+  try {
+    const response = await axiosClient
+      .get(`/lives/streams/educators`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        return {
+          educators: res.data,
+          status: res.status,
+        };
+      })
+      .catch((err) => {
+        return err.response.data;
+      });
+
+    return response;
+  } catch (error) {
+    return null;
+  }
+}

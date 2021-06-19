@@ -3,8 +3,8 @@ import {
   EditAttributes,
   HighlightOff,
   LocalOffer,
-  LiveTv,
   People,
+  OndemandVideo,
 } from "@material-ui/icons";
 import Admin from "./Tabs/Admin/Admin";
 import UpdateCoupon from "./Tabs/Coupons/UpdateCoupon";
@@ -26,7 +26,7 @@ const NavItems = [
   },
   {
     name: "Añadir/Eliminar un Educador",
-    icon: <LiveTv />,
+    icon: <OndemandVideo />,
     value: <UpdateEducator />,
   },
   {

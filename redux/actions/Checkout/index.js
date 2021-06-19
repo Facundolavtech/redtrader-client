@@ -12,10 +12,23 @@ const setCurrency = (payload) => ({
   payload,
 });
 
-export function createPaymentAction(currency, token, plan_name, discount) {
+export function createPaymentAction(
+  currency,
+  token,
+  plan_name,
+  partner_discount,
+  discount
+) {
   return async (dispatch) => {
     dispatch(creatingPayment());
-    const response = await createPayment(currency, token, plan_name, discount);
+
+    const response = await createPayment(
+      currency,
+      token,
+      plan_name,
+      partner_discount,
+      discount
+    );
 
     if (response.status === 200) {
       dispatch(createPaymentSuccess(response.checkout_url));

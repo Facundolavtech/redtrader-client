@@ -17,9 +17,10 @@ const SignalsTab = () => {
             </div>
             <div className="signals__tab-info">
               <h2>
-                Descarga <span>Red Trade</span> desde las tiendas y comienza a
-                generar ingresos con nuestras señales
+                Descarga <span>Red Trade App</span> y comienza a generar
+                ingresos diariamente con nuestras señales
               </h2>
+              <small>¡Proximamente en App Store!</small>
               <div className="signals__tab-info__buttons">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.facuh1999.redtradermobile&hl=es_AR&gl=US"

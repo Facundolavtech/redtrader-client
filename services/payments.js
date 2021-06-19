@@ -1,12 +1,18 @@
 import { toast } from "react-toastify";
 import axiosClient from "../config/axiosClient";
 
-export async function createPayment(currency, token, plan_name, discount = 0) {
+export async function createPayment(
+  currency,
+  token,
+  plan_name,
+  partner_discount = false,
+  discount = 0
+) {
   try {
     const response = await axiosClient
       .post(
         "/payments/create",
-        { currency, plan_name, discount },
+        { currency, plan_name, partner_discount, discount },
         {
           headers: {
             Authorization: token,

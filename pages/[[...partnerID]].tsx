@@ -13,6 +13,7 @@ import Whatsapp from "../components/Home/Whatsapp";
 import Sections from "../components/Home/Sections";
 import SEO from "../components/SEO";
 import { useRouter } from "next/router";
+import HomeStyleJSX from "../components/StyleJSX/HomeStyleJSX";
 
 export default function Inicio() {
   const backdrop = useSelector((state: any) => state.backdrop.active);
@@ -45,35 +46,7 @@ export default function Inicio() {
   return (
     <>
       <SEO title="Academia de trading" />
-      <style jsx global>
-        {`
-          html {
-            overflow-y: ${backdrop ? "hidden !important" : "unset"};
-          }
-
-          html,
-          body {
-            overflow-x: hidden;
-            -ms-overflow-style: initial; /* IE and Edge */
-            scrollbar-width: initial; /* Firefox */
-          }
-          body::-webkit-scrollbar {
-            display: block;
-            width: 12px;
-            cursor: pointer;
-            position: absolute;
-            z-index: 9000;
-          }
-          body::-webkit-scrollbar-track {
-            background: none;
-          }
-          body::-webkit-scrollbar-thumb {
-            background-color: rgba(245, 6, 6, 0.705);
-            border-radius: 20px;
-            border: 3px solid #ffffff;
-          }
-        `}
-      </style>
+      <HomeStyleJSX backdrop={backdrop} />
       <div className={backdrop ? "backdrop" : ""}></div>
       <HomeHeader />
       <Hero />

@@ -17,7 +17,6 @@
       width: 110px;
       height: 110px;
       max-height: 110px;
-      background: rgb(160, 160, 160);
       border-radius: 50%;
       overflow: hidden;
       margin-right: 30px;
@@ -39,13 +38,6 @@
         font-size: 2em;
         color: #555555;
         font-weight: 400;
-      }
-
-      .MuiSvgIcon-root {
-        font-size: 2.8em;
-        margin-left: 15px;
-        fill: $primary-red;
-        margin-bottom: 5px;
       }
     }
   }
@@ -83,7 +75,7 @@
     .chat__container {
       width: 30%;
       border-radius: 5px;
-      background-color: #f7f7f7;
+      background-color: rgb(240, 240, 240);
       overflow: hidden;
       position: relative;
 
@@ -112,10 +104,11 @@
           display: flex;
           align-items: center;
           justify-content: flex-start;
+          font-size: 0.9em;
           width: 100%;
           font-weight: 500;
           margin-right: 5px;
-          color: #585858;
+          color: #797979;
           margin-bottom: 5px;
           padding-bottom: 10px;
           border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -123,7 +116,7 @@
 
         h3 {
           width: 100%;
-          font-size: 1.1em;
+          font-size: 1em;
           margin: 5px 0;
           font-weight: 500;
         }
@@ -133,9 +126,26 @@
           font-weight: 500;
           font-size: 1.1em;
           margin-bottom: 10px;
-          background: $primary-red;
+          background: #3a3a3a;
           padding: 3px 10px;
+          border-radius: 5px;
         }
+      }
+
+      .chat__messages::-webkit-scrollbar {
+        display: block;
+        width: 12px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 9000;
+      }
+      .chat__messages::-webkit-scrollbar-track {
+        background: none;
+      }
+      .chat__messages::-webkit-scrollbar-thumb {
+        background-color: $primary-red;
+        border-radius: 20px;
+        border: 3px solid rgb(240, 240, 240);
       }
 
       .chat__header {
@@ -144,31 +154,37 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: $primary-red;
+        background-color: #3a3a3a;
         padding: 0 5%;
 
         h2 {
           color: #fff;
           font-weight: 500;
           font-size: 1.5em;
-        }
-
-        span {
-          width: 80px;
-          height: 30px;
-          border-radius: 5px;
-          background-color: #ffffff;
-          color: $primary-red;
           display: flex;
           align-items: center;
-          justify-content: center;
-          padding: 2px;
-          font-weight: 500;
 
           svg {
-            margin-right: 5px;
+            margin-left: 10px;
           }
         }
+
+        // span {
+        //   width: 80px;
+        //   height: 30px;
+        //   border-radius: 5px;
+        //   background-color: #ffffff;
+        //   color: $primary-red;
+        //   display: flex;
+        //   align-items: center;
+        //   justify-content: center;
+        //   padding: 2px;
+        //   font-weight: 500;
+
+        //   svg {
+        //     margin-right: 5px;
+        //   }
+        // }
       }
 
       .chat__input-text {
@@ -176,8 +192,7 @@
         bottom: 0;
         width: 100%;
         height: 10%;
-        background-color: rgb(255, 255, 255);
-        padding: 0 10%;
+        background-color: rgb(49, 49, 49);
 
         form {
           width: 100%;
@@ -186,16 +201,32 @@
           justify-content: center;
           align-items: center;
 
+          .MuiInputBase-root {
+            input {
+              color: #fff;
+              &::placeholder {
+                color: #fff;
+                opacity: 0.8;
+                font-size: 0.9em;
+              }
+            }
+
+            fieldset {
+              border: none;
+            }
+          }
+
           input::placeholder {
             color: rgb(26, 26, 26);
           }
 
           button {
-            svg {
-              path {
-                fill: $primary-red;
-              }
-            }
+            height: 35px;
+            padding: 0 30px;
+            background-color: #fff;
+            text-transform: unset;
+            font-size: 1em;
+            color: #3a3a3a;
           }
         }
       }

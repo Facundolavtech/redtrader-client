@@ -34,7 +34,7 @@ const SelectCurrencies = () => {
         Elige la moneda con la que deseas pagar
       </p>
       <div className="currencies__container">
-        <FormControl>
+        <FormControl variant="filled">
           <InputLabel id="demo-simple-select-label">
             Elegi la criptomoneda
           </InputLabel>

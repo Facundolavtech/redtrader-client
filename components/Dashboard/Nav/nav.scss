@@ -1,3 +1,5 @@
+$gray: rgb(100, 100, 100);
+
 .dashboard__nav {
   display: flex;
   align-items: center;
@@ -6,16 +8,15 @@
 
   .dashboard__drawer-open-btn {
     text-transform: uppercase;
-    font-weight: 500;
-    color: rgb(58, 58, 58);
+    color: $gray;
+    font-weight: 400;
     display: flex;
     align-items: center;
-    margin-top: 5px;
 
     svg {
-      fill: rgb(58, 58, 58);
+      fill: $gray;
       margin-left: 5px;
-      font-size: 2em;
+      margin-bottom: 2px;
     }
   }
 }

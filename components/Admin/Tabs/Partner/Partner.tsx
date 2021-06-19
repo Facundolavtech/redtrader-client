@@ -5,6 +5,7 @@ import { Email } from "@material-ui/icons";
 import AuthContext from "../../../../context/Auth";
 import SubmitButton from "../../../UI/SubmitButton";
 import PartnerList from "./PartnerList";
+import { getAllPartners } from "../../../../services/partners";
 
 const UpdatePartner = () => {
   const initialFormValues = {
@@ -19,6 +20,7 @@ const UpdatePartner = () => {
   const [partnerSwitch, setPartnerSwitch] = useState({
     checked: true,
   });
+  const [partners, setPartners] = useState(null);
 
   const { email } = formValues;
 
@@ -61,13 +63,22 @@ const UpdatePartner = () => {
     setProcessingForm(false);
 
     setFormValues(initialFormValues);
+
+    getPartners();
+  };
+
+  const getPartners = async () => {
+    const response: any = await getAllPartners(token);
+
+    if (response.status === 200) {
+      setPartners(response.partners);
+    }
   };
 
   return (
     <>
       <h2 className="admin-tab__title">Añadir/Eliminar un partner</h2>
       <div className="partner-tab__container">
-        <PartnerList />
         <form onSubmit={handleSubmit}>
           <div className="partner-tab__switch">
             <label>Eliminar</label>
@@ -99,6 +110,7 @@ const UpdatePartner = () => {
           />
           <SubmitButton loading={processingForm} buttonText="Enviar" />
         </form>
+        <PartnerList partners={partners} getPartners={getPartners} />
       </div>
     </>
   );

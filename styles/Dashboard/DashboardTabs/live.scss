@@ -45,9 +45,13 @@
 
 @media screen and (max-width: 768px) {
   .lives__container {
-    margin-top: 20px;
+    margin-top: 50px;
     flex-direction: column;
     padding: 0;
+
+    .lives-tab__info button {
+      margin-top: 40px;
+    }
 
     .lives-tab__img,
     .lives-tab__info {

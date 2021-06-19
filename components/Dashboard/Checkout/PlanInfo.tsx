@@ -5,7 +5,7 @@ import { PriceWithDiscount, PriceWithoutDiscount } from "./Prices";
 
 const PlanInfo = () => {
   const {
-    user: { discount, first_month_payed },
+    user: { discount, first_month_payed, referred },
   } = useContext(AuthContext);
 
   const { price, plan_name, upgrade } = useSelector(
@@ -20,6 +20,7 @@ const PlanInfo = () => {
           first_month_payed={first_month_payed}
           price={price}
           discount={discount}
+          partnerDiscount={referred ? 10 : null}
           upgrade={upgrade}
         />
       ) : (
@@ -27,6 +28,7 @@ const PlanInfo = () => {
           first_month_payed={first_month_payed}
           price={price}
           upgrade={upgrade}
+          partnerDiscount={referred ? 10 : null}
         />
       )}
     </>

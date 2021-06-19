@@ -1,0 +1,141 @@
+.partner__container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 120px;
+  position: relative;
+
+  .arrowback__btn {
+    position: absolute;
+    top: -40%;
+    left: 20px;
+  }
+
+  .partner__link {
+    width: 45%;
+    min-height: 200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(245, 245, 245);
+
+    h2 {
+      width: 100%;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #565656;
+      font-weight: 500;
+
+      span {
+        font-size: 1.2em;
+        color: #3a3a3a;
+        text-decoration: underline;
+      }
+    }
+
+    h3 {
+      font-weight: 400;
+      color: #595959;
+    }
+    .copy__btn {
+      display: flex;
+      margin: auto;
+      margin-top: 20px;
+      width: 120px;
+      height: 35px;
+      background-color: #3a3a3a;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+
+    .copied {
+      background-color: #26b902;
+    }
+  }
+
+  .partner__stats {
+    min-height: 200px;
+    padding-top: 20px;
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+
+    .registers {
+      margin-right: 20px;
+
+      svg {
+        fill: #f4f818;
+      }
+    }
+
+    .pays {
+      svg {
+        fill: #3be90f;
+      }
+    }
+
+    .pays,
+    .registers {
+      width: auto;
+      flex-direction: column;
+      align-items: center;
+      span {
+        font-size: 1.1em;
+        font-weight: 400;
+        color: #565656;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        strong {
+          color: rgb(34, 34, 34);
+          font-size: 1.4em;
+        }
+      }
+
+      svg {
+        display: block;
+        margin: auto;
+        width: 35px;
+        height: 35px;
+        padding: 7px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-color: #3a3a3a;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .partner__container {
+    margin-top: 80px;
+    flex-direction: column;
+
+    .arrowback__btn {
+      position: absolute;
+      top: -15%;
+      left: 0;
+    }
+
+    .partner__link,
+    .partner__stats {
+      width: 100%;
+    }
+
+    .partner__link {
+      margin-bottom: 50px;
+    }
+  }
+}

@@ -13,7 +13,7 @@ const CreatePaymentBtn = () => {
     (state: any) => state.checkout
   );
   const {
-    user: { discount },
+    user: { discount, first_month_payed, referred },
     token,
   } = useContext(AuthContext);
 
@@ -36,6 +36,7 @@ const CreatePaymentBtn = () => {
             currency,
             token,
             plan_name,
+            !first_month_payed && referred !== null ? true : false,
             discount.active ? discount.percent : 0
           )
         );
@@ -49,7 +50,6 @@ const CreatePaymentBtn = () => {
       color="primary"
       disabled={currency === null}
       onClick={currency ? createPayment : null}
-      style={{ boxShadow: "none", minWidth: "230px", height: "45px" }}
     >
       {loading ? <BtnLoading size={23} color="#fff" /> : "Crear enlace de pago"}
     </Button>

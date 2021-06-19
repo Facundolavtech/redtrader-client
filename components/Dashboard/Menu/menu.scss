@@ -72,12 +72,13 @@
     text-align: center;
     padding: 10px 0;
     margin: 10px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     text-transform: uppercase;
   }
 
-  .educator {
+  .educator,
+  .partner {
     color: rgb(5, 42, 161);
   }
 
@@ -128,7 +129,7 @@
   }
 
   .badge-premium {
-    background: #565656;
+    background: #3a3a3a;
   }
 
   .badge-premium_plus {
@@ -164,7 +165,8 @@
     }
   }
 
-  .dashboard__menu-educatorPanel-btn {
+  .dashboard__menu-educatorPanel-btn,
+  .dashboard__menu-partnerPanel-btn {
     background-color: rgb(20, 61, 197);
     color: #fff;
     height: 45px;
@@ -204,6 +206,33 @@
 
     &:hover {
       background-color: rgb(231, 231, 231);
+    }
+  }
+
+  .referred {
+    width: 100%;
+    background-color: #3a3a3a;
+    padding: 20px 5px;
+    margin: 20px 0;
+    text-align: center;
+
+    h4 {
+      color: #fff;
+      font-size: 1.2em;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    p {
+      font-weight: 400;
+      color: rgb(240, 240, 240);
+      margin-bottom: 5px;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 0.9em;
+      color: #3de612;
     }
   }
 }

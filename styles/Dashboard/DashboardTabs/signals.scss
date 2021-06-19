@@ -39,18 +39,23 @@
       justify-content: center;
 
       h2 {
+        font-weight: 300;
         font-size: 1.5em;
-        font-weight: 400;
-        color: rgb(26, 26, 26);
+        color: rgb(110, 110, 110);
         margin-bottom: 20px;
         width: 100%;
-        border-bottom: 1px solid #d3d3d3;
-        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 15px;
 
         span {
-          font-weight: 500;
+          font-weight: 400;
           color: $primary-red;
         }
+      }
+      small {
+        font-size: 1.1em;
+        font-weight: 500;
+        margin-bottom: 20px;
       }
 
       .signals__tab-info__buttons {

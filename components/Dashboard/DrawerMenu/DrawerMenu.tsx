@@ -9,6 +9,7 @@ const useStyles = makeStyles({
   list: {
     width: 250,
     height: "100%",
+    overflow: "auto",
   },
   fullList: {
     width: "auto",

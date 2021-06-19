@@ -1,78 +1,90 @@
-import { Button, CircularProgress } from "@material-ui/core";
-import { ArrowBack, LiveTv } from "@material-ui/icons";
-import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { PlayArrow } from "@material-ui/icons";
+import { CircularProgress } from "@material-ui/core";
+import { useState } from "react";
 import AuthContext from "../../../context/Auth";
+import educators_ids from "../../../helpers/educators";
 import useStreams from "../../../hooks/useStreams";
+import { getEducators } from "../../../services/streams";
 import ArrowBackBtn from "../../BackArrow";
+import Streams from "./Streams";
 
 const LivesList = () => {
   const { token } = useContext(AuthContext);
-
   const { liveStreams } = useStreams(token);
 
-  const streams =
-    liveStreams !== null ? (
-      liveStreams.length > 0 ? (
-        <div className="streams-list__container">
-          {liveStreams.map((stream) => (
-            <div key={stream.short_id} className="stream__card">
-              <span className="stream__name">{stream.name}</span>
-              <span className="stream__live-label">En Vivo</span>
-              <Link href={`/dashboard/live/${stream.short_id}`}>
-                <div className="stream__thumbnail">
-                  <img src={stream.educator_info.educator_thumb} />
-                </div>
-              </Link>
-              <Link href={`/dashboard/live/${stream.short_id}`}>
-                <button className="stream__enter-btn">Ingresar</button>
-              </Link>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="no-educators__message">
-          <h2>No hay educadores online en este momento</h2>
-          <Link href="/dashboard">
-            <Button color="primary" disableRipple>
-              <ArrowBack /> Volver al dashboard
-            </Button>
-          </Link>
-        </div>
-      )
-    ) : (
-      <div
-        style={{
-          marginTop: "100px",
-          overflow: "hidden",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress
-          style={{ color: "#f50606", marginTop: "100px" }}
-          size={40}
-        />
-      </div>
-    );
+  const [lives, setLives] = useState(null);
+  const [educators, setEducators] = useState(null);
+
+  useEffect(() => {
+    if (liveStreams) {
+      setLives(liveStreams);
+    }
+  }, [liveStreams]);
+
+  useEffect((): any => {
+    const unsubscribe = getEducatorsFunction();
+
+    return () => unsubscribe;
+  }, []);
+
+  const getEducatorsFunction = async () => {
+    const response = await getEducators(token);
+
+    if (response.status === 200) {
+      setEducators(
+        response.educators.filter((educator) =>
+          educators_ids.includes(educator.short_id)
+        )
+      );
+    }
+  };
 
   return (
     <div className="streams__container">
       <>
-        {liveStreams !== null && liveStreams.length > 0 ? (
+        {!lives || !educators ? (
+          <Loading />
+        ) : (
           <>
             <ArrowBackBtn src="/dashboard" />
-            <div className="educators__title">
-              <LiveTv />
-              <h2>Educadores en vivo</h2>
+            <div className="lives__title">
+              <h2>Educadores</h2>
+              <PlayArrow />
+            </div>
+            <div className="streams-list__container">
+              {educators.map((educator) => (
+                <Streams
+                  key={educator.short_id}
+                  educator={educator}
+                  lives={lives}
+                />
+              ))}
             </div>
           </>
-        ) : null}
-        {streams}
+        )}
       </>
     </div>
   );
 };
 
 export default LivesList;
+
+const Loading = () => {
+  return (
+    <div
+      style={{
+        marginTop: "100px",
+        overflow: "hidden",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress
+        style={{ color: "#f50606", marginTop: "100px" }}
+        size={40}
+      />
+    </div>
+  );
+};

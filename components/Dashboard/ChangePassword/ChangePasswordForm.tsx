@@ -72,11 +72,11 @@ export default function ChangePasswordForm() {
 
   return (
     <div className="changepassword__form">
-      <ArrowBackBtn src="/dashboard" />
       <div className="changepassword__form-title">
         <h2>Cambiar contraseña</h2>
       </div>
       <form onSubmit={handleSubmit}>
+        <ArrowBackBtn src="/dashboard" />
         <TextField
           error={fieldErrors && fieldErrors.errors.new ? true : false}
           helperText={fieldErrors && fieldErrors.errors.new}

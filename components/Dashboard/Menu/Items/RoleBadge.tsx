@@ -10,6 +10,8 @@ const RoleBadge = () => {
     return <h3 className="dashboard__menu-rolBadge admin">Administrador</h3>;
   if (roles.educator && !roles.admin)
     return <h3 className="dashboard__menu-rolBadge educator">Educador</h3>;
+  if (roles.partner && !roles.admin)
+    return <h3 className="dashboard__menu-rolBadge partner">Partner</h3>;
   else return null;
 };
 

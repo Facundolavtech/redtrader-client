@@ -1,5 +1,5 @@
 const currencies = [
-  { name: "LTCT", img: "https://www.coinpayments.net/images/coins/LTCT.png" },
+  // { name: "LTCT", img: "https://www.coinpayments.net/images/coins/LTCT.png" },
   {
     name: "BTC",
     img: "https://www.coinpayments.net/images/coins/BTC.png",
@@ -47,6 +47,10 @@ const currencies = [
   {
     name: "ADA.BEP2",
     img: "https://www.coinpayments.net/images/coins/ADA.png",
+  },
+  {
+    name: "TUSD",
+    img: "https://www.coinpayments.net/images/coins/chained/TUSD.ETH.png",
   },
 ];
 

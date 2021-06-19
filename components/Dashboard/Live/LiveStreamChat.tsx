@@ -1,5 +1,5 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
-import { People, Send } from "@material-ui/icons";
+import { Group, People, Send } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../../../context/Auth";
@@ -95,13 +95,15 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
   return (
     <div className="chat__container">
       <div className="chat__header">
-        <h2>Chat en vivo</h2>
-        <span>
+        <h2>
+          Chat en vivo <Group />
+        </h2>
+        {/* <span>
           <>
             <People />
             {usersWatching}
           </>
-        </span>
+        </span> */}
       </div>
       <div className="chat__messages">
         {!messages ? (
@@ -129,6 +131,7 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
       <div className="chat__input-text">
         <form onSubmit={handleSubmit}>
           <TextField
+            variant="outlined"
             color="primary"
             type="text"
             placeholder="Ingresa un mensaje..."
@@ -137,9 +140,7 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
             onChange={handleChange}
             ref={inputTextRef}
           />
-          <Button type="submit">
-            <Send />
-          </Button>
+          <Button type="submit">Enviar</Button>
         </form>
       </div>
     </div>

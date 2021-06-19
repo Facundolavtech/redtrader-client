@@ -1,8 +1,9 @@
 .partner-tab__container {
+  display: flex;
   form {
     margin: auto;
     margin-top: 60px;
-    width: 400px;
+    width: 45%;
     display: flex;
     flex-direction: column;
 
@@ -13,6 +14,117 @@
     .submit__btn {
       height: 45px;
       margin-top: 20px;
+    }
+  }
+  .partner-list__container {
+    width: 45%;
+    margin: auto;
+    margin-top: 30px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .empty-partners {
+      font-weight: 400;
+      color: #565656;
+    }
+
+    .partner-list__title {
+      font-size: 2.2em;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      font-weight: 400;
+      color: #565656;
+    }
+
+    .partner__name {
+      width: 100%;
+      font-size: 1.3em;
+      font-weight: 400;
+      color: #3a3a3a;
+      margin-bottom: 20px;
+    }
+
+    .list__item {
+      margin-bottom: 10px;
+      padding-left: 0;
+      width: 100%;
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      .partner__stats {
+        display: flex;
+
+        .registers {
+          margin-right: 20px;
+
+          svg {
+            fill: #f4f818;
+          }
+        }
+
+        .pays {
+          svg {
+            fill: #3be90f;
+          }
+        }
+
+        .pays,
+        .registers {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          span {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #565656;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            strong {
+              color: rgb(34, 34, 34);
+              font-size: 1.4em;
+            }
+          }
+
+          svg {
+            width: 35px;
+            height: 35px;
+            padding: 7px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            background-color: #3a3a3a;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .partner-tab__container {
+    flex-direction: column;
+
+    form,
+    .partner-list__container {
+      width: 90%;
+    }
+
+    .partner-list__container {
+      margin-top: 50px;
+
+      .partner-list__title {
+        text-align: center;
+      }
+
+      .list__item {
+        text-align: center;
+        align-items: center;
+      }
     }
   }
 }

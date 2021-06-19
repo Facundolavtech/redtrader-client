@@ -10,12 +10,11 @@ const LiveStream = ({ educator }) => {
         <div className="livestream__title-thumb">
           <img
             src={educator.educator_info.educator_thumb}
-            alt="Foto del educador"
+            alt={educator.name}
           />
         </div>
         <div className="livestream__title-name">
           <h2>{educator.name}</h2>
-          <LiveTv />
         </div>
       </div>
       <div className="livestream">

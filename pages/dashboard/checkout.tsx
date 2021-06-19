@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ArrowBackBtn from "../../components/BackArrow";
-import AuthModal from "../../components/Modal/Modal";
+import Modal from "../../components/Modal/Modal";
 import CriptoVideos from "../../components/Dashboard/CriptoVideos";
 import ApplyCoupon from "../../components/ApplyCoupon";
 import { useRouter } from "next/router";
@@ -16,6 +16,7 @@ import SelectPlan from "../../components/Dashboard/Checkout/SelectPlan";
 import { Button } from "@material-ui/core";
 import { resetCheckoutStateAction } from "../../redux/actions/Checkout";
 import SEO from "../../components/SEO";
+import BitsoGuide from "../../components/Dashboard/Checkout/BitsoGuide";
 
 const checkout = () => {
   const router = useRouter();
@@ -95,14 +96,15 @@ const checkout = () => {
                     {!user.discount.active && <ApplyCoupon />}
                   </>
                 )}
+                <BitsoGuide />
               </div>
-              <AuthModal
+              <Modal
                 open={openModal}
                 close={handleCloseModal}
                 title="Como pagar con criptomonedas"
               >
                 <CriptoVideos />
-              </AuthModal>
+              </Modal>
             </>
           )}
         </>
