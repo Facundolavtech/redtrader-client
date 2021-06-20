@@ -1,4 +1,10 @@
-import { Button, CircularProgress, TextField } from "@material-ui/core";
+import {
+  Button,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+  TextField,
+} from "@material-ui/core";
 import { Group, People, Send } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -11,6 +17,7 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
   const { user } = useContext(AuthContext);
   const router = useRouter();
   const inputTextRef = useRef(null);
+  const messagesRef = useRef(null);
 
   const [formFields, setFormFields] = useState({
     message: "",
@@ -19,6 +26,9 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
   const [messages, setMessages] = useState(null);
   const [usersWatching, setUsersWatching] = useState(0);
   const [healthyStream, setHealthyStream] = useState(null);
+  const [automaticScroll, setAutomaticScroll] = useState(
+    JSON.parse(localStorage.getItem("automaticScroll")) || false
+  );
 
   const socket = useSocket();
 
@@ -38,6 +48,10 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
       socket.on("message", (name, short_id, message) => {
         setMessages([...messages, { name, id: short_id, msg: message }]);
         getChatMessages(educatorId, name, short_id, message);
+
+        if (automaticScroll) {
+          messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+        }
       });
 
       socket.on("update_connections", ({ clients }) => {
@@ -105,7 +119,7 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
           </>
         </span> */}
       </div>
-      <div className="chat__messages">
+      <div className="chat__messages" ref={messagesRef}>
         {!messages ? (
           <CircularProgress size={25} color="primary" />
         ) : (
@@ -130,17 +144,39 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
       </div>
       <div className="chat__input-text">
         <form onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            color="primary"
-            type="text"
-            placeholder="Ingresa un mensaje..."
-            name="message"
-            value={formFields.message}
-            onChange={handleChange}
-            ref={inputTextRef}
-          />
-          <Button type="submit">Enviar</Button>
+          <div className="input">
+            <TextField
+              color="primary"
+              type="text"
+              placeholder="Ingresa un mensaje..."
+              name="message"
+              value={formFields.message}
+              onChange={handleChange}
+              ref={inputTextRef}
+            />
+            <Button type="submit">Enviar</Button>
+          </div>
+          <div className="automatic__scroll">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={
+                    JSON.parse(localStorage.getItem("automaticScroll")) || false
+                  }
+                  onChange={() => {
+                    localStorage.setItem(
+                      "automaticScroll",
+                      JSON.stringify(!automaticScroll)
+                    ),
+                      setAutomaticScroll(!automaticScroll);
+                  }}
+                  name="automatic-scroll-checkbox"
+                  color="primary"
+                />
+              }
+              label="Scroll Automatico"
+            />
+          </div>
         </form>
       </div>
     </div>

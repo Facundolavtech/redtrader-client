@@ -26,12 +26,15 @@
       text-align: center;
       font-size: 1.4em;
       font-weight: 400;
-      color: rgb(61, 61, 61);
+      color: #787878;
       line-height: 40px;
 
       span {
-        color: rgb(70, 202, 18);
-        font-size: 1.5em;
+        color: #3a3a3a;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        text-decoration: underline;
+        font-weight: 500;
       }
     }
   }
@@ -52,7 +55,7 @@
 @media screen and (max-width: 768px) {
   .signals__section {
     flex-direction: column-reverse;
-    padding: 50px 0;
+    padding: 30px 0 50px 0;
 
     .signals__info {
       width: 90%;

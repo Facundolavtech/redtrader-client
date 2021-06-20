@@ -10,7 +10,7 @@ const initialState = {
   checkout_link: null,
 };
 
-export default function (state = initialState, action) {
+export default function CheckoutReducer(state = initialState, action) {
   switch (action.type) {
     case t.SET_PLAN:
       return {

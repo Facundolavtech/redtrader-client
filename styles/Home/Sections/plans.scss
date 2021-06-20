@@ -90,6 +90,7 @@
 
           li {
             margin: 5px 0;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             font-size: 1.1em;
@@ -219,6 +220,7 @@
 
         .plan__card {
           width: 100%;
+          min-height: 580px;
         }
 
         .plan__premium {

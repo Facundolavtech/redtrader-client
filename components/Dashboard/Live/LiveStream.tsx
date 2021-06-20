@@ -18,7 +18,10 @@ const LiveStream = ({ educator }) => {
         </div>
       </div>
       <div className="livestream">
-        <VideoPlayerComponent stream_key={educator.educator_info.stream_key} />
+        <VideoPlayerComponent
+          stream_key={educator.educator_info.stream_key}
+          thumb={educator.educator_info.educator_thumb}
+        />
         <LiveStreamChat
           stream_key={educator.educator_info.stream_key}
           educatorId={educator.short_id}

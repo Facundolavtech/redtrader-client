@@ -3,7 +3,8 @@ import {
   School,
   PermDeviceInformation,
   Group,
-  ArrowDownward,
+  ArrowDropDown,
+  PlayArrow,
 } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import { useContext } from "react";
@@ -30,7 +31,7 @@ const Menu = ({ handleOpenMenu }) => {
     <>
       <div className="homemenu__dropdown">
         <span>
-          Servicios <ArrowDownward />
+          Servicios <ArrowDropDown />
         </span>
         <div className="homemenu__dropdown-content">
           <a href="#academia" onClick={handleOpenMenu}>
@@ -38,6 +39,9 @@ const Menu = ({ handleOpenMenu }) => {
           </a>
           <a href="#senales" onClick={handleOpenMenu}>
             Señales de Trading <PermDeviceInformation />
+          </a>
+          <a href="#clases" onClick={handleOpenMenu}>
+            Clases en vivo <PlayArrow />
           </a>
         </div>
       </div>

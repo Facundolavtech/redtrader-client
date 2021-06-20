@@ -29,15 +29,17 @@ const Plans = () => {
               <div className="plan__benefits">
                 <li>
                   <span>&#10003;</span>
-                  Acceso a la aplicacion de señales RedTrade
+                  Acceso a señales de Criptomonedas y Forex desde la aplicacion
+                  RedTrade
                 </li>
                 <li>
                   <span>&#10003;</span>
-                  Acceso ilimitado a la academia con mas de 20 videos educativos
+                  Acceso ilimitado a la academia basica con mas de 20 videos
+                  educativos
                 </li>
                 <li>
                   <span>&#10003;</span>
-                  Acceso a las clases en vivo de RedTrader Live
+                  Acceso ilimitado a las clases en vivo de RedTrader Live
                 </li>
               </div>
               <ComenzarButton />
@@ -57,7 +59,7 @@ const Plans = () => {
               <div className="plan__benefits">
                 <li>
                   <span>&#10003;</span>
-                  Todo lo del Plan Premium
+                  Todos los beneficios del Plan Premium
                 </li>
                 <li>
                   <span>&#10003;</span>
@@ -65,7 +67,7 @@ const Plans = () => {
                 </li>
                 <li>
                   <span>&#10003;</span>
-                  Academia de arbitraje de criptomonedas
+                  Academia de Arbitraje de Criptomonedas
                 </li>
                 <li>
                   <span>&#10003;</span>

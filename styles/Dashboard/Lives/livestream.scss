@@ -14,12 +14,11 @@
     justify-content: flex-start;
 
     .livestream__title-thumb {
-      width: 110px;
-      height: 110px;
-      max-height: 110px;
+      width: 180px;
+      height: 180px;
+      max-height: 180px;
       border-radius: 50%;
       overflow: hidden;
-      margin-right: 30px;
 
       img {
         width: 100%;
@@ -35,7 +34,7 @@
       justify-content: flex-start;
 
       h2 {
-        font-size: 2em;
+        font-size: 2.5em;
         color: #555555;
         font-weight: 400;
       }
@@ -45,7 +44,7 @@
   .livestream {
     display: flex;
     width: 100%;
-    height: 500px;
+    height: 600px;
     padding: 0 5%;
     margin-bottom: 200px;
 
@@ -82,7 +81,7 @@
       .chat__messages {
         padding: 15px;
         width: 100%;
-        height: 100%;
+        height: 75%;
         max-height: 80%;
         overflow: auto;
         display: flex;
@@ -150,7 +149,7 @@
 
       .chat__header {
         width: 100%;
-        height: 10%;
+        height: 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -168,65 +167,67 @@
             margin-left: 10px;
           }
         }
-
-        // span {
-        //   width: 80px;
-        //   height: 30px;
-        //   border-radius: 5px;
-        //   background-color: #ffffff;
-        //   color: $primary-red;
-        //   display: flex;
-        //   align-items: center;
-        //   justify-content: center;
-        //   padding: 2px;
-        //   font-weight: 500;
-
-        //   svg {
-        //     margin-right: 5px;
-        //   }
-        // }
       }
 
       .chat__input-text {
         position: absolute;
+        height: 15%;
         bottom: 0;
         width: 100%;
-        height: 10%;
         background-color: rgb(49, 49, 49);
 
         form {
           width: 100%;
           height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          padding: 10px;
 
-          .MuiInputBase-root {
-            input {
+          .input {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .MuiFormControl-root {
+              width: 60%;
+              margin: auto;
+            }
+            .MuiInput-underline:before {
+              border-bottom: 2px solid #fff;
+            }
+            .MuiInputBase-root {
               color: #fff;
-              &::placeholder {
+            }
+
+            button {
+              width: 30%;
+              margin: auto;
+              height: 35px;
+              padding: 0 30px;
+              background-color: #fff;
+              text-transform: unset;
+              font-size: 1em;
+              color: #3a3a3a;
+            }
+          }
+          .automatic__scroll {
+            width: 95%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+
+            .MuiFormControlLabel-root {
+              display: flex;
+              flex-direction: row-reverse;
+              margin-left: 0;
+
+              .MuiCheckbox-root {
                 color: #fff;
-                opacity: 0.8;
-                font-size: 0.9em;
+              }
+
+              .MuiFormControlLabel-label {
+                color: #fff;
               }
             }
-
-            fieldset {
-              border: none;
-            }
-          }
-
-          input::placeholder {
-            color: rgb(26, 26, 26);
-          }
-
-          button {
-            height: 35px;
-            padding: 0 30px;
-            background-color: #fff;
-            text-transform: unset;
-            font-size: 1em;
-            color: #3a3a3a;
           }
         }
       }
@@ -236,6 +237,8 @@
 
 @media screen and (max-width: 768px) {
   .livestream__container {
+    margin-top: 40px;
+
     .livestream__title {
       flex-direction: column;
       align-items: center;
@@ -254,8 +257,8 @@
     }
 
     .livestream {
-      flex-direction: column;
       height: 800px;
+      flex-direction: column;
 
       .videojs__container,
       .chat__container {
@@ -265,10 +268,6 @@
       .videojs__container {
         margin-bottom: 50px;
         height: 30%;
-      }
-
-      .chat__container {
-        height: 70%;
       }
     }
   }

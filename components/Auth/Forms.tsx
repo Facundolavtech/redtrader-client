@@ -135,7 +135,7 @@ export default function Forms() {
         <FormControl fullWidth className="submit__button">
           <SubmitButton
             loading={processingForm}
-            buttonText={signInForm ? "Iniciar Sesion" : "Registrarse"}
+            buttonText={signInForm ? "Ingresar" : "Registrarse"}
           />
         </FormControl>
         {signInForm && (

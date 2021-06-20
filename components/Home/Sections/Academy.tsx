@@ -8,8 +8,9 @@ const Academy = () => {
         <div className="academy__info">
           <h2>Academia Basica</h2>
           <p>
-            <span>+20</span> Videos sobre como ganar dinero con nuestras
-            señales, mas una introducción al trading de criptomonedas y forex
+            <span>+20</span> Videos de introduccion al trading en forex,
+            obtendras una base solida para utilizar las herramientas mas basicas
+            de trading y copiar las señales de RedTrade
           </p>
         </div>
         <div className="academy__img">
