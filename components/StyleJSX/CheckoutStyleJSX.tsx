@@ -1,5 +1,3 @@
-import React from "react";
-
 const CheckoutStyleJSX = () => {
   return (
     <style jsx global>{`
