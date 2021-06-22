@@ -18,12 +18,19 @@ const id = () => {
   const [educatorInfo, setEducatorInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, token } = useContext(AuthContext);
+  const [shortID, setShortID] = useState(null);
 
   useEffect(() => {
-    if (token) {
+    if (typeof id !== "undefined") {
+      setShortID(id);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (token && shortID) {
       getEducatorFunction();
     }
-  }, []);
+  }, [shortID]);
 
   useEffect(() => {
     if (user && !user.confirmed) {
@@ -34,14 +41,6 @@ const id = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    {
-      if (typeof id === "undefined") {
-        router.push("/dashboard/lives");
-      }
-    }
-  }, [id]);
-
   const getEducatorFunction = async () => {
     const response = await getEducator(id, token);
 
@@ -50,7 +49,7 @@ const id = () => {
       setLoading(false);
     } else {
       toast.error("Ocurrio un error");
-      router.push("/lives");
+      router.push("/dashboard/lives");
     }
   };
 
@@ -58,7 +57,7 @@ const id = () => {
     <>
       <SEO title="RedTrader Live" />
 
-      {user && user.plan.active ? (
+      {user && user.plan.active && shortID ? (
         <>
           <DashboardHeader />
           {loading && !educatorInfo ? (

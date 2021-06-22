@@ -37,7 +37,7 @@ const SelectMethod = () => {
             disabled
             value="cards"
             control={<Radio />}
-            label="Tarjeta de Credito/Debito (Proximamente)"
+            label="Credito/Debito (Proximamente)"
           />
           <img src="/assets/img/cards-method.png" />
         </Grid>

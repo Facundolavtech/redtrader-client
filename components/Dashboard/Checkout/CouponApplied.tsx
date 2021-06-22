@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../../context/Auth";
 
-const CouponApplied = ({ coupon_name, percent }) => {
+const CouponApplied = () => {
+  const {
+    user: {
+      discount: { coupon_name, percent },
+    },
+  } = useContext(AuthContext);
+
   return (
-    <h4 className="coupon__name">
-      <span>Cupon: </span> {coupon_name} <span>{percent}% de descuento</span>
-    </h4>
+    <div className="coupon__applied">
+      <span className="coupon__name">
+        Cupon &#10003; <strong>{coupon_name}</strong>
+      </span>
+      <span className="percent">-{percent}%</span>
+    </div>
   );
 };
 

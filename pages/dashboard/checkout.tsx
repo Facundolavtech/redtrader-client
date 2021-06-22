@@ -1,30 +1,14 @@
 import React, { useContext, useEffect } from "react";
-import ApplyCoupon from "../../components/ApplyCoupon";
 import { useRouter } from "next/router";
-import Loading from "../../components/Loading";
 import AuthContext from "../../context/Auth";
-import SelectCurrencies from "../../components/Dashboard/Checkout/SelectCurrencies";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import SEO from "../../components/SEO";
 import DashboardHeader from "../../components/UI/Header/DashboardHeader";
 import SelectPlan from "../../components/Dashboard/Checkout/SelectPlan";
-import { Container, Grid, Paper, makeStyles } from "@material-ui/core";
 import { resetCheckoutStateAction } from "../../redux/actions/Checkout";
-import SEO from "../../components/SEO";
-import PlanInfo from "../../components/Dashboard/Checkout/PlanInfo";
-import Tutorials from "../../components/Dashboard/Checkout/Tutorials";
-import SelectMethod from "../../components/Dashboard/Checkout/SelectMethod";
-import FinalPrice from "../../components/Dashboard/Checkout/FinalPrice";
-import Price from "../../components/Dashboard/Checkout/Price";
-
-const useStyles = makeStyles({
-  paper: {
-    boxShadow: "none",
-    border: "1px solid rgb(230, 230, 230)",
-    borderRadius: 3,
-    marginTop: 30,
-    padding: 20,
-  },
-});
+import Checkout from "../../components/Dashboard/Checkout/Checkout";
+import CheckoutStyleJSX from "../../components/StyleJSX/CheckoutStyleJSX";
 
 const checkout = () => {
   const router = useRouter();
@@ -51,64 +35,24 @@ const checkout = () => {
   useEffect(() => {
     if (checkout_link) {
       window.open(checkout_link, "_blank");
+      router.push("/dashboard");
+      dispatch(resetCheckoutStateAction());
     }
   }, [checkout_link]);
 
-  const goBackToSelectPlans = () => {
-    dispatch(resetCheckoutStateAction());
-  };
-
-  const classes = useStyles();
+  useEffect(() => {
+    if (plan_selected) {
+      window.scrollTo({ top: 0 });
+    }
+  }, [plan_selected]);
 
   if (user && !user.plan.active) {
     return (
       <>
         <SEO title={plan_name || "Seleccionar plan"} />
-        <style jsx global>{`
-          body {
-            background-color: rgb(250, 250, 250) !important;
-          }
-
-          @media screen and (max-width: 768px) {
-            body {
-              background-color: rgb(255, 255, 255) !important;
-            }
-          }
-        `}</style>
+        <CheckoutStyleJSX />
         <DashboardHeader />
-        {!plan_selected ? (
-          <SelectPlan />
-        ) : (
-          <>
-            {/* <Button
-              onClick={goBackToSelectPlans}
-              className="goback-btn"
-              disableRipple
-            >
-              <ArrowBackBtn src="" />
-            </Button> */}
-
-            <Container maxWidth="lg" className="checkout__container">
-              <Grid container spacing={3}>
-                <Grid item md={8} xs={12}>
-                  <Paper className={classes.paper}>
-                    <PlanInfo />
-                    <Tutorials />
-                  </Paper>
-                </Grid>
-                <Grid item md={4} xs={12}>
-                  <Paper className={classes.paper}>
-                    <Price />
-                    <SelectMethod />
-                    <SelectCurrencies />
-                    {!user.discount.active && !checkout_link && <ApplyCoupon />}
-                    <FinalPrice />
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Container>
-          </>
-        )}
+        {!plan_selected ? <SelectPlan /> : <Checkout />}
       </>
     );
   } else {

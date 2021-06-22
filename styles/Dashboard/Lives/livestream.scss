@@ -1,15 +1,13 @@
 .livestream__container {
   width: 100%;
-  margin-top: 80px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
 
   .livestream__title {
     width: 88%;
     margin: auto;
-    border-bottom: 1px solid #d3d3d3;
-    padding-bottom: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: flex-start;
 
@@ -44,13 +42,17 @@
   .livestream {
     display: flex;
     width: 100%;
-    height: 600px;
     padding: 0 5%;
     margin-bottom: 200px;
 
+    .videojs__container,
+    .chat__container {
+      margin: auto;
+      height: 600px;
+    }
+
     .videojs__container {
       width: 65% !important;
-      height: 100%;
       display: flex;
       justify-content: flex-start;
 
@@ -65,15 +67,8 @@
       }
     }
 
-    .videojs__container,
-    .chat__container {
-      margin: auto;
-      height: 100%;
-    }
-
     .chat__container {
       width: 30%;
-      border-radius: 5px;
       background-color: rgb(240, 240, 240);
       overflow: hidden;
       position: relative;
@@ -153,7 +148,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #3a3a3a;
+        background-color: $primary-red;
         padding: 0 5%;
 
         h2 {
@@ -237,8 +232,6 @@
 
 @media screen and (max-width: 768px) {
   .livestream__container {
-    margin-top: 40px;
-
     .livestream__title {
       flex-direction: column;
       align-items: center;
@@ -247,17 +240,9 @@
       .livestream__title-thumb {
         margin: 0 0 30px 0;
       }
-
-      .livestream__title-name {
-        flex-direction: column-reverse;
-        svg {
-          margin-bottom: 20px !important;
-        }
-      }
     }
 
     .livestream {
-      height: 800px;
       flex-direction: column;
 
       .videojs__container,
@@ -267,7 +252,7 @@
 
       .videojs__container {
         margin-bottom: 50px;
-        height: 30%;
+        height: 400px;
       }
     }
   }

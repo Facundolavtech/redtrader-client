@@ -3,11 +3,11 @@ import { PlayArrow } from "@material-ui/icons";
 import { CircularProgress } from "@material-ui/core";
 import { useState } from "react";
 import AuthContext from "../../../context/Auth";
-import educators_ids from "../../../helpers/educators";
 import useStreams from "../../../hooks/useStreams";
 import { getEducators } from "../../../services/streams";
 import ArrowBackBtn from "../../BackArrow";
 import Streams from "./Streams";
+import FilterEducators from "../../../helpers/FilterEducators";
 
 const LivesList = () => {
   const { token } = useContext(AuthContext);
@@ -32,11 +32,7 @@ const LivesList = () => {
     const response = await getEducators(token);
 
     if (response.status === 200) {
-      setEducators(
-        response.educators.filter((educator) =>
-          educators_ids.includes(educator.short_id)
-        )
-      );
+      setEducators(FilterEducators(response.educators));
     }
   };
 

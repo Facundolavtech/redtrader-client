@@ -32,12 +32,8 @@ export const Online = ({ educator }) => {
   return (
     <div key={educator.short_id} className="stream__card">
       <span className="stream__name">{educator.name}</span>
-      {/* <span className="stream__live-label">En Vivo</span> */}
       <div className="livenow">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className="blob"></div>
       </div>
       <Link href={`/dashboard/live/${educator.short_id}`}>
         <div className="stream__thumbnail">

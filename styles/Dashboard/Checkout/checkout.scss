@@ -4,9 +4,9 @@
     margin-bottom: 20px;
     padding-bottom: 10px;
     font-weight: 500;
-    font-size: 1.8em;
+    font-size: 2em;
     color: #3a3a3a;
-    border-bottom: 1px solid rgb(230, 230, 230);
+    border-bottom: 1px solid rgb(160, 160, 160);
   }
 
   .account {
@@ -58,8 +58,38 @@
   .price {
     font-size: 2em;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgb(230, 230, 230);
+    border-bottom: 1px solid rgb(160, 160, 160);
     font-weight: 500;
+  }
+
+  .coupon__applied {
+    width: 100%;
+    background-color: #3a3a3a;
+    margin-top: 20px;
+    padding: 15px 0;
+    padding-left: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-height: 100px;
+    overflow: hidden;
+
+    .coupon__name {
+      font-size: 1.2em;
+      color: #0afc0a;
+
+      strong {
+        color: #fff;
+        margin: 0 10px;
+      }
+    }
+
+    .percent {
+      font-weight: 500;
+      font-size: 1.3em;
+    }
   }
 
   .select__method {
@@ -82,7 +112,10 @@
         margin: initial;
       }
       img {
-        width: 50%;
+        width: 180px;
+        max-width: 180px;
+        height: 100%;
+        max-height: 100%;
         object-fit: contain;
       }
     }
@@ -169,11 +202,9 @@
     margin-bottom: 30px;
 
     h3 {
-      font-size: 1.2em;
+      font-size: 1em;
       font-weight: 500;
       color: #3a3a3a;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgb(230, 230, 230);
     }
 
     .apply-coupon__form {
@@ -194,6 +225,26 @@
         background-color: #3a3a3a;
         box-shadow: none;
       }
+    }
+  }
+
+  .with__discount {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #a0a0a0;
+
+    .price-before__discount {
+      font-weight: 500;
+      font-size: 1.7em;
+      text-decoration: line-through;
+      margin-right: 10px;
+      color: #7c7c7c;
+    }
+
+    .price-with__discount {
+      font-size: 2em;
+      font-weight: 500;
     }
   }
 }
