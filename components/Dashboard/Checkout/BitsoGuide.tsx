@@ -12,7 +12,7 @@ const BitsoGuide = () => {
   };
 
   return (
-    <div className="bitso__container">
+    <>
       <span onClick={() => setOpenModal(true)}>
         Miniguia - Como pagar con la billetera bitso en RedTrader
       </span>
@@ -43,7 +43,7 @@ const BitsoGuide = () => {
           />
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 

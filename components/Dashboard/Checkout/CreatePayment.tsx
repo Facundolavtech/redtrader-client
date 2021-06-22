@@ -1,14 +1,14 @@
 import { Button } from "@material-ui/core";
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AuthContext from "../../../../context/Auth";
+import AuthContext from "../../../context/Auth";
 import {
   createPaymentAction,
   upgradePaymentAction,
-} from "../../../../redux/actions/Checkout";
-import BtnLoading from "../../BtnLoading";
+} from "../../../redux/actions/Checkout";
+import BtnLoading from "../../UI/BtnLoading";
 
-const CreatePaymentBtn = () => {
+const CreatePayment = () => {
   const { currency, loading, plan_name, upgrade } = useSelector(
     (state: any) => state.checkout
   );
@@ -47,13 +47,13 @@ const CreatePaymentBtn = () => {
   return (
     <Button
       variant="contained"
-      color="primary"
+      color="secondary"
       disabled={currency === null}
       onClick={currency ? createPayment : null}
     >
-      {loading ? <BtnLoading size={23} color="#fff" /> : "Crear enlace de pago"}
+      {loading ? <BtnLoading size={23} color="#fff" /> : "PAGAR"}
     </Button>
   );
 };
 
-export default CreatePaymentBtn;
+export default CreatePayment;

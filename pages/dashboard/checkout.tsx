@@ -1,30 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
-import ArrowBackBtn from "../../components/BackArrow";
-import Modal from "../../components/Modal/Modal";
-import CriptoVideos from "../../components/Dashboard/CriptoVideos";
+import React, { useContext, useEffect } from "react";
 import ApplyCoupon from "../../components/ApplyCoupon";
 import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
 import AuthContext from "../../context/Auth";
-import HowToPayBtn from "../../components/UI/Checkout/HowToPayBtn";
-import PayBtn from "../../components/UI/Checkout/PayBtn";
 import SelectCurrencies from "../../components/Dashboard/Checkout/SelectCurrencies";
 import { useDispatch, useSelector } from "react-redux";
-import PlanInfo from "../../components/Dashboard/Checkout/PlanInfo";
 import DashboardHeader from "../../components/UI/Header/DashboardHeader";
 import SelectPlan from "../../components/Dashboard/Checkout/SelectPlan";
-import { Button } from "@material-ui/core";
+import { Container, Grid, Paper, makeStyles } from "@material-ui/core";
 import { resetCheckoutStateAction } from "../../redux/actions/Checkout";
 import SEO from "../../components/SEO";
-import BitsoGuide from "../../components/Dashboard/Checkout/BitsoGuide";
+import PlanInfo from "../../components/Dashboard/Checkout/PlanInfo";
+import Tutorials from "../../components/Dashboard/Checkout/Tutorials";
+import SelectMethod from "../../components/Dashboard/Checkout/SelectMethod";
+import FinalPrice from "../../components/Dashboard/Checkout/FinalPrice";
+import Price from "../../components/Dashboard/Checkout/Price";
+
+const useStyles = makeStyles({
+  paper: {
+    boxShadow: "none",
+    border: "1px solid rgb(230, 230, 230)",
+    borderRadius: 3,
+    marginTop: 30,
+    padding: 20,
+  },
+});
 
 const checkout = () => {
   const router = useRouter();
-  const [openModal, setOpenModal] = useState(false);
 
   const { user } = useContext(AuthContext);
 
-  const { checkout_link, plan_selected } = useSelector(
+  const { checkout_link, plan_selected, plan_name } = useSelector(
     (state: any) => state.checkout
   );
 
@@ -41,78 +48,77 @@ const checkout = () => {
     }
   }, [user]);
 
-  const handleCloseModal: Function = () => {
-    setOpenModal(false);
-  };
+  useEffect(() => {
+    if (checkout_link) {
+      window.open(checkout_link, "_blank");
+    }
+  }, [checkout_link]);
 
   const goBackToSelectPlans = () => {
     dispatch(resetCheckoutStateAction());
   };
 
-  return (
-    <>
-      <SEO title="Checkout" />
+  const classes = useStyles();
 
-      {user && !user.plan.active ? (
-        <>
-          <style jsx global>{`
+  if (user && !user.plan.active) {
+    return (
+      <>
+        <SEO title={plan_name || "Seleccionar plan"} />
+        <style jsx global>{`
+          body {
+            background-color: rgb(250, 250, 250) !important;
+          }
+
+          @media screen and (max-width: 768px) {
             body {
-              background-color: rgb(250, 250, 250) !important;
+              background-color: rgb(255, 255, 255) !important;
             }
+          }
+        `}</style>
+        <DashboardHeader />
+        {!plan_selected ? (
+          <SelectPlan />
+        ) : (
+          <>
+            {/* <Button
+              onClick={goBackToSelectPlans}
+              className="goback-btn"
+              disableRipple
+            >
+              <ArrowBackBtn src="" />
+            </Button> */}
 
-            @media screen and (max-width: 768px) {
-              body {
-                background-color: rgb(255, 255, 255) !important;
-              }
-            }
-          `}</style>
-          <DashboardHeader />
-          {!plan_selected ? (
-            <SelectPlan />
-          ) : (
-            <>
-              <Button
-                onClick={goBackToSelectPlans}
-                className="goback-btn"
-                disableRipple
-              >
-                <ArrowBackBtn src="" />
-              </Button>
-              <div className="pay__container">
-                <HowToPayBtn onClickFunction={setOpenModal} />
-                <PlanInfo />
-                <h4>
-                  Cuenta: <strong>{user.email}</strong>
-                </h4>
-                <p>
-                  ¡Tenga en cuenta que, una vez realizado el pago, su plan puede
-                  tardar un tiempo en actualizarse!
-                </p>
-                {checkout_link ? (
-                  <PayBtn />
-                ) : (
-                  <>
+            <Container maxWidth="lg" className="checkout__container">
+              <Grid container spacing={3}>
+                <Grid item md={8} xs={12}>
+                  <Paper className={classes.paper}>
+                    <PlanInfo />
+                    <Tutorials />
+                  </Paper>
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <Paper className={classes.paper}>
+                    <Price />
+                    <SelectMethod />
                     <SelectCurrencies />
-                    {!user.discount.active && <ApplyCoupon />}
-                  </>
-                )}
-                <BitsoGuide />
-              </div>
-              <Modal
-                open={openModal}
-                close={handleCloseModal}
-                title="Como pagar con criptomonedas"
-              >
-                <CriptoVideos />
-              </Modal>
-            </>
-          )}
-        </>
-      ) : (
+                    {!user.discount.active && !checkout_link && <ApplyCoupon />}
+                    <FinalPrice />
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Container>
+          </>
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <SEO title="Adquirir plan" />
         <Loading />
-      )}
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default checkout;

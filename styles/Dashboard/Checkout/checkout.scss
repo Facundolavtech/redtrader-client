@@ -1,180 +1,200 @@
-.selectplan__container {
-  width: 80%;
-  margin: 100px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  .arrowback__btn {
-    position: absolute;
-    top: 0;
-    left: 0;
+.checkout__container {
+  .plan__name {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.8em;
+    color: #3a3a3a;
+    border-bottom: 1px solid rgb(230, 230, 230);
   }
 
-  .selectplan__card {
-    max-width: 45%;
-    width: 400px;
-    height: 500px;
-    max-height: 550px;
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 3px 5px 1px rgb(206, 206, 206);
-    border-radius: 5px;
-    border-top: 4px solid $primary-red;
-    transition: 0.4s ease;
-    overflow: hidden;
+  .account {
+    color: #565656;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin-bottom: 50px;
+  }
 
-    &:first-of-type {
-      margin-right: 50px;
-    }
+  .tutorials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-    &:hover {
-      transition: transform 0.3s ease;
-      transform: translateY(-2px);
-      cursor: pointer;
-    }
-
-    .card__img {
-      position: relative;
+    h3 {
       width: 100%;
-      height: 200px;
-      z-index: 70;
+      font-size: 1.4em;
+      color: #3a3a3a;
+      font-weight: 500;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgb(230, 230, 230);
+      display: flex;
+      align-items: center;
 
-      &::before {
+      svg {
+        fill: $primary-red;
+        margin-right: 5px;
+        font-size: 1.5em;
+      }
+    }
+    span {
+      font-size: 1.5em;
+      text-decoration: underline;
+      color: #555555;
+      font-weight: 500;
+
+      &:first-of-type {
+        margin-bottom: 10px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: #1b1b1b;
+      }
+    }
+  }
+
+  .price {
+    font-size: 2em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    font-weight: 500;
+  }
+
+  .select__method {
+    margin: 10px 0 30px 0;
+
+    .MuiGrid-root {
+      display: flex;
+      justify-content: space-between;
+
+      .MuiRadio-root {
+        padding: 0;
+        margin-right: 5px;
+
+        .MuiTouchRipple-root {
+          display: none;
+        }
+      }
+      label {
+        font-size: 1.1em;
+        margin: initial;
+      }
+      img {
+        width: 50%;
+        object-fit: contain;
+      }
+    }
+
+    label {
+      font-size: 1.2em;
+      margin: 20px 0 10px 0;
+      color: #565656;
+      .Mui-focused {
+        color: #565656;
+      }
+    }
+  }
+
+  .currencies__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .select__currency-title {
+      margin-bottom: 10px;
+      width: 100%;
+      font-size: 1.1em;
+    }
+
+    .MuiFormControl-root {
+      width: 100%;
+    }
+
+    .MuiSelect-root {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        margin-right: 10px;
+      }
+    }
+
+    .currency__btn {
+      padding: 5px 10px;
+      display: flex;
+      margin: 0 10px;
+      margin-bottom: 20px;
+      width: 50px;
+      height: auto;
+      flex-direction: column-reverse;
+      align-items: center;
+      background: #fff;
+      transition: background 0.2s;
+
+      p {
         width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 80;
-        content: "";
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        background-color: rgba(0, 0, 0, 0.3);
+        font-size: 0.9em;
       }
 
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
 
-    .card__header {
-      text-align: center;
-      font-size: 1.5em;
+    .MuiButtonBase-root {
+      box-shadow: none;
+      width: 100%;
       font-weight: 500;
-      padding: 15px 0;
-      margin-bottom: 40px;
+      font-size: 1em;
+      height: 50px;
+      margin-top: 20px;
     }
-    .card__header-1 {
-      background-color: rgb(95, 95, 95);
-      color: rgb(255, 255, 255);
+  }
+
+  .apply-coupon__container {
+    min-width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #3a3a3a;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgb(230, 230, 230);
     }
 
-    .card__header-2 {
-      background-color: rgb(31, 31, 31);
-      color: #fff;
-    }
-
-    .prices {
+    .apply-coupon__form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-
-      h2 {
-        font-size: 1.7em;
-        text-align: center;
-        font-weight: 500;
-        color: rgb(37, 37, 37);
-
-        span {
-          color: #afafaf;
-          font-weight: 400;
-        }
-
-        &:first-of-type {
-          margin-bottom: 10px;
-        }
-      }
-    }
-
-    button {
-      background-color: #3a3a3a;
-      position: absolute;
-      bottom: 20px;
-      width: 90%;
-      height: 50px;
-      text-transform: unset;
-      box-shadow: none;
-      margin: auto;
-      left: 0;
-      right: 0;
-
-      &:hover {
-        opacity: 0.8;
-        transition: opacity 0.2s ease-in-out;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .selectplan__container {
-    width: 90%;
-    flex-direction: column;
-    margin: 100px auto;
-
-    .arrowback__btn {
-      position: absolute;
-      top: -5%;
-      left: 0;
-    }
-
-    .selectplan__card {
       width: 100%;
-      margin: auto;
-      max-width: unset;
-      height: 500px;
 
-      &:first-of-type {
-        margin-right: 0;
+      .MuiFormControl-root {
+        width: 100%;
+        margin-bottom: 20px;
       }
 
-      .card__header {
-        font-size: 1.3em;
-      }
-
-      .prices {
-        h2 {
-          font-size: 1.5em;
-        }
-      }
-
-      &:hover {
-        transform: unset;
-      }
-
-      &:first-of-type {
-        margin-bottom: 50px;
+      .MuiButtonBase-root {
+        width: 100%;
+        height: 45px;
+        text-transform: unset;
+        font-size: 0.9em;
+        background-color: #3a3a3a;
+        box-shadow: none;
       }
     }
-  }
-}
-
-.goback-btn {
-  margin-top: 20px !important;
-  margin-left: 20px !important;
-  background: unset;
-
-  .arrowback__btn {
-    position: static;
-  }
-
-  &:hover {
-    background-color: unset !important;
   }
 }
 
@@ -290,7 +310,6 @@
     margin-bottom: 10px;
   }
 
-  .select__currency-title,
   .pay__btn-title {
     font-size: 1.2em;
     color: #333;
@@ -307,101 +326,9 @@
     text-transform: unset;
   }
 
-  .currencies__container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 30px;
-
-    .MuiFormControl-root {
-      width: 50%;
-    }
-
-    .MuiSelect-root {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      img {
-        width: 30px;
-        height: 30px;
-        object-fit: contain;
-        margin-right: 10px;
-      }
-    }
-
-    .currency__btn {
-      padding: 5px 10px;
-      display: flex;
-      margin: 0 10px;
-      margin-bottom: 20px;
-      width: 50px;
-      height: auto;
-      flex-direction: column-reverse;
-      align-items: center;
-      background: #fff;
-      transition: background 0.2s;
-
-      p {
-        width: 100%;
-        font-size: 0.9em;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-
-    .MuiButtonBase-root {
-      box-shadow: none;
-      min-width: 230px;
-      font-weight: 500;
-      height: 50px;
-      margin: auto;
-      margin-top: 30px;
-    }
-  }
-
   .pay__btn-img {
     cursor: pointer;
     margin-bottom: 50px;
-  }
-
-  .apply-coupon__container {
-    min-width: 240px;
-    max-width: 60%;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-
-    h3 {
-      font-size: 1.2em;
-      font-weight: 500;
-      color: #333;
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-
-    .apply-coupon__form {
-      display: flex;
-      width: 100%;
-
-      .MuiFormControl-root {
-        width: 50%;
-        margin-bottom: 20px;
-        margin-right: 20px;
-      }
-
-      .MuiButtonBase-root {
-        width: 50%;
-        background-color: #3a3a3a;
-        box-shadow: none;
-      }
-    }
   }
 
   .bitso__container {

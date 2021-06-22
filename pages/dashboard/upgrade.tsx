@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ApplyCoupon from "../../components/ApplyCoupon";
 import ArrowBackBtn from "../../components/BackArrow";
 import BitsoGuide from "../../components/Dashboard/Checkout/BitsoGuide";
-import PlanInfo from "../../components/Dashboard/Checkout/PlanInfo";
+import PlanInfo from "../../components/Dashboard/Checkout/FinalPrice";
 import SelectCurrencies from "../../components/Dashboard/Checkout/SelectCurrencies";
 import CriptoVideos from "../../components/Dashboard/CriptoVideos";
 import Loading from "../../components/Loading";
@@ -78,7 +78,7 @@ const upgrade = () => {
           <div className="pay__container upgrade__container">
             <ArrowBackBtn src="/dashboard" />
             <PlanInfo />
-            <HowToPayBtn onClickFunction={setOpenModal} />
+            <HowToPayBtn />
             <h4>
               Cuenta: <strong>{user.email}</strong>
             </h4>

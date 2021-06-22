@@ -1,1 +1,1 @@
-export { default } from "./HowToPayBtn";
+export { default } from "./HowToPayWithBitso";

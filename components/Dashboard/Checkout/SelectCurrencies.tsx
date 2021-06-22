@@ -7,10 +7,10 @@ import {
   Select,
   Theme,
 } from "@material-ui/core";
-import CreatePaymentBtn from "../../UI/Checkout/CreatePaymentBtn";
 import currencies from "../../../helpers/criptocurrencies";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrencyAction } from "../../../redux/actions/Checkout";
+import CreatePayment from "./CreatePayment";
 
 const useStyles = makeStyles((theme: Theme) => ({
   dropDown: {
@@ -30,10 +30,10 @@ const SelectCurrencies = () => {
 
   return (
     <>
-      <p className="select__currency-title">
-        Elige la moneda con la que deseas pagar
-      </p>
       <div className="currencies__container">
+        <p className="select__currency-title">
+          Elige la moneda con la que deseas pagar
+        </p>
         <FormControl variant="filled">
           <InputLabel id="demo-simple-select-label">
             Elegi la criptomoneda
@@ -54,7 +54,7 @@ const SelectCurrencies = () => {
               </MenuItem>
             ))}
           </Select>
-          <CreatePaymentBtn />
+          <CreatePayment />
         </FormControl>
       </div>
     </>
