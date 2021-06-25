@@ -10,27 +10,23 @@ const Arbitrage = () => {
     user: { plan },
   } = useContext(AuthContext);
 
-  const {
-    active,
-    plan_type: { premium_plus },
-  } = plan;
-
-  if (!active) {
+  if (!plan) {
     return <LockContent />;
-  }
-  if (!premium_plus) {
-    return <LockContent premium_plus />;
   } else {
-    return (
-      <>
-        <TabTitle name="Academia de Arbitraje" icon={<TrendingUp />} />
-        <div className="arbitrage__container">
-          <div className="leveltabs">
-            <LevelTabs />
+    if (plan.type !== "premium_plus") {
+      return <LockContent premium_plus />;
+    } else {
+      return (
+        <>
+          <TabTitle name="Academia de Arbitraje" icon={<TrendingUp />} />
+          <div className="arbitrage__container">
+            <div className="leveltabs">
+              <LevelTabs />
+            </div>
           </div>
-        </div>
-      </>
-    );
+        </>
+      );
+    }
   }
 };
 

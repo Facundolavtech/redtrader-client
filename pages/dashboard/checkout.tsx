@@ -23,10 +23,10 @@ const checkout = () => {
 
   useEffect(() => {
     if (user) {
-      if (user.plan.active) {
+      if (user.plan) {
         router.push("/dashboard");
       }
-      if (!user.confirmed) {
+      if (!user.data.confirmed) {
         router.push("/confirm");
       }
     }
@@ -46,7 +46,7 @@ const checkout = () => {
     }
   }, [plan_selected]);
 
-  if (user && !user.plan.active) {
+  if (user && !user.plan) {
     return (
       <>
         <SEO title={plan_name || "Seleccionar plan"} />

@@ -21,14 +21,14 @@ export default function Inicio() {
   const { user, setUser, setToken } = useContext(AuthContext);
 
   const {
-    query: { partnerID },
+    query: { partner_link },
   } = useRouter();
 
   useEffect(() => {
-    if (partnerID) {
-      localStorage.setItem("partnerID", partnerID[0]);
+    if (partner_link) {
+      localStorage.setItem("partner_link", partner_link[0]);
     }
-  }, [partnerID]);
+  }, [partner_link]);
 
   useEffect(() => {
     if (user && !user.confirmed) {

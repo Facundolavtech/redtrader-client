@@ -70,7 +70,13 @@ const LiveStreamChat = ({ stream_key, educatorId }) => {
     }
 
     if (user && socket) {
-      socket.emit("new_message", educatorId, user.name, user.short_id, message);
+      socket.emit(
+        "new_message",
+        educatorId,
+        user.data.name,
+        user.data.short_id,
+        message
+      );
     }
 
     setFormFields({

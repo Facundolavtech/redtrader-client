@@ -61,7 +61,7 @@ const CouponsList = () => {
                         <LocalOffer color="primary" />
                       </ListItemAvatar>
                       <ListItemText
-                        primary={coupon.coupon_name}
+                        primary={coupon.name}
                         secondary={`${coupon.discount}%`}
                       />
                       <ListItemSecondaryAction>

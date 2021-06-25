@@ -11,10 +11,10 @@ const lives = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && !user.plan.active) {
+    if (user && !user.plan) {
       router.push("/dashboard");
     }
-    if (user && !user.confirmed) {
+    if (user && !user.data.confirmed) {
       router.push("/confirm");
     }
   }, [user]);
@@ -23,7 +23,7 @@ const lives = () => {
     <>
       <SEO title="RedTrader Live" />
 
-      {user && user.plan.active ? (
+      {user && user.plan ? (
         <>
           <DashboardHeader />
           <LivesList />

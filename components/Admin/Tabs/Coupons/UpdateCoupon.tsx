@@ -11,7 +11,7 @@ import { getCouponsAction } from "../../../../redux/actions/Admin/Coupons";
 const UpdateCoupon = () => {
   const initialFormValues = {
     name: "",
-    percent: 0,
+    discount: 0,
   };
 
   const dispatch = useDispatch();
@@ -22,17 +22,13 @@ const UpdateCoupon = () => {
   const [processingForm, setProcessingForm] = useState(false);
   const [fieldErrors, setFieldErrors] = useState(null);
 
-  const { name, percent } = formValues;
+  const { name, discount } = formValues;
 
   useEffect(() => {
     if (name !== initialFormValues.name) {
       if (name.length < 6) {
         setFieldErrors({
           name: "El nombre del cupon debe ser mayor a 6 caracteres",
-        });
-      } else if (percent < 1 || percent > 99) {
-        setFieldErrors({
-          percent: "El porcentaje debe estar entre 1 y 99",
         });
       } else {
         setFieldErrors(null);
@@ -50,11 +46,12 @@ const UpdateCoupon = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (name === "" || !percent || formValues === initialFormValues) return;
+    if (name.trim() === "" || !discount || formValues === initialFormValues)
+      return;
 
     const data = {
-      name: name.toUpperCase().replace(" ", ""),
-      percent,
+      name,
+      discount,
       token,
     };
 
@@ -92,14 +89,17 @@ const UpdateCoupon = () => {
               ),
             }}
           />
+          <label className="coupon__discount">
+            *Porcentaje de descuento del cupon
+          </label>
           <input
             type="number"
-            value={percent}
-            name="percent"
+            value={discount}
+            name="discount"
             onChange={handleChange}
             min="1"
             max="99"
-            placeholder="Ingrese porcentaje de descuento del cupon"
+            required
           />
           <SubmitButton loading={processingForm} buttonText="Enviar" />
         </form>

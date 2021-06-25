@@ -2,12 +2,9 @@ export default function FilterEducators(educatorsArr) {
   let educators = [];
 
   for (let educator of educatorsArr) {
-    const { educator_info } = educator;
+    const { schedules, thumbnail } = educator;
 
-    if (
-      typeof educator_info.schedules !== "undefined" &&
-      educator_info.educator_thumb !== null
-    ) {
+    if (schedules.length > 0 && thumbnail !== "") {
       educators.push(educator);
     } else {
       continue;

@@ -9,6 +9,7 @@ import Price from "./Price";
 import SelectCurrencies from "./SelectCurrencies";
 import SelectMethod from "./SelectMethod";
 import Tutorials from "./Tutorials";
+import SpecialDiscount from "./SpecialDiscount";
 
 const useStyles = makeStyles({
   paper: {
@@ -39,10 +40,13 @@ const Checkout = () => {
         <Grid item md={4} xs={12}>
           <Paper className={classes.paper}>
             <Price />
-            {user.discount.active && <CouponApplied />}
+            {user.data.coupon && <CouponApplied />}
+            {!user.data.first_month_payed && user.data.referred && (
+              <SpecialDiscount />
+            )}
             <SelectMethod />
             <SelectCurrencies />
-            {!user.discount.active && !checkout_link && <ApplyCoupon />}
+            {!user.data.coupon && !checkout_link && <ApplyCoupon />}
           </Paper>
         </Grid>
       </Grid>

@@ -9,7 +9,7 @@ const SignalsTab = () => {
 
   return (
     <>
-      {plan.active ? (
+      {plan ? (
         <div className="signals__tab__container">
           <div className="signals__tab">
             <div className="signals__tab-img">

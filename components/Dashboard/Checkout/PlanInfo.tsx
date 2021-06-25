@@ -11,7 +11,7 @@ const PlanInfo = () => {
     <>
       <h2 className="plan__name">{plan_name}</h2>
       <h3 className="account">
-        Cuenta: <strong>{user.email}</strong>
+        Cuenta: <strong>{user.data.email}</strong>
       </h3>
     </>
   );

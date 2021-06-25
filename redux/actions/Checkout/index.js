@@ -12,36 +12,11 @@ const setCurrency = (payload) => ({
   payload,
 });
 
-export function createPaymentAction(
-  currency,
-  token,
-  plan_name,
-  partner_discount,
-  discount
-) {
+export function createPaymentAction(currency, token, identifier, upgrade) {
   return async (dispatch) => {
     dispatch(creatingPayment());
 
-    const response = await createPayment(
-      currency,
-      token,
-      plan_name,
-      partner_discount,
-      discount
-    );
-
-    if (response.status === 200) {
-      dispatch(createPaymentSuccess(response.checkout_url));
-    } else {
-      dispatch(createPaymentError());
-    }
-  };
-}
-
-export function upgradePaymentAction(currency, token, plan_name, discount) {
-  return async (dispatch) => {
-    dispatch(creatingPayment());
-    const response = await upgradePayment(currency, token, plan_name, discount);
+    const response = await createPayment(currency, token, identifier, upgrade);
 
     if (response.status === 200) {
       dispatch(createPaymentSuccess(response.checkout_url));
@@ -70,10 +45,11 @@ export function setPlanAction(details) {
   };
 }
 
-const setPlan = ({ plan_name, price, upgrade = false }) => ({
+const setPlan = ({ plan_name, price, identifier, upgrade = false }) => ({
   type: t.SET_PLAN,
   payload: {
     plan_name,
+    identifier,
     price,
     upgrade,
   },

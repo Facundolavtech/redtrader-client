@@ -7,14 +7,12 @@ import LockContent from "../../../LockContent/LockContent";
 
 const LiveTab = () => {
   const {
-    user: {
-      plan: { active },
-    },
+    user: { plan },
   } = useContext(AuthContext);
 
   return (
     <>
-      {active ? (
+      {plan ? (
         <>
           <div className="lives__container">
             <img

@@ -26,3 +26,29 @@ export async function getAllPartners(token) {
     return toast.error("Ocurrio un error");
   }
 }
+
+export async function getPartnerInfo(token) {
+  try {
+    const response = await axiosClient
+      .get("/users/partners/info", {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        return {
+          status: res.status,
+          partner_info: res.data,
+        };
+      })
+      .catch((err) => {
+        toast.error("Ocurrio un error, intenta iniciar sesion nuevamente");
+        return {
+          status: err.response.status,
+          partner_info: null,
+        };
+      });
+
+    return response;
+  } catch (error) {
+    return toast.error("Ocurrio un error");
+  }
+}

@@ -11,10 +11,10 @@ const index = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && !user.confirmed) {
+    if (user && !user.data.confirmed) {
       router.push("/");
     }
-    if (user && !user.roles.admin) {
+    if (user && !user.data.roles.includes("admin")) {
       router.push("/dashboard");
     }
   }, [user]);
@@ -22,7 +22,7 @@ const index = () => {
   return (
     <>
       <SEO title="Panel de Administrador" />
-      {user && user.roles.admin ? (
+      {user && user.data.roles.includes("admin") ? (
         <>
           <DashboardHeader />
           <AdminNav />

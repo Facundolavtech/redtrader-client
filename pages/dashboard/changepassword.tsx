@@ -11,7 +11,7 @@ const changepassword = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && !user.confirmed) {
+    if (user && !user.data.confirmed) {
       router.push("/confirm");
     }
   }, [user]);
@@ -20,7 +20,7 @@ const changepassword = () => {
     <>
       <SEO title="Cambiar contraseña" />
 
-      {user && user.confirmed ? (
+      {user && user.data.confirmed ? (
         <>
           <DashboardHeader />
           <ChangePasswordForm />

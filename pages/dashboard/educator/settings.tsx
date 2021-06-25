@@ -12,7 +12,7 @@ const settings = () => {
 
   useEffect(() => {
     if (user) {
-      if (!user.roles.educator) {
+      if (!user.roles.includes("educator")) {
         router.push("/dashboard");
       }
     }
@@ -21,7 +21,7 @@ const settings = () => {
   return (
     <>
       <SEO title="Panel de Educador" />
-      {user && user.roles.educator ? (
+      {user && user.roles.includes("educator") ? (
         <>
           <DashboardHeader />
           <EducatorSettings />

@@ -7,10 +7,7 @@ const Educator = () => {
   return (
     <>
       <Link href="/dashboard/educator/settings">
-        <Button
-          className="dashboard__menu-educatorPanel-btn"
-         
-        >
+        <Button className="dashboard__menu-educatorPanel-btn">
           Panel de Educador
           <PlayArrow />
         </Button>

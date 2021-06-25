@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
 import AuthContext from "../../../context/Auth";
 
-const CouponApplied = () => {
+const SpecialDiscount = () => {
   const {
     user: {
-      data: { coupon },
+      data: { referred },
     },
   } = useContext(AuthContext);
 
   return (
     <div className="coupon__applied">
       <span className="coupon__name">
-        Cupon &#10003; <strong>{coupon.name}</strong>
+        Descuento especial por referido &#10003;
       </span>
-      <span className="percent">-{coupon.discount}%</span>
+      <span className="percent">-{referred.special_discount}%</span>
     </div>
   );
 };
 
-export default CouponApplied;
+export default SpecialDiscount;

@@ -2,6 +2,7 @@ import * as t from "../../types/Checkout";
 
 const initialState = {
   plan_name: null,
+  identifier: null,
   plan_selected: null,
   price: null,
   currency: null,
@@ -17,6 +18,7 @@ export default function CheckoutReducer(state = initialState, action) {
         ...state,
         price: action.payload.price,
         plan_name: action.payload.plan_name,
+        identifier: action.payload.identifier,
         plan_selected: true,
         upgrade: action.payload.upgrade,
       };

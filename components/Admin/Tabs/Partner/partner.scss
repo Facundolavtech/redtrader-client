@@ -11,6 +11,24 @@
       margin-bottom: 30px;
     }
 
+    .special__discount-input {
+      font-size: 1.1em;
+      margin-top: 15px;
+      color: #3a3a3a;
+    }
+
+    input[type="number"] {
+      border: none;
+      height: 45px;
+      border-bottom: 1px solid #3a3a3a;
+      outline: none;
+
+      &::placeholder {
+        font-size: 1.1em;
+        color: #3a3a3a;
+      }
+    }
+
     .submit__btn {
       height: 45px;
       margin-top: 20px;
@@ -41,7 +59,24 @@
       font-size: 1.3em;
       font-weight: 400;
       color: #3a3a3a;
+      margin-bottom: 15px;
+    }
+
+    .special__discount {
+      font-size: 1.2em;
+      color: #787878;
       margin-bottom: 20px;
+      font-weight: 400;
+      text-decoration: underline;
+
+      strong {
+        color: #0abb0a;
+      }
+
+      span {
+        font-weight: 500;
+        color: #3a3a3a;
+      }
     }
 
     .list__item {

@@ -98,12 +98,12 @@ export async function deleteAccount(data) {
 }
 
 export async function updatePartner(data) {
-  const { email, active, token } = data;
+  const { email, special_discount, active, token } = data;
   try {
     const response = await axiosClient
       .put(
         "/admin/updatePartner",
-        { email, active },
+        { email, special_discount, active },
         {
           headers: { Authorization: token },
         }

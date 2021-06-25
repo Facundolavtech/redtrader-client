@@ -21,7 +21,7 @@ const confirm = () => {
 
   useEffect(() => {
     if (user) {
-      if (user.confirmed) {
+      if (user.data.confirmed) {
         router.push("/dashboard");
       } else {
         getConfirmToken();
@@ -30,7 +30,7 @@ const confirm = () => {
   }, [user]);
 
   const getConfirmToken = async () => {
-    const response = await getConfirmAccountToken(user._id);
+    const response = await getConfirmAccountToken(user.data._id);
 
     if (response === 200) {
       setConfirmAccountToken(true);
@@ -41,7 +41,7 @@ const confirm = () => {
 
   const sendNewConfirmEmail = async () => {
     setSendingEmail(true);
-    const response = await sendConfirmAccountEmail(user.email);
+    const response = await sendConfirmAccountEmail(user.data.email);
 
     if (response === 200) {
       setEmailSended(true);

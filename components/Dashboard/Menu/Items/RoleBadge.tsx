@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import AuthContext from "../../../../context/Auth";
 
 const RoleBadge = () => {
-  const {
-    user: { roles },
-  } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  if (roles.admin)
+  const { roles } = user.data;
+
+  if (roles.includes("admin"))
     return <h3 className="dashboard__menu-rolBadge admin">Administrador</h3>;
-  if (roles.educator && !roles.admin)
+  if (roles.includes("educator") && !roles.includes("admin"))
     return <h3 className="dashboard__menu-rolBadge educator">Educador</h3>;
-  if (roles.partner && !roles.admin)
+  if (roles.includes("partner") && !roles.includes("admin"))
     return <h3 className="dashboard__menu-rolBadge partner">Partner</h3>;
   else return null;
 };

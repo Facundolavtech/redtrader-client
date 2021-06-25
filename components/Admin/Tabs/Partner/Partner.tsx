@@ -10,6 +10,7 @@ import { getAllPartners } from "../../../../services/partners";
 const UpdatePartner = () => {
   const initialFormValues = {
     email: "",
+    discount: 0,
   };
 
   const { token } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const UpdatePartner = () => {
   });
   const [partners, setPartners] = useState(null);
 
-  const { email } = formValues;
+  const { email, discount } = formValues;
 
   useEffect(() => {
     if (email !== initialFormValues.email) {
@@ -51,8 +52,9 @@ const UpdatePartner = () => {
     if (email === "" || formValues === initialFormValues) return;
 
     const data = {
-      active: partnerSwitch.checked,
       email,
+      special_discount: discount,
+      active: partnerSwitch.checked,
       token,
     };
 
@@ -61,7 +63,6 @@ const UpdatePartner = () => {
     await updatePartner(data);
 
     setProcessingForm(false);
-
     setFormValues(initialFormValues);
 
     getPartners();
@@ -72,6 +73,7 @@ const UpdatePartner = () => {
 
     if (response.status === 200) {
       setPartners(response.partners);
+      setFormValues(initialFormValues);
     }
   };
 
@@ -108,6 +110,20 @@ const UpdatePartner = () => {
               ),
             }}
           />
+          {partnerSwitch.checked && (
+            <>
+              <label className="special__discount-input">
+                Descuento especial por referido (Opcional)
+              </label>
+              <input
+                type="number"
+                value={discount}
+                name="discount"
+                onChange={handleChange}
+                max="99"
+              />
+            </>
+          )}
           <SubmitButton loading={processingForm} buttonText="Enviar" />
         </form>
         <PartnerList partners={partners} getPartners={getPartners} />

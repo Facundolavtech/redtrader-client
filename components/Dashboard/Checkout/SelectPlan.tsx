@@ -8,21 +8,21 @@ import ArrowBackBtn from "../../BackArrow";
 
 const SelectPlan = () => {
   const {
-    user: { first_month_payed },
+    user: { data },
   } = useContext(AuthContext);
 
   const dispatch = useDispatch();
 
-  const setPlan = (monthlyPrice, firstMonthPrice, plan_name) => {
+  const setPlan = (monthlyPrice, firstMonthPrice, plan_name, identifier) => {
     let price;
 
-    if (first_month_payed) {
+    if (data.first_month_payed) {
       price = monthlyPrice;
     } else {
       price = firstMonthPrice;
     }
 
-    dispatch(setPlanAction({ price, plan_name }));
+    dispatch(setPlanAction({ price, plan_name, identifier }));
   };
 
   return (
@@ -52,7 +52,14 @@ const SelectPlan = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => setPlan(plan.monthly, plan.first_month, plan.name)}
+              onClick={() =>
+                setPlan(
+                  plan.monthly,
+                  plan.first_month,
+                  plan.name,
+                  plan.identifier
+                )
+              }
             >
               Seleccionar
             </Button>

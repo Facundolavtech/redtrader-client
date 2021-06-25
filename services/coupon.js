@@ -2,15 +2,15 @@ import { toast } from "react-toastify";
 import axiosClient from "../config/axiosClient";
 
 export async function createCoupon(data) {
-  const { token, percent, name } = data;
+  const { token, discount, name } = data;
 
   try {
     const response = await axiosClient
       .post(
         `/coupons/new/`,
         {
-          discount: percent,
-          coupon_name: name,
+          name,
+          discount,
         },
         { headers: { Authorization: token } }
       )
@@ -74,18 +74,18 @@ export async function deleteCoupon(couponId, token) {
   }
 }
 
-export async function applyCoupon(token, couponName) {
+export async function applyCoupon(token, name) {
   try {
-    const data = {
-      coupon_name: couponName,
-    };
-
     const response = await axiosClient
-      .post("/coupons/apply", data, {
-        headers: {
-          Authorization: token,
-        },
-      })
+      .post(
+        "/coupons/apply",
+        { name },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data);
         return res.status;

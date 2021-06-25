@@ -17,10 +17,10 @@ export const Offline = ({ educator }) => {
       <span className="stream__name">{educator.name}</span>
       <span className="stream__live-label">Offline</span>
       <div className="stream__thumbnail">
-        <img src={educator.educator_info.educator_thumb} />
+        <img src={educator.thumbnail} />
       </div>
       <div className="schedules">
-        {educator.educator_info.schedules.map((schedule) => (
+        {educator.schedules.map((schedule) => (
           <p>{schedule}</p>
         ))}
       </div>
@@ -37,7 +37,7 @@ export const Online = ({ educator }) => {
       </div>
       <Link href={`/dashboard/live/${educator.short_id}`}>
         <div className="stream__thumbnail">
-          <img src={educator.educator_info.educator_thumb} />
+          <img src={educator.thumbnail} />
         </div>
       </Link>
       <Link href={`/dashboard/live/${educator.short_id}`}>

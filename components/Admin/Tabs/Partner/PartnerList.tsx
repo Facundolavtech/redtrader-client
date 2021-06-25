@@ -1,5 +1,5 @@
 import { ListItem, List, CircularProgress } from "@material-ui/core";
-import { Check, HowToReg, PersonAdd } from "@material-ui/icons";
+import { HowToReg, PersonAdd } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import AuthContext from "../../../../context/Auth";
@@ -23,27 +23,35 @@ const PartnerList = ({ partners, getPartners }) => {
             <>
               <h2 className="partner-list__title">Lista de partners</h2>
               <List>
-                {partners.map(({ _id, email, name, partner_stats }) => (
-                  <ListItem className="list__item" key={_id}>
-                    <h3 className="partner__name">
-                      {name} <br /> {email}
-                    </h3>
-                    <div className="partner__stats">
-                      <div className="registers">
-                        <PersonAdd />
-                        <span>
-                          Registrados <strong>{partner_stats.registers}</strong>
-                        </span>
+                {partners.map(
+                  ({ _id, email, name, stats, special_discount }) => (
+                    <ListItem className="list__item" key={_id}>
+                      <h3 className="partner__name">
+                        {name} <br /> {email}
+                      </h3>
+                      {special_discount !== 0 && (
+                        <h3 className="special__discount">
+                          <strong>&#10003;</strong> Descuento especial:{" "}
+                          <span>{special_discount}%</span>
+                        </h3>
+                      )}
+                      <div className="partner__stats">
+                        <div className="registers">
+                          <PersonAdd />
+                          <span>
+                            Registrados <strong>{stats.registers}</strong>
+                          </span>
+                        </div>
+                        <div className="pays">
+                          <HowToReg />
+                          <span>
+                            Pagaron <strong>{stats.pays}</strong>
+                          </span>
+                        </div>
                       </div>
-                      <div className="pays">
-                        <HowToReg />
-                        <span>
-                          Pagaron <strong>{partner_stats.pays}</strong>
-                        </span>
-                      </div>
-                    </div>
-                  </ListItem>
-                ))}
+                    </ListItem>
+                  )
+                )}
               </List>
             </>
           )}

@@ -9,7 +9,7 @@ const User = () => {
     user: { plan },
   } = useContext(AuthContext);
 
-  return <>{plan.active ? <WithPlan /> : <WithoutPlan />}</>;
+  return <>{plan ? <WithPlan /> : <WithoutPlan />}</>;
 };
 
 const WithoutPlan = () => {
@@ -29,14 +29,12 @@ const WithPlan = () => {
     user: { plan },
   } = useContext(AuthContext);
 
-  const {
-    plan_type: { premium_plus },
-  } = plan;
+  const { type } = plan;
 
   return (
     <>
       <PlanBadge />
-      {!premium_plus && (
+      {type !== "premium_plus" && (
         <Link href="/dashboard/upgrade">
           <Button className="dashboard__menu-update-plan-btn">
             Actualizar plan
@@ -59,12 +57,12 @@ const PlanBadge = () => {
 
   const {
     user: {
-      plan: { plan_type },
+      plan: { type },
     },
   } = useContext(AuthContext);
 
   useEffect(() => {
-    if (plan_type.premium_plus) {
+    if (type === "premium_plus") {
       setBadge(2);
     }
   }, [badge]);

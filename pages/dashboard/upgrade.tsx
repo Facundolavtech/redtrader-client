@@ -20,10 +20,10 @@ const upgrade = () => {
 
   useEffect(() => {
     if (user) {
-      if (!user.plan.active || user.plan.plan_type.premium_plus) {
+      if (!user.plan || user.plan.type === "premium_plus") {
         router.push("/dashboard");
       }
-      if (!user.confirmed) {
+      if (!user.data.confirmed) {
         router.push("/confirm");
       }
     }
@@ -38,8 +38,9 @@ const upgrade = () => {
   useEffect(() => {
     dispatch(
       setPlanAction({
-        price: 34.99,
+        price: 20,
         plan_name: "Plan Premium Plus",
+        identifier: "premium_plus",
         upgrade: true,
       })
     );
@@ -62,10 +63,7 @@ const upgrade = () => {
   return (
     <>
       <SEO title="Actualizar plan" />
-      {user &&
-      user.plan.active &&
-      !user.plan.plan_type.premium_plus &&
-      plan_name ? (
+      {user && user.plan && user.plan.type !== "premium_plus" && plan_name ? (
         <>
           <CheckoutStyleJSX />
           <DashboardHeader />

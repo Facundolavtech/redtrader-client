@@ -28,23 +28,13 @@ const AuthProvider = ({ children }) => {
           },
         })
         .then((response) => {
-          setUser(response.data);
+          setUser({ data: response.data.user, plan: response.data.plan });
         })
         .catch(() => {
-          localStorage.removeItem("userToken");
-          setUser(null);
-          setToken(null);
-          if (!excludePages.includes(pathname)) {
-            router.push("/");
-          }
+          logout();
         });
     } catch (error) {
-      localStorage.removeItem("userToken");
-      setUser(null);
-      setToken(null);
-      if (!excludePages.includes(pathname)) {
-        router.push("/");
-      }
+      logout();
     }
   };
 
@@ -52,7 +42,9 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("userToken");
     setUser(null);
     setToken(null);
-    router.push("/");
+    if (!excludePages.includes(pathname)) {
+      router.push("/");
+    }
   };
 
   return (

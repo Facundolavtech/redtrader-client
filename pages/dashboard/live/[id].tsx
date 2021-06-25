@@ -33,10 +33,10 @@ const id = () => {
   }, [shortID]);
 
   useEffect(() => {
-    if (user && !user.confirmed) {
+    if (user && !user.data.confirmed) {
       router.push("/");
     }
-    if (user && !user.plan.active) {
+    if (user && !user.plan) {
       router.push("/dashboard");
     }
   }, [user]);
@@ -57,7 +57,7 @@ const id = () => {
     <>
       <SEO title="RedTrader Live" />
 
-      {user && user.plan.active && shortID ? (
+      {user && user.plan && shortID ? (
         <>
           <DashboardHeader />
           {loading && !educatorInfo ? (
