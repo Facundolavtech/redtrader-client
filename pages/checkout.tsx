@@ -1,14 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import AuthContext from "../../context/Auth";
-import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../components/Loading";
-import SEO from "../../components/SEO";
-import DashboardHeader from "../../components/UI/Header/DashboardHeader";
-import SelectPlan from "../../components/Dashboard/Checkout/SelectPlan";
-import { resetCheckoutStateAction } from "../../redux/actions/Checkout";
-import Checkout from "../../components/Dashboard/Checkout/Checkout";
-import CheckoutStyleJSX from "../../components/StyleJSX/CheckoutStyleJSX";
+import AuthContext from "../context/Auth";
+import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
+import SEO from "../components/SEO";
+import SelectPlan from "../components/Dashboard/Checkout/SelectPlan";
+import { resetCheckoutStateAction } from "../redux/actions/Checkout";
+import Checkout from "../components/Dashboard/Checkout/Checkout";
+import CheckoutStyleJSX from "../components/StyleJSX/CheckoutStyleJSX";
+import SignUpStepper from "../components/Steppers/SignUpStepper";
 
 const checkout = () => {
   const router = useRouter();
@@ -18,8 +18,6 @@ const checkout = () => {
   const { checkout_link, plan_selected, plan_name } = useSelector(
     (state: any) => state.checkout
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (user) {
@@ -34,9 +32,8 @@ const checkout = () => {
 
   useEffect(() => {
     if (checkout_link) {
-      window.open(checkout_link, "_blank");
-      router.push("/dashboard");
-      dispatch(resetCheckoutStateAction());
+      router.replace(checkout_link);
+      resetCheckoutStateAction();
     }
   }, [checkout_link]);
 
@@ -51,7 +48,7 @@ const checkout = () => {
       <>
         <SEO title={plan_name || "Seleccionar plan"} />
         <CheckoutStyleJSX />
-        <DashboardHeader />
+        {!user.data.first_month_payed && <SignUpStepper step={2} />}
         {!plan_selected ? <SelectPlan /> : <Checkout />}
       </>
     );

@@ -5,7 +5,6 @@ import { CircularProgress } from "@material-ui/core";
 import LiveStream from "../../../components/Dashboard/Live/LiveStream";
 import Loading from "../../../components/Loading";
 import AuthContext from "../../../context/Auth";
-import { toast } from "react-toastify";
 import DashboardHeader from "../../../components/UI/Header/DashboardHeader";
 import SEO from "../../../components/SEO";
 
@@ -34,10 +33,10 @@ const id = () => {
 
   useEffect(() => {
     if (user && !user.data.confirmed) {
-      router.push("/");
+      router.push("/confirm");
     }
     if (user && !user.plan) {
-      router.push("/dashboard");
+      router.push("/checkout");
     }
   }, [user]);
 
@@ -48,15 +47,12 @@ const id = () => {
       setEducatorInfo(response.educator);
       setLoading(false);
     } else {
-      toast.error("Ocurrio un error");
       router.push("/dashboard/lives");
     }
   };
 
   return (
     <>
-      <SEO title="RedTrader Live" />
-
       {user && user.plan && shortID ? (
         <>
           <DashboardHeader />
@@ -76,7 +72,10 @@ const id = () => {
               />
             </div>
           ) : (
-            <LiveStream educator={educatorInfo} />
+            <>
+              <SEO title={educatorInfo.name} />
+              <LiveStream educator={educatorInfo} />
+            </>
           )}
         </>
       ) : (

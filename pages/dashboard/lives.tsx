@@ -12,7 +12,7 @@ const lives = () => {
 
   useEffect(() => {
     if (user && !user.plan) {
-      router.push("/dashboard");
+      router.push("/checkout");
     }
     if (user && !user.data.confirmed) {
       router.push("/confirm");
@@ -21,10 +21,9 @@ const lives = () => {
 
   return (
     <>
-      <SEO title="RedTrader Live" />
-
-      {user && user.plan ? (
+      {user && user.data.confirmed && user.plan ? (
         <>
+          <SEO title="RedTrader Live" />
           <DashboardHeader />
           <LivesList />
         </>

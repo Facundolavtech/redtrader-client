@@ -12,7 +12,7 @@ const index = () => {
 
   useEffect(() => {
     if (user && !user.data.confirmed) {
-      router.push("/");
+      router.push("/confirm");
     }
     if (user && !user.data.roles.includes("admin")) {
       router.push("/dashboard");
@@ -21,9 +21,9 @@ const index = () => {
 
   return (
     <>
-      <SEO title="Panel de Administrador" />
       {user && user.data.roles.includes("admin") ? (
         <>
+          <SEO title="Panel de Administrador" />
           <DashboardHeader />
           <AdminNav />
         </>

@@ -20,7 +20,10 @@ const upgrade = () => {
 
   useEffect(() => {
     if (user) {
-      if (!user.plan || user.plan.type === "premium_plus") {
+      if (!user.plan) {
+        router.push("/checkout");
+      }
+      if (user.plan && user.plan.type === "premium_plus") {
         router.push("/dashboard");
       }
       if (!user.data.confirmed) {
@@ -62,9 +65,9 @@ const upgrade = () => {
 
   return (
     <>
-      <SEO title="Actualizar plan" />
       {user && user.plan && user.plan.type !== "premium_plus" && plan_name ? (
         <>
+          <SEO title="Actualizar plan" />
           <CheckoutStyleJSX />
           <DashboardHeader />
           <Checkout />

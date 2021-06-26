@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import Logo from "../../components/UI/Logo/Logo";
 import { CircularProgress } from "@material-ui/core";
 import {
   getConfirmAccountToken,
   sendConfirmAccountEmail,
 } from "../../services/confirmAccount";
-import ArrowBackBtn from "../../components/BackArrow";
 import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
-import AuthContext from "../../context/Auth";
 import SEO from "../../components/SEO";
+import SignUpStepper from "../../components/Steppers/SignUpStepper";
+import AuthContext from "../../context/Auth";
 
 const confirm = () => {
   const router = useRouter();
@@ -21,10 +20,9 @@ const confirm = () => {
 
   useEffect(() => {
     if (user) {
+      getConfirmToken();
       if (user.data.confirmed) {
-        router.push("/dashboard");
-      } else {
-        getConfirmToken();
+        router.push("/checkout");
       }
     }
   }, [user]);
@@ -52,20 +50,18 @@ const confirm = () => {
 
   return (
     <>
-      <SEO title="Confirmar cuenta" />
-
-      {user && confirmAccountToken !== null ? (
+      {user && !user.data.confirmed && confirmAccountToken !== null ? (
         <>
+          <SEO title="Confirmar cuenta" />
+          <SignUpStepper step={1} />
           <div className="confirm__container">
-            <Logo href="/" />
-            <ArrowBackBtn src="/" />
             <h2>
               Te hemos enviado un email para confirmar tu cuenta a
               <br />
               <span>{user.email}</span>
             </h2>
 
-            {confirmAccountToken === true ? (
+            {confirmAccountToken ? (
               <h3 style={{ color: "#228f01" }}>
                 Revisa tu casilla de correo no deseado o spam
                 <span style={{ color: "#333", fontWeight: 400 }}>

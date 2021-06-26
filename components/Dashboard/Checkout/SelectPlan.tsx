@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import AuthContext from "../../../context/Auth";
 import plans from "../../../helpers/plans";
 import { setPlanAction } from "../../../redux/actions/Checkout";
-import ArrowBackBtn from "../../BackArrow";
 
 const SelectPlan = () => {
   const {
@@ -28,7 +27,6 @@ const SelectPlan = () => {
   return (
     <>
       <div className="selectplan__container">
-        <ArrowBackBtn src="/dashboard" />
         {plans.map((plan, index) => (
           <div className="selectplan__card" key={index}>
             <div className="card__img">

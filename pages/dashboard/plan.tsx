@@ -18,16 +18,13 @@ const plan = () => {
     if (user) {
       if (user.plan) {
         setPlanDetailsFunction(user.plan.type, setPlanDetails);
+        setUserPlanExpireDate(new Date(user.plan.expires));
+      } else {
+        router.push("/checkout");
       }
 
       if (!user.data.confirmed) {
         router.push("/confirm");
-      }
-      if (!user.plan) {
-        router.push("/dashboard");
-      }
-      if (user.plan.expires !== null) {
-        setUserPlanExpireDate(new Date(user.plan.expires));
       }
     }
   }, [user]);
@@ -39,10 +36,9 @@ const plan = () => {
 
   return (
     <>
-      <SEO title="Informacion del plan" />
-
-      {user && planDetails ? (
+      {user && user.data.confirmed && user.plan && planDetails ? (
         <>
+          <SEO title="Informacion del plan" />
           <DashboardHeader />
           <div className="info-plan__container">
             <ArrowBackBtn src="/dashboard" />

@@ -1,16 +1,17 @@
 import { Button } from "@material-ui/core";
 import { HowToReg, KeyboardTab } from "@material-ui/icons";
+import { useRouter } from "next/router";
 
 const AuthButtons = (props) => {
-  const { handleModal, handleAuthForms, handleOpenMenu } = props;
+  const { handleOpenMenu } = props;
+  const router = useRouter();
 
   return (
     <>
       <li className="nav__login">
         <a
           onClick={() => {
-            handleModal();
-            handleAuthForms(true);
+            router.push("/signin");
             handleOpenMenu();
           }}
         >
@@ -21,9 +22,8 @@ const AuthButtons = (props) => {
       <li
         className="nav__comenzar-btn"
         onClick={() => {
-          handleModal();
+          router.push("/signup");
           handleOpenMenu();
-          handleAuthForms(false);
         }}
       >
         <Button>

@@ -11,17 +11,21 @@ const changepassword = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && !user.data.confirmed) {
-      router.push("/confirm");
+    if (user) {
+      if (!user.data.confirmed) {
+        router.push("/confirm");
+      }
+      if (!user.plan) {
+        router.push("/checkout");
+      }
     }
   }, [user]);
 
   return (
     <>
-      <SEO title="Cambiar contraseña" />
-
-      {user && user.data.confirmed ? (
+      {user && user.data.confirmed && user.plan ? (
         <>
+          <SEO title="Cambiar contraseña" />
           <DashboardHeader />
           <ChangePasswordForm />
         </>

@@ -8,7 +8,7 @@ import HomeFooter from "../components/Home/Footer";
 import AuthContext from "../context/Auth";
 import HomeHeader from "../components/UI/Header/HomeHeader";
 import Modal from "../components/Modal/Modal";
-import Forms from "../components/Auth/Forms";
+import Forms from "../components/Auth/AuthForms";
 import Whatsapp from "../components/Home/Whatsapp";
 import Sections from "../components/Home/Sections";
 import SEO from "../components/SEO";
@@ -40,25 +40,15 @@ export default function Inicio() {
 
   const dispatch = useDispatch();
 
-  const { open } = useSelector((state: any) => state.modal.auth_modal);
-  const signInForm = useSelector((state: any) => state.auth.signInForm);
-
   return (
     <>
-      <SEO title="Academia de trading" />
+      <SEO title="Academia de Trading Profesional" />
       <HomeStyleJSX backdrop={backdrop} />
       <div className={backdrop ? "backdrop" : ""}></div>
       <HomeHeader />
       <Hero />
       <Sections />
       <HomeFooter />
-      <Modal
-        open={open}
-        close={() => dispatch(handleAuthModalAction())}
-        title={signInForm ? "Iniciar Sesion" : "Registrarse"}
-      >
-        <Forms />
-      </Modal>
       <Whatsapp />
     </>
   );

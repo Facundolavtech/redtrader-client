@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   FormControl,
   IconButton,
   Input,
@@ -9,28 +10,54 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import AuthContext from "../../../context/Auth";
 import {
   generateStreamKey,
   generateStreamPassword,
+  getStreamCredentials,
 } from "../../../services/educator";
 import ArrowBackBtn from "../../BackArrow";
 
 const EducatorSettings = () => {
-  const { user, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const [showStreamPW, setShowStreamPW] = useState(false);
-  const [stream_key, setStream_key] = useState(user.educator_info.stream_key);
-  const [stream_pw, setStream_pw] = useState(user.stream_pw);
+  const [streamCredentials, setStreamCredentials] = useState({
+    stream_key: null,
+    stream_pw: null,
+  });
 
   const handleClickShowStreamPw = () => {
     setShowStreamPW(!showStreamPW);
+  };
+
+  useEffect(() => {
+    if (token) {
+      getCredentials();
+    }
+  }, [token]);
+
+  const getCredentials = async () => {
+    const response = await getStreamCredentials(token);
+
+    if (response.status === 200) {
+      const { stream_pw, stream_key } = response;
+      setStreamCredentials({
+        stream_pw,
+        stream_key,
+      });
+    }
   };
 
   const newStreamKey = async () => {
     const response = await generateStreamKey(token);
 
     if (response.status === 200) {
-      setStream_key(response.stream_key);
+      setStreamCredentials({
+        ...streamCredentials,
+        stream_key: response.stream_key,
+      });
+      getCredentials();
     }
   };
 
@@ -38,9 +65,15 @@ const EducatorSettings = () => {
     const response = await generateStreamPassword(token);
 
     if (response.status === 200) {
-      setStream_pw(response.stream_pw);
+      setStreamCredentials({
+        ...streamCredentials,
+        stream_pw: response.stream_pw,
+      });
+      getCredentials();
     }
   };
+
+  const { stream_key, stream_pw } = streamCredentials;
 
   return (
     <>
@@ -48,40 +81,46 @@ const EducatorSettings = () => {
         <ArrowBackBtn src="/dashboard" />
         <h1>Configuracion del Streaming</h1>
         <div className="keys__fields">
-          <FormControl>
-            <TextField
-              disabled
-              label="Llave de Transmision"
-              value={stream_key}
-            />
-            <Button className="renew__btn" onClick={newStreamKey}>
-              Solicitar nueva
-            </Button>
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="standard-adornment-streampw">
-              Clave de transmision
-            </InputLabel>
-            <Input
-              disabled
-              id="standard-adornment-streampw"
-              type={showStreamPW ? "text" : "password"}
-              value={stream_pw}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowStreamPw}
-                  >
-                    {showStreamPW ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-            <Button className="renew__btn" onClick={newStreamPassword}>
-              Solicitar nueva
-            </Button>
-          </FormControl>
+          {stream_key && stream_pw ? (
+            <>
+              <FormControl>
+                <TextField
+                  disabled
+                  label="Llave de Transmision"
+                  value={stream_key || null}
+                />
+                <Button className="renew__btn" onClick={newStreamKey}>
+                  Solicitar nueva
+                </Button>
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="standard-adornment-streampw">
+                  Clave de transmision
+                </InputLabel>
+                <Input
+                  disabled
+                  id="standard-adornment-streampw"
+                  type={showStreamPW ? "text" : "password"}
+                  value={stream_pw || null}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowStreamPw}
+                      >
+                        {showStreamPW ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <Button className="renew__btn" onClick={newStreamPassword}>
+                  Solicitar nueva
+                </Button>
+              </FormControl>
+            </>
+          ) : (
+            <CircularProgress color="primary" size={50} />
+          )}
         </div>
       </div>
       <div className="stream-settings__instructions">

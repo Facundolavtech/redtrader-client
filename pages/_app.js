@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "../context/Auth/AuthProvider";
 import store from "../redux/store";
 import { Provider } from "react-redux";
+import SEO from "../components/SEO";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <SEO />
       <AuthProvider>
         <Provider store={store}>
           <ThemeProvider theme={theme}>

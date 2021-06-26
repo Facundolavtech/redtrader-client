@@ -11,8 +11,13 @@ const dashboard = () => {
   const { user, authUser } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && !user.data.confirmed) {
-      router.push("/confirm");
+    if (user) {
+      if (!user.data.confirmed) {
+        router.push("/confirm");
+      }
+      if (!user.plan) {
+        router.push("/checkout");
+      }
     }
   }, [user]);
 
@@ -22,10 +27,9 @@ const dashboard = () => {
 
   return (
     <>
-      <SEO title="Dashboard" />
-
-      {user && user.data.confirmed ? (
+      {user && user.data.confirmed && user.plan ? (
         <>
+          <SEO title="Dashboard" />
           <DashboardHeader />
           <DashboardTabs />
         </>
