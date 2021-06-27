@@ -18,6 +18,7 @@ const initialFormValues = {
   new: "",
   repeatNew: "",
 };
+
 export default function ChangePasswordForm() {
   const router = useRouter();
   const [fieldErrors, setFieldErrors] = useState(null);
@@ -59,7 +60,7 @@ export default function ChangePasswordForm() {
     }
 
     setProcessingForm(true);
-    const data = { token, password: formValues.new, email: user.email };
+    const data = { token, password: formValues.new, email: user.data.email };
     const response = await changePassword(data);
 
     if (response === 200) {

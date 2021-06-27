@@ -31,7 +31,7 @@ export default function Inicio() {
   }, [partner_link]);
 
   useEffect(() => {
-    console.log(`Endpoint:, ${process.env.NEXT_PUBLIC_API_ENDPOINT}`);
+    console.log(`Endpoint :, ${process.env.API_ENDPOINT}`);
 
     if (user && !user.confirmed) {
       setUser(null);
