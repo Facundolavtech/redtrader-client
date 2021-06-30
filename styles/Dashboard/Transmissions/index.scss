@@ -56,17 +56,6 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .transmission__card {
-    margin-bottom: 30px;
-    margin-top: 0;
-
-    &:hover {
-      transform: none;
-    }
-  }
-}
-
 .empty__transmissions-msg {
   font-weight: 400;
   font-size: 2.4em;
@@ -86,5 +75,23 @@
       height: unset !important;
       width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .transmission__card {
+    margin-bottom: 30px;
+    margin-top: 0;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .empty__transmissions-msg {
+    font-weight: 400;
+    text-align: center;
+    font-size: 1.8em;
+    color: #565656;
   }
 }

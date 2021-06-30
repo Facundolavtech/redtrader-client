@@ -52,7 +52,7 @@ const LivesList = () => {
                   </div>
                 </Grid>
                 {educators.map((educator) => (
-                  <Grid item xs={12} md={3} lg={3} spacing={3}>
+                  <Grid item xs={12} md={3} lg={3}>
                     <Streams
                       key={educator.short_id}
                       educator={educator}
