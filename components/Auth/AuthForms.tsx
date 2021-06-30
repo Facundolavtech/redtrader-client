@@ -73,16 +73,12 @@ export default function AuthForms({ isSignIn }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Grid container className="auth__container" alignItems="flex-start">
-          <Grid item md={8}>
-            <img
-              src="/assets/img/auth_img.jpg"
-              alt=""
-              className="auth__form-img"
-            />
-          </Grid>
-          <Grid item md={4} xs={12}>
+        <Grid container className="auth__container">
+          <Grid item md={12} xs={12}>
             <form className="auth__form" onSubmit={handleSubmit}>
+              <div className="auth__form-img">
+                <img src="/assets/img/logo.png" alt="redtrader logo" />
+              </div>
               {!isSignIn && (
                 <TextField
                   variant="outlined"
