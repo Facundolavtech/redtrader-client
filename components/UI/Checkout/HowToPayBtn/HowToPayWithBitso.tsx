@@ -14,6 +14,7 @@ const HowToPayWithBitso = () => {
         Como pagar con criptomonedas
       </span>
       <Modal
+        width="450px"
         open={openModal}
         close={handleCloseModal}
         title="Como pagar con criptomonedas"

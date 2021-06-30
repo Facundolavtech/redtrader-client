@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Tab } from "@material-ui/core";
-import { Lock, PlayCircleFilled, School } from "@material-ui/icons";
+import { Info, Lock, PlayCircleFilled, School } from "@material-ui/icons";
 import VideoTemplate from "./VideoTemplate";
 import AuthContext from "../../../../../context/Auth";
 import { getVideos } from "../../../../../services/videos";
@@ -108,6 +108,13 @@ export default function VideoList() {
         ) : (
           <LoadingVideos />
         )}
+      </div>
+      <div className="basic-bottom__message">
+        <Info />
+        <h2>
+          Al terminar la Academia Basica, descarga <span>RedTrade APP</span> y
+          comienza a generar ingresos con nuestras señales
+        </h2>
       </div>
     </>
   );

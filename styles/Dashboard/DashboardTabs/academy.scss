@@ -84,7 +84,7 @@
     width: 90%;
     flex-direction: column;
     max-height: 900px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 
     .MuiTabs-root {
       width: 100%;
@@ -120,6 +120,31 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     color: rgb(70, 70, 70);
     padding-bottom: 20px;
+  }
+}
+
+.basic-bottom__message {
+  width: 85%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #3a3a3a;
+
+    span {
+      font-weight: 500;
+      color: #202020;
+      text-decoration: underline;
+    }
   }
 }
 

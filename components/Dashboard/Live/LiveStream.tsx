@@ -1,18 +1,17 @@
 import React from "react";
+import EducatorTitle from "../../UI/Lives/EducatorTitle";
 import LiveStreamChat from "./LiveStreamChat";
 import VideoPlayerComponent from "./VideoPlayerComponent";
 
 const LiveStream = ({ educator }) => {
   return (
     <div className="livestream__container">
-      <div className="livestream__title">
-        <div className="livestream__title-thumb">
-          <img src={educator.thumbnail} alt={educator.name} />
-        </div>
-        <div className="livestream__title-name">
-          <h2>{educator.name}</h2>
-        </div>
-      </div>
+      <EducatorTitle
+        thumb={educator.thumbnail}
+        name={educator.name}
+        title={`Clase de ${educator.name}`}
+        borderBottom={false}
+      />
       <div className="livestream">
         <VideoPlayerComponent
           stream_key={educator.stream_key}

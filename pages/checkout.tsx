@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import AuthContext from "../context/Auth";
 import { useSelector } from "react-redux";
