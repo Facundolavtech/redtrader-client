@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { PlayArrow } from "@material-ui/icons";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Container, Grid } from "@material-ui/core";
 import { useState } from "react";
 import AuthContext from "../../../context/Auth";
 import useStreams from "../../../hooks/useStreams";
@@ -43,20 +43,25 @@ const LivesList = () => {
           <Loading />
         ) : (
           <>
-            <ArrowBackBtn src="/dashboard" />
-            <div className="lives__title">
-              <h2>Educadores</h2>
-              <PlayArrow />
-            </div>
-            <div className="streams-list__container">
-              {educators.map((educator) => (
-                <Streams
-                  key={educator.short_id}
-                  educator={educator}
-                  lives={lives}
-                />
-              ))}
-            </div>
+            <Container maxWidth="lg">
+              <Grid container spacing={5}>
+                <Grid item lg={12} xs={12} md={12}>
+                  <div className="lives__title">
+                    <h2>Educadores</h2>
+                    <PlayArrow />
+                  </div>
+                </Grid>
+                {educators.map((educator) => (
+                  <Grid item xs={12} md={3} lg={3}>
+                    <Streams
+                      key={educator.short_id}
+                      educator={educator}
+                      lives={lives}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Container>
           </>
         )}
       </>

@@ -117,7 +117,7 @@ const Plan = () => {
               onOpen={() => setOpenPicker(true)}
               onClose={() => setOpenPicker(false)}
               className="plan__datepicker"
-              // minDate={new Date()}
+              minDate={new Date()}
               id="date-picker-dialog"
               label="Selecciona la fecha de caducidad del plan"
               format="dd/MM/yyyy"

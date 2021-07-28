@@ -11,7 +11,7 @@ const Stream = ({ educator, lives }) => {
 
 export default Stream;
 
-export const Offline = ({ educator }) => {
+const Offline = ({ educator }) => {
   return (
     <div key={educator.short_id} className="stream__card stream__offline">
       <span className="stream__name">{educator.name}</span>
@@ -24,11 +24,14 @@ export const Offline = ({ educator }) => {
           <p>{schedule}</p>
         ))}
       </div>
+      <Link href={`/dashboard/transmissions/${educator.short_id}`}>
+        <div className="past_streams">Ver transmisiones pasadas</div>
+      </Link>
     </div>
   );
 };
 
-export const Online = ({ educator }) => {
+const Online = ({ educator }) => {
   return (
     <div key={educator.short_id} className="stream__card">
       <span className="stream__name">{educator.name}</span>
@@ -42,6 +45,9 @@ export const Online = ({ educator }) => {
       </Link>
       <Link href={`/dashboard/live/${educator.short_id}`}>
         <button className="stream__enter-btn">Ingresar</button>
+      </Link>
+      <Link href={`/dashboard/transmissions/${educator.short_id}`}>
+        <div className="past_streams">Ver transmisiones pasadas</div>
       </Link>
     </div>
   );

@@ -1,5 +1,8 @@
 //Pages
 
+//Auth
+@import "./Auth/auth_header.scss";
+
 //Home
 @import "./Home/header.scss";
 @import "./Home/nav.scss";
@@ -30,6 +33,7 @@
 @import "./Dashboard/plan.scss";
 @import "./Dashboard/Checkout/bitsoVideos.scss";
 @import "./Dashboard/lock_content.scss";
+@import "./Dashboard/Transmissions/index.scss";
 @import "../components/Dashboard/Nav/nav.scss";
 @import "../components/Dashboard/Menu/menu.scss";
 @import "../components/Dashboard/ChangePassword/changePassword.scss";
@@ -60,3 +64,4 @@
 @import "../components/Modal/modal.scss";
 @import "../components/BackArrow/backarrow.scss";
 @import "../components/Loading/loading.scss";
+@import "../components/UI/Lives/educator_title.scss";

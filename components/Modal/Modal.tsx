@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Close } from "@material-ui/icons";
 
-export default function Modal({ title, children, open, close }) {
+export default function Modal({ title, children, open, close, width }) {
   function getModalStyle() {
     const top = 10;
     const left = 0;
@@ -24,8 +24,9 @@ export default function Modal({ title, children, open, close }) {
     createStyles({
       paper: {
         position: "absolute",
-        width: 450,
-        maxWidth: "90%",
+        width,
+        minHeight: "350px",
+        maxWidth: "95%",
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[10],
         padding: theme.spacing(2, 4, 3),

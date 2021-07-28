@@ -18,6 +18,7 @@ const BitsoGuide = () => {
       </span>
 
       <Modal
+        width="450px"
         open={openModal}
         close={handleCloseModal}
         title="Como pagar con bitso en RedTrader - Miniguia"

@@ -1,14 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import handleAuthModalAction, {
-  handleCloseAuthModalAction,
-} from "../redux/actions/Modal";
+import { handleCloseAuthModalAction } from "../redux/actions/Modal";
 import Hero from "../components/Home/Hero/Hero";
 import HomeFooter from "../components/Home/Footer";
 import AuthContext from "../context/Auth";
 import HomeHeader from "../components/UI/Header/HomeHeader";
-import Modal from "../components/Modal/Modal";
-import Forms from "../components/Auth/AuthForms";
 import Whatsapp from "../components/Home/Whatsapp";
 import Sections from "../components/Home/Sections";
 import SEO from "../components/SEO";
